@@ -1,0 +1,20 @@
+name: Deploy to vps (prod)
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: (ip)
+          port: 2222
+          username: (username)
+          key: ${{ secrets.PRIVATE_KEY_PROD }}
+          script: "cd /var/www/html/Compost; git pull origin dev; php artisan route:clear; sudo service php8.3-fpm reload;npm run build"
