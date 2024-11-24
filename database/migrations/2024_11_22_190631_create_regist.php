@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('regist', function (Blueprint $table) {
+        Schema::create('regists', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('cicle_id')->unsigned()->index();
-            $table->foreign('cicle_id')->references('id')->on('cicle');
+            $table->foreign('cicle_id')->references('id')->on('cicles');
             $table->bigInteger('composter_id')->unsigned()->index();
-            $table->foreign('composter_id')->references('id')->on('composter');
+            $table->foreign('composter_id')->references('id')->on('composters');
             $table->date('date');
             $table->boolean('cicle_start')->default(false);
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('regist');
+        Schema::dropIfExists('regists');
     }
 };

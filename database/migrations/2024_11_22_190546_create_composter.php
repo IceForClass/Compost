@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('composter', function (Blueprint $table) {
+        Schema::create('composters', function (Blueprint $table) {
             $table->id();
             $table->enum('type', [
                 'aporte' => '11',
@@ -19,7 +19,7 @@ return new class extends Migration
                 'maduracion' => '33'
             ]);
             $table->bigInteger('centre_id')->unsigned()->index();
-            $table->foreign('centre_id')->references('id')->on('centre');
+            $table->foreign('centre_id')->references('id')->on('centres')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('composter');
+        Schema::dropIfExists('composters');
     }
 };

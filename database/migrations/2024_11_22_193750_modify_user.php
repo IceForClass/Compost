@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->bigInteger('centre_id')->unsigned()->index();
-            $table->foreign('centre_id')->references('id')->on('centre');
+            $table->foreign('centre_id')->references('id')->on('centres');
             $table->boolean('admin')->default(false);
         });
     }

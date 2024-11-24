@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('before', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('regist_id')->unsigned()->index();
-            $table->foreign('regist_id')->references('id')->on('regist');
+            $table->foreign('regist_id')->references('id')->on('regists');
             $table->float('temp_ambient', 3, 1);
             $table->float('temp_compost', 3, 1);
             $table->enum('fill_level', [

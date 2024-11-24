@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('while', function (Blueprint $table) {
+        Schema::create('during', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('regist_id')->unsigned()->index();
-            $table->foreign('regist_id')->references('id')->on('regist');
+            $table->foreign('regist_id')->references('id')->on('regists');
             $table->boolean('watering_done')->default(false); // riego
             $table->boolean('stirring_done')->default(false); // remover
             $table->boolean('green_deposit')->default(false); // aporte verde
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('while');
+        Schema::dropIfExists('during');
     }
 };

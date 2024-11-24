@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cicle', function (Blueprint $table) {
+        Schema::create('cicles', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('bolo_id')->unsigned()->index();
-            $table->foreign('bolo_id')->references('id')->on('bolo');
+            $table->foreign('bolo_id')->references('id')->on('bolos');
             $table->timestamp('start');
             $table->timestamp('end');
             $table->timestamps();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cicle');
+        Schema::dropIfExists('cicles');
     }
 };
