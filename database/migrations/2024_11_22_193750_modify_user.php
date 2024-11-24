@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigInteger('centre_id')->unsigned()->index();
             $table->foreign('centre_id')->references('id')->on('centre');
             $table->boolean('admin')->default(false);
-        })
+        });
     }
 
     /**

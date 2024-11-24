@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('after', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('regist_id')->unsigned()->index();
+            $table->foreign('regist_id')->references('id')->on('regist');
+            $table->enum('fill_level', [
+                '0%',
+                '12.5%',
+                '25%',
+                '37.5%',
+                '50%',
+                '62.5%',
+                '75%',
+                '87.5%',
+                '100%'
+            ]);
+            $table->string('photo')->nullable();
+            $table->string('observations');
             $table->timestamps();
         });
     }

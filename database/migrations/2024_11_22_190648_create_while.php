@@ -16,16 +16,15 @@ return new class extends Migration
             $table->bigInteger('regist_id')->unsigned()->index();
             $table->foreign('regist_id')->references('id')->on('regist');
             $table->boolean('watering_done')->default(false); // riego
-            $table->boolean('stirring_done')->default(false); // revolver
-            $table->boolean('fertilizer_done')->default(false); // "verde"
-            $table->integer('fertilizer_quantity');
-            $table->string('fertilizer_type');
-
-            // aporte seco
-            // tipo de aporte seco
-            // fotografias durante
-            // observaciones
-
+            $table->boolean('stirring_done')->default(false); // remover
+            $table->boolean('green_deposit')->default(false); // aporte verde
+            $table->integer('green_quantity'); // cantidad verde
+            $table->string('green_type'); // tipo verde
+            $table->boolean('dry_deposit')->default(false); // aporte seco
+            $table->integer('dry_quantity'); // cantidad seco
+            $table->string('dry_type'); // tipo seco
+            $table->string('photo')->nullable();
+            $table->string('observations');
             $table->timestamps();
         });
     }
