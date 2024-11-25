@@ -17,4 +17,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/prueba', function () {
+    return "El despligue en el vps funciona correctamente";
+});
+
 require __DIR__.'/auth.php';
