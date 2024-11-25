@@ -17,7 +17,11 @@ class RegistFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::pluck('id')->random(),
+            'cicle_id' => \App\Models\Cicle::pluck('id')->random(),
+            'composter_id' => \App\Models\Composter::pluck('id')->random(),
+            'date' => $this->faker->date(),
+            'cicle_start' => $this->faker->boolean(),
         ];
     }
 }
