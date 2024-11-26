@@ -17,4 +17,4 @@ jobs:
           port: 2222
           username: icesito
           key: ${{ secrets.PRIVATE_KEY }}
-          script: "cd /var/www/html/compost; git pull origin dev; php artisan route:clear; sudo service php8.3-fpm reload;npm run build"
+          script: "cd /var/www/html/compost/; ./.scripts/dev.sh"

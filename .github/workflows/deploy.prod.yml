@@ -17,9 +17,4 @@ jobs:
           port: 2222
           username: gaston
           key: ${{ secrets.PRIVATE_KEY_PROD }}
-          script: |
-            cd /var/www/html/Compost
-            git pull origin production
-            php artisan route:clear
-            sudo service php8.3-fpm reload
-            npm run build
+          script: "cd /var/www/html/compost/; ./.scripts/prod.sh"
