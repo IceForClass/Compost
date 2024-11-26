@@ -48,11 +48,11 @@ class DatabaseSeeder extends Seeder
             ]
         );
         User::factory(10)->create();
-        Composter::factory(10)->create();
-        Cicle::factory(10)->create();
-        Regist::factory(10)->create();
-        Before::factory(10)->create();
-        After::factory(10)->create();
-        During::factory(10)->create();
+        Composter::factory(3)->create();
+        Cicle::factory(30)->create();
+        Regist::factory(100)->create();
+        Before::factory(100)->create();
+        After::factory(100)->create();
+        During::factory(100)->create();
     }
 }
