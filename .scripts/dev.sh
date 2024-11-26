@@ -2,7 +2,7 @@
 
     echo "Empieza el deploy"
 
-    cd /var/www/html/Compost
+    cd /var/www/html/compost
 
     git pull origin dev
 
