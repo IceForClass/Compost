@@ -2,9 +2,19 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bolo;
+use App\Models\Centre;
+use App\Models\Cicle;
+use App\Models\Composter;
+use App\Models\Regist;
 use App\Models\User;
+use App\Models\Before;
+use App\Models\After;
+use App\Models\During;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +23,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Delete from tables
+        DB::delete('delete from befores');
+        DB::delete('delete from durings');
+        DB::delete('delete from afters');
+        DB::delete('delete from regists');
+        DB::delete('delete from composters');
+        DB::delete('delete from cicles');
+        DB::delete('delete from users');
+        DB::delete('delete from centres');
+        DB::delete('delete from bolos');
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Insert into tables
+        Centre::factory(10)->create();
+        Bolo::factory(10)->create();
+        User::factory()->create(
+            [
+                'name' => 'admin',
+                'email' => 'admin@test.com',
+                'email_verified_at' => now(),
+                'password' => '123456789',
+                'remember_token' => Str::random(10),
+                'centre_id' => \App\Models\Centre::pluck('id')->random(),
+            ]
+        );
+        User::factory(10)->create();
+        Composter::factory(10)->create();
+        Cicle::factory(10)->create();
+        Regist::factory(10)->create();
+        Before::factory(10)->create();
+        After::factory(10)->create();
+        During::factory(10)->create();
     }
 }

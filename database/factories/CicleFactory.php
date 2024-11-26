@@ -15,6 +15,9 @@ class CicleFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    protected $model = \App\Models\Cicle::class;
+
     public function definition(): array
     {
         return [
