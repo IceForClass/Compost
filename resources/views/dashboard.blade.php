@@ -15,9 +15,6 @@
                 </div>
                 <x-select-composter />
                 <div>
-                    {{-- <button id="mostrarDatos">
-                        Consulta de institutos
-                    </button> --}}
                     <button id="fetchCentre" data-id="1"
                         class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Ver
                         nombre del centro</button>
