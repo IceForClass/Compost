@@ -9,8 +9,12 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/images/logo.png",
                 "resources/js/mode.js",
+                "resources/js/consulta.js",
             ],
             refresh: true,
         }),
     ],
+    build: {
+        target: "esnext",
+    },
 });
