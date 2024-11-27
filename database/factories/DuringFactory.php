@@ -14,9 +14,6 @@ class DuringFactory extends Factory
      *
      * @return array<string, mixed>
      */
-
-    protected $model = \App\Models\During::class;
-
     public function definition(): array
     {
         return [
