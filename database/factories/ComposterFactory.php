@@ -15,10 +15,13 @@ class ComposterFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    protected $model = \App\Models\Composter::class;
+
     public function definition(): array
     {
         return [
-            'type' => $this->faker->randomElement(['aporte', 'degradacion', 'maduracion']),
+            'type' => $this->faker->randomElement(['11', '22', '33']),
             'centre_id' => \App\Models\Centre::pluck('id')->random(),
         ];
     }

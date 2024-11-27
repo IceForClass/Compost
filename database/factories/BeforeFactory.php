@@ -14,6 +14,9 @@ class BeforeFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    protected $model = \App\Models\Before::class;
+
     public function definition(): array
     {
         return [
@@ -44,7 +47,7 @@ class BeforeFactory extends Factory
                 '1' => 'Good',
                 '2' => 'Excessive',
             ]),
-            'initial_photos' => $this->faker->optional()->url,
+            'initial_photos' => $this->faker->url,
             'initial_observations' => $this->faker->optional()->text,
         ];
     }

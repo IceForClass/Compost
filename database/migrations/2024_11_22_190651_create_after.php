@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('after', function (Blueprint $table) {
+        Schema::create('afters', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('regist_id')->unsigned()->index();
             $table->foreign('regist_id')->references('id')->on('regists');
@@ -25,9 +25,9 @@ return new class extends Migration
                 '75%',
                 '87.5%',
                 '100%'
-            ]);
+            ])->nullable();
             $table->string('photo')->nullable();
-            $table->string('observations');
+            $table->string('observations')->nullable();
             $table->timestamps();
         });
     }
