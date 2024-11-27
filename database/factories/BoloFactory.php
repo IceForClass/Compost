@@ -14,9 +14,6 @@ class BoloFactory extends Factory
      *
      * @return array<string, mixed>
      */
-
-    protected $model = \App\Models\Bolo::class;
-
     public function definition(): array
     {
         return [
