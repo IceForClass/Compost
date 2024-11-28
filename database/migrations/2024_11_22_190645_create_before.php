@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('before', function (Blueprint $table) {
+        Schema::create('befores', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('regist_id')->unsigned()->index();
-            $table->foreign('regist_id')->references('id')->on('regists');
-            $table->float('temp_ambient', 3, 1);
-            $table->float('temp_compost', 3, 1);
+            $table->foreign('regist_id')->references('id')->on('regists')->onDelete('cascade');
+            $table->float('temp_ambient', 3, 1)->nullable();
+            $table->float('temp_compost', 3, 1)->nullable();
             $table->enum('fill_level', [
                 '0%',
                 '12.5%',
@@ -27,22 +27,22 @@ return new class extends Migration
                 '75%',
                 '87.5%',
                 '100%'
-            ]);
+            ])->nullable();
             $table->enum('odor', [
                 '0' => 'No bad smell',
                 '1' => 'Neutral',
                 '2' => 'Rotten',
                 '3' => 'Other'
-            ]);
-            $table->boolean('insect_status');
-            $table->string('insect_description');
+            ])->nullable();
+            $table->boolean('insect_status')->nullable();
+            $table->string('insect_description')->nullable();
             $table->enum('humidity', [
                 '0' => 'Deficient',
                 '1' => 'Good',
                 '2' => 'Excessive'
-            ]);
-            $table->string('initial_photos'); // initial photos (URL of the image)
-            $table->text('initial_observations'); // initial observations
+            ])->nullable();
+            $table->string('initial_photos')->nullable(); // initial photos (URL of the image)
+            $table->text('initial_observations')->nullable(); // initial observations
             $table->timestamps();
         });
     }
@@ -52,6 +52,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('before');
+        Schema::dropIfExists('befores');
     }
 };

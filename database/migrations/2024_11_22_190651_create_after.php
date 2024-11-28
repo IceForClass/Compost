@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('after', function (Blueprint $table) {
+        Schema::create('afters', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('regist_id')->unsigned()->index();
-            $table->foreign('regist_id')->references('id')->on('regists');
+            $table->foreign('regist_id')->references('id')->on('regists')->onDelete('cascade');
             $table->enum('fill_level', [
                 '0%',
                 '12.5%',
@@ -25,9 +25,9 @@ return new class extends Migration
                 '75%',
                 '87.5%',
                 '100%'
-            ]);
+            ])->nullable();
             $table->string('photo')->nullable();
-            $table->string('observations');
+            $table->string('observations')->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('after');
+        Schema::dropIfExists('afters');
     }
 };
