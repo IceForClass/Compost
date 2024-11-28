@@ -54,5 +54,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Regist::class, 'id', 'user_id');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($users) {
+            $users->password = $users->password ?? bcrypt('123456789');
+        });
+    }
     
 }
