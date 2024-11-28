@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('regists', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('cicle_id')->unsigned()->index();
-            $table->foreign('cicle_id')->references('id')->on('cicles');
+            $table->foreign('cicle_id')->references('id')->on('cicles')->onDelete('cascade');
             $table->bigInteger('composter_id')->unsigned()->index();
-            $table->foreign('composter_id')->references('id')->on('composters');
+            $table->foreign('composter_id')->references('id')->on('composters')->onDelete('cascade');
             $table->date('date');
             $table->boolean('cicle_start')->default(false);
             $table->timestamps();

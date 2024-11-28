@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('durings', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('regist_id')->unsigned()->index();
-            $table->foreign('regist_id')->references('id')->on('regists');
+            $table->foreign('regist_id')->references('id')->on('regists')->onDelete('cascade');
             $table->boolean('watering_done')->default(false); // riego
             $table->boolean('stirring_done')->default(false); // remover
             $table->boolean('green_deposit')->default(false); // aporte verde
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('during');
+        Schema::dropIfExists('durings');
     }
 };
