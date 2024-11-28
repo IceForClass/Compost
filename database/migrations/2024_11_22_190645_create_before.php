@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('befores', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('regist_id')->unsigned()->index();
-            $table->foreign('regist_id')->references('id')->on('regists');
+            $table->foreign('regist_id')->references('id')->on('regists')->onDelete('cascade');
             $table->float('temp_ambient', 3, 1)->nullable();
             $table->float('temp_compost', 3, 1)->nullable();
             $table->enum('fill_level', [
@@ -52,6 +52,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('before');
+        Schema::dropIfExists('befores');
     }
 };

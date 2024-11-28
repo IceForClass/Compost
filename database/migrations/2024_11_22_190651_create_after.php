@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('afters', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('regist_id')->unsigned()->index();
-            $table->foreign('regist_id')->references('id')->on('regists');
+            $table->foreign('regist_id')->references('id')->on('regists')->onDelete('cascade');
             $table->enum('fill_level', [
                 '0%',
                 '12.5%',
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('after');
+        Schema::dropIfExists('afters');
     }
 };

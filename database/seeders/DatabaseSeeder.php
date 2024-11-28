@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'admin',
                 'email' => 'admin@test.com',
                 'email_verified_at' => now(),
-                'password' => '123456789',
+                'password' => bcrypt('123456789'),
                 'remember_token' => Str::random(10),
                 'centre_id' => \App\Models\Centre::pluck('id')->random(),
             ]
