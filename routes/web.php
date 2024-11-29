@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Middleware;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -14,8 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('users', UserController::class);
-});
+Route::resource('users', UserController::class)->middleware('can:administrate,App\Models\User')
+->middleware('can:administrate,App\Models\User');
 
 require __DIR__.'/auth.php';
