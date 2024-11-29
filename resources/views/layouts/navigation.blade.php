@@ -16,6 +16,15 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                @can('administrate', Auth::user())
+                    <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
             </div>
 
             <!-- Settings Dropdown -->
