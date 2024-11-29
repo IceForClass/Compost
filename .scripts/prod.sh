@@ -6,9 +6,7 @@
 
     git pull origin production
 
-    sudo chown -R www-data:www-data ../Compost
-
-    php artisan route:clear
+    php artisan optimize:clear
 
     sudo service php8.3-fpm reload
 
