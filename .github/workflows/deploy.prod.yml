@@ -15,6 +15,6 @@ jobs:
         with:
           host: 200.234.227.69
           port: 2222
-          username: elvis
+          username: gaston
           key: ${{ secrets.PRIVATE_KEY_PROD }}
           script: "cd /var/www/html/Compost/; ./.scripts/prod.sh"
