@@ -17,4 +17,4 @@ jobs:
           port: 2222
           username: gaston
           key: ${{ secrets.PRIVATE_KEY_PROD }}
-          script: "cd /var/www/html/Compost/; cd .scripts; sudo -u www-data ./prod.sh"
+          script: "sudo -u www-data ./var/www/html/Compost/.scripts/prod.sh"
