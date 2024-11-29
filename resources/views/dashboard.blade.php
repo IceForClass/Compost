@@ -22,6 +22,7 @@
                     <p class="text-white" id="NombreCentro"></p>
                 </div>
                 <div id="DatosCentro">
+                    <p class="primary text-light-text-primary dark:text-dark-text-primary">aisjda</p>
                 </div>
             </div>
         </div>
