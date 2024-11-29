@@ -23,18 +23,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Delete from tables
-        DB::delete('delete from befores');
-        DB::delete('delete from durings');
-        DB::delete('delete from afters');
-        DB::delete('delete from regists');
-        DB::delete('delete from composters');
-        DB::delete('delete from cicles');
-        DB::delete('delete from users');
-        DB::delete('delete from centres');
-        DB::delete('delete from bolos');
-
-        // Insert into tables
         Centre::factory(10)->create();
         Bolo::factory(10)->create();
         User::factory()->create(
