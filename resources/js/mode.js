@@ -1,7 +1,7 @@
 // Cambia entre modo oscuro y claro
 const toggleDarkMode = () => {
     const body = document.body;
-    const icon = document.getElementById("theme-icon");
+    const icon = document.querySelector(".theme-icon");
 
     // Alterna la clase dark en el body
     body.classList.toggle("dark");
@@ -20,7 +20,7 @@ const toggleDarkMode = () => {
 window.onload = () => {
     const savedTheme = localStorage.getItem("theme");
     const body = document.body;
-    const icon = document.getElementById("theme-icon");
+    const icon = document.querySelector(".theme-icon");
 
     // Si hay un tema guardado, aplicar la clase correspondiente
     if (savedTheme) {
@@ -39,6 +39,6 @@ window.onload = () => {
 };
 
 // Añadir el evento al icono para alternar entre los modos
-document
-    .getElementById("theme-toggle")
-    .addEventListener("click", toggleDarkMode);
+document.querySelectorAll(".theme-toggle").forEach((button) => {
+    button.addEventListener("click", toggleDarkMode);
+});
