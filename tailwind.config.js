@@ -12,7 +12,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Montserrat Alternates", ...defaultTheme.fontFamily.sans],
+                sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
                 title: ["Montserrat Alternates", ...defaultTheme.fontFamily.sans],
             },
             colors: {
