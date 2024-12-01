@@ -14,19 +14,22 @@
         @endif
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-                <x-select-composter />
-                <div>
-                    <button id="fetchCentre" data-id="1"
-                        class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Ver
-                        nombre del centro</button>
-                    <p class="text-white" id="NombreCentro"></p>
-                </div>
-                <div id="DatosCentro">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg">
+                <div class="p-6 bg-gray-100 dark:bg-gray-900 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
+                        {{ __("You're logged in!") }}
+                    </h3>
+                    <x-select-composter />
+                    <div class="mt-6">
+                        <button id="fetchCentre" data-id="1"
+                            class="px-5 py-2 bg-indigo-600 text-white font-medium text-sm rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            Ver nombre del centro
+                        </button>
+                        <p id="NombreCentro" class="mt-4 text-sm font-medium text-gray-800 dark:text-gray-200"></p>
+                        <p id="DatosCentro"></p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </x-app-layout>
