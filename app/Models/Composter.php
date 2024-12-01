@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Composter extends Model
 {
     use HasFactory;
+
+    public function centre()
+    {
+        return $this->belongsTo(Centre::class, 'centre_id', 'id');
+    }
 }
