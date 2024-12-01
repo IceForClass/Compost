@@ -17,7 +17,7 @@
         </select>
     </div>
 </div>
-<div>
+{{-- <div>
     <label for="composter" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
         {{ __('Seleccionar registro') }}
     </label>
@@ -29,4 +29,4 @@
             @endforeach
         </select>
     </div>
-</div>
+</div> --}}
