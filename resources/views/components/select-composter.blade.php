@@ -1,32 +1,29 @@
 @php
     $composters = \App\Models\Composter::all();
 @endphp
+
 <div class="w-full">
-    <label for="composter" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-        {{ __('Seleccionar compostera') }}
-    </label>
-    <div class="mt-1">
-        <select wire:model="composter" id="composter" name="composter"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+    <table class="min-w-full table-auto border-collapse border border-gray-300">
+        <thead>
+            <tr>
+                <th class="px-4 py-2 border-b text-left text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {{ __('ID de Compostera') }}
+                </th>
+                <th class="px-4 py-2 border-b text-left text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {{ __('Número de Registros') }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
             @foreach ($composters as $composter)
                 @php
-                    $regists = \App\Models\Regist::where('composter_id', $composter->id)->get();
+                    $registsCount = \App\Models\Regist::where('composter_id', $composter->id)->count();
                 @endphp
-                <option value="{{ $composter->id }}">Compostera {{ $composter->id }}</option>
+                <tr>
+                    <td class="px-4 py-2 border-b text-sm text-gray-800 dark:text-gray-300">{{ $composter->id }}</td>
+                    <td class="px-4 py-2 border-b text-sm text-gray-800 dark:text-gray-300">{{ $registsCount }}</td>
+                </tr>
             @endforeach
-        </select>
-    </div>
+        </tbody>
+    </table>
 </div>
-{{-- <div>
-    <label for="composter" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-        {{ __('Seleccionar registro') }}
-    </label>
-    <div class="mt-1">
-        <select wire:model="regist" id="regist" name="regist"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-            @foreach ($regists as $regist)
-                <option value="{{ $regist->id }}">Registo {{ $regist->id }}</option>
-            @endforeach
-        </select>
-    </div>
-</div> --}}
