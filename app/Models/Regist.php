@@ -13,6 +13,10 @@ class Regist extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function bolo(){
+        return $this->belongsTo(Bolo::class);
+    }
+
     public function composter(){
         return $this->belongsTo(Composter::class);
     }
