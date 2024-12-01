@@ -22,7 +22,7 @@ class ComposterFactory extends Factory
     {
         return [
             'type' => $this->faker->randomElement(['11', '22', '33']),
-            'centre_id' => \App\Models\Centre::pluck('id')->random(),
+            'centre_id' => ("1"),
         ];
     }
 }
