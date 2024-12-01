@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/images/logo.png",
                 "resources/js/mode.js",
                 "resources/js/consulta.js",
+                "resources/js/composteras.js",
             ],
             refresh: true,
         }),

@@ -9,7 +9,7 @@ use Orion\Http\Controllers\Controller;
 
 class ComposterController extends Controller
 {
-    use DisableAuthorization;
+    // use DisableAuthorization;
     use DisablePagination;
     protected $model = Composter::class; // or "App\Models\Post"
 
