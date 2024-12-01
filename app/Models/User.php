@@ -46,7 +46,7 @@ class User extends Authenticatable
      */
     public function centre()
     {
-        return $this->belongsTo(\App\Models\Centre::class, 'centre_id', 'id');
+        return $this->belongsTo(Centre::class, 'centre_id', 'id');
     }
     
     /**
@@ -54,7 +54,7 @@ class User extends Authenticatable
      */
     public function regists()
     {
-        return $this->hasMany(\App\Models\Regist::class, 'id', 'user_id');
+        return $this->hasMany(Regist::class, 'id', 'user_id');
     }
 
     protected static function boot()
