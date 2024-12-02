@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('bolos', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->bigInteger('composter_id')->unsigned()->index();
+            $table->foreign('composter_id')->references('id')->on('composters')->onDelete('cascade');
             $table->timestamps();
         });
     }
