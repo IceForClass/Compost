@@ -5,22 +5,20 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Bolo>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BoloComposter>
  */
-class BoloFactory extends Factory
+class BoloComposterFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-
-    protected $model = \App\Models\Bolo::class;
-
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'bolo_id' => \App\Models\Bolo::pluck('id')->random(),
+            'composter_id' => \App\Models\Composter::pluck('id')->random(),
         ];
     }
 }
