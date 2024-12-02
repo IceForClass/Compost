@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Centre::factory(10)->create();
-        Bolo::factory(10)->create();
         User::factory()->create(
             [
                 'name' => 'admin',
@@ -37,6 +36,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
         User::factory(10)->create();
+        Bolo::factory(10)->create();
         Composter::factory(3)->create();
         Cicle::factory(30)->create();
         Regist::factory(100)->create();
