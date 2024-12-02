@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\CentreCompostersController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
 use App\Http\Controllers\api\CentreController;
@@ -16,3 +17,5 @@ Route::group(['as' => 'api.'], function() {
 Route::group(['as' => 'api.'], function() {
     Orion::resource('composters', ComposterController::class);
 });
+ 
+Orion::hasManyResource('centres', 'composters', CentreCompostersController::class);
