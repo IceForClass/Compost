@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Bolo extends Model
 {
     use HasFactory;
+
+    public function cicle(){
+        return $this->hasMany(Cicle::class);
+    } 
 }
