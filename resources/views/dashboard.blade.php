@@ -20,10 +20,6 @@
                         {{ __("You're logged in!") }}
                     </h3>
                     <div class="mt-6">
-                        <button id="fetchCentre" data-id="1"
-                            class="px-5 py-2 bg-indigo-600 text-white font-medium text-sm rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                            Ver nombre del centro
-                        </button>
                         <p id="NombreCentro" class="mt-4 text-sm font-medium text-gray-800 dark:text-gray-200"></p>
                         <p id="DatosCentro"></p>
                     </div>
