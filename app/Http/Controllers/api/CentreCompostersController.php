@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\api;
 
 use App\Models\Centre;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Concerns\DisablePagination;
 use Orion\Http\Controllers\Controller as ControllersController;
+use Orion\Http\Controllers\RelationController;
 
-class CentreCompostersController extends ControllersController
+class CentreCompostersController extends RelationController
 {
-    use DisableAuthorization;
+    // use DisableAuthorization;
     use DisablePagination;
     protected $model = Centre::class;
     protected $relation = 'composters';
