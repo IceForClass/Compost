@@ -1,69 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
 [![Deploy to vps](https://github.com/IceForClass/Compost/actions/workflows/deploy.dev.yml/badge.svg?branch=dev)](https://github.com/IceForClass/Compost/actions/workflows/deploy.dev.yml)
 [![Deploy to vps (prod)](https://github.com/IceForClass/Compost/actions/workflows/deploy.prod.yml/badge.svg)](https://github.com/IceForClass/Compost/actions/workflows/deploy.prod.yml)
 
-## About Laravel
+# EcoBitácora
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Instalación
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Para instalar la aplicación EcoBitácora, sigue estos pasos:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Requisitos previos
 
-## Learning Laravel
+* PHP 8.3+
+* Laravel 11+
+* MariaDB
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Configuración del servidor
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Crea una base de datos y un usuario con permisos completos sobre la base de datos.
+2. Anota el nombre de la base de datos, el usuario y la contraseña, ya que los necesitarás para configurar el archivo `.env`.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Configuración del archivo `.env`
 
-## Laravel Sponsors
+1. Crea un archivo `.env` en la raíz del proyecto.
+2. Agrega las siguientes variables de entorno:
+    * `DB_CONNECTION`: mariadb
+	* `DB_DATABASE`: {nombre de la base de datos}
+	* `DB_USERNAME`: {usuario de la base de datos}
+	* `DB_PASSWORD`: {contraseña de la base de datos}
+4. Genera la clave API ejecutando el comando `php artisan key:generate`.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Instalación de dependencias
 
-### Premium Partners
+1. Ejecuta el comando `composer install` para instalar las dependencias de PHP.
+2. Ejecuta el comando `npm install` para instalar las dependencias de Node.js.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Configuración de la base de datos
 
-## Contributing
+1. Ejecuta el comando `php artisan migrate` para crear las tablas de la base de datos.
+2. Ejecuta el comando `php artisan db:seed` para poblar la base de datos con datos iniciales.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+En los siguientes despliegues, se puede utilizar el comando `php artisan migrate:fresh --seed` para combinar ambas acciones.
 
-## Code of Conduct
+### Construcción del proyecto
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Ejecuta el comando `npm run build` para construir el proyecto.
 
-## Security Vulnerabilities
+### Desarrollo
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Durante el desarrollo, puedes utilizar el comando `npm run dev` para construir el proyecto y acceder mediante el explorador en la IP indicada. Es recomendable también el uso de Laragon.
 
-## License
+=====================================================
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). 
+# EcoBitácora
+
+## Installation
+
+To install the EcoBitácora application, follow these steps:
+
+### Prerequisites
+
+* PHP 8.3+
+* Laravel 11+
+* MariaDB
+
+### Server Configuration
+
+1. Create a database and a user with full permissions on the database.
+2. Note the database name, user, and password, as you will need them to configure the `.env` file.
+
+### .env File Configuration
+
+1. Create a `.env` file in the root of the project.
+2. Add the following environment variables:
+	* `DB_CONNECTION`: mariadb
+	* `DB_DATABASE`: {database name}
+	* `DB_USERNAME`: {database user}
+	* `DB_PASSWORD`: {database password}
+3. Generate the API key by running the command `php artisan key:generate`.
+
+### Dependency Installation
+
+1. Run the command `composer install` to install PHP dependencies.
+2. Run the command `npm install` to install Node.js dependencies.
+
+### Database Configuration
+
+1. Run the command `php artisan migrate` to create the database tables.
+2. Run the command `php artisan db:seed` to populate the database with initial data.
+
+Upon subsequent deploys, `php artisan migrate:fresh --seed` can be used.
+
+### Project Build
+
+During development, you can use the command `npm run dev` to build the project.
+
+### Project Execution
+
+1. Run the command `php artisan serve` to start the development server.
+2. Access the application at `http://localhost:8000`.
