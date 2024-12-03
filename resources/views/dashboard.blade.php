@@ -26,6 +26,10 @@
                     <div id="DatosCompostera" class="mt-4">
                         <!-- Aquí se agregarán las composteras dinámicamente -->
                     </div>
+                    <img id="compostera-llena" class="invisible" src="{{ Vite::asset('resources/images/full.png') }}"
+                        alt="Imagen estado de compostera llena">
+                    <img id="compostera-vacia" class="invisible" src="{{ Vite::asset('resources/images/empty.png') }}"
+                        alt="Imagen estado de compostera vacía">
                 </div>
             </div>
         </div>

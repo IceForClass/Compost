@@ -39,22 +39,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 const card = document.createElement("a");
                 card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
-                    "block p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 no-underline";
-                card.innerHTML = `
-                    <h4 class="text-lg font-bold text-gray-800 dark:text-gray-100">
-                        Compostera ${composter.id}
-                    </h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
-                        Tipo: ${typeName}
-                    </p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
-                       Id Centro: ${composter.centre_id}
-                    </p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
-                        Creado el: ${new Date(
-                            composter.created_at
-                        ).toLocaleString()} 
-                    </p>
+                    "block p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 no-underline flex justify-between";
+                card.innerHTML = /*html*/ `
+                
+                <div>
+                <h4 class="text-lg font-bold text-gray-800 dark:text-gray-100">
+                    Compostera ${composter.id}
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Tipo: ${typeName}
+                </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Id Centro: ${composter.centre_id}
+                </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Creado el: ${new Date(
+                    composter.created_at
+                ).toLocaleString()}
+                </p>
+            </div>
+            <div>
+                ${documment.querySelector("#compostera-llena").outerHTML}
+            </div>
                 `; // toLocaleString Para obtener la hora local
                 container.appendChild(card);
             });
