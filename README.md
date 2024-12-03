@@ -38,7 +38,7 @@ Para instalar la aplicación EcoBitácora, sigue estos pasos:
 1. Ejecuta el comando `php artisan migrate` para crear las tablas de la base de datos.
 2. Ejecuta el comando `php artisan db:seed` para poblar la base de datos con datos iniciales.
 
-En los siguientes deploys, se puede utilizar el comando `php artisan migrate:fresh --seed` para combinar ambas acciones.
+En los siguientes despliegues, se puede utilizar el comando `php artisan migrate:fresh --seed` para combinar ambas acciones.
 
 ### Construcción del proyecto
 
