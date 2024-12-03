@@ -39,7 +39,6 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Bolo::factory(10)->create();
         Composter::factory(3)->create();
-        BoloComposter::factory(10)->create();
         Cicle::factory(30)->create();
         Regist::factory(100)->create();
         Before::factory(100)->create();

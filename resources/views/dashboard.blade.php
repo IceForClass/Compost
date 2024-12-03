@@ -9,7 +9,7 @@
         @if (session('token'))
             <!-- Pasamos el token para que js lo pueda usar -->
             <script>
-                window.apiToken = @json(session('token'));
+                sessionStorage.setItem("apiToken", @json(session('token')));
             </script>
         @endif
 
