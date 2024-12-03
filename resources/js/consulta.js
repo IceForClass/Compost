@@ -1,7 +1,3 @@
-if (window.apiToken) {
-    sessionStorage.setItem("apiToken", window.apiToken);
-}
-
 document.getElementById("fetchCentre").addEventListener("click", function () {
     const centreId = this.getAttribute("data-id");
     const apiToken = sessionStorage.getItem("apiToken");
