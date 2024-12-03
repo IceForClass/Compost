@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     const apiToken = sessionStorage.getItem("apiToken");
 
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const composter = urlParams.get("composter");
+    console.log(composter);
+
     if (!apiToken) {
         document.getElementById("DatosCompostera").innerHTML =
             "Token no encontrado en el almacenamiento de sesión";
