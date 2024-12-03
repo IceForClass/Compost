@@ -10,6 +10,7 @@ use App\Models\Regist;
 use App\Models\User;
 use App\Models\Before;
 use App\Models\After;
+use App\Models\BoloComposter;
 use App\Models\During;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

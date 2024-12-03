@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('cicles', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('bolo_id')->unsigned()->index();
-            $table->foreign('bolo_id')->references('id')->on('bolos');
+            $table->foreignId('bolo_id')->nullable()->constrained('bolos')->cascadeOnDelete();
+            $table->foreignId('composter_id')->nullable()->constrained('composters')->cascadeOnDelete();
             $table->timestamp('start');
             $table->timestamp('end');
             $table->timestamps();

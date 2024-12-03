@@ -36,9 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             composterData.forEach((composter) => {
                 const typeName = typeMapping[composter.type] || "Desconocido";
-                const card = document.createElement("div");
+                const card = document.createElement("a");
+                card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
-                    "p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4";
+                    "block p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 no-underline";
                 card.innerHTML = `
                     <h4 class="text-lg font-bold text-gray-800 dark:text-gray-100">
                         Compostera ${composter.id}
