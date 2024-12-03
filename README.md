@@ -15,7 +15,7 @@ Para instalar la aplicación EcoBitácora, sigue estos pasos:
 
 ### Configuración del servidor
 
-1. Crea una base de datos y un usuario con permisos completos sobre la base de datos en cuestión.
+1. Crea una base de datos y un usuario con permisos completos sobre la base de datos.
 2. Anota el nombre de la base de datos, el usuario y la contraseña, ya que los necesitarás para configurar el archivo `.env`.
 
 ### Configuración del archivo `.env`
@@ -36,7 +36,9 @@ Para instalar la aplicación EcoBitácora, sigue estos pasos:
 ### Configuración de la base de datos
 
 1. Ejecuta el comando `php artisan migrate` para crear las tablas de la base de datos.
-2. Ejecuta el comando `php artisan migrate --seed` para poblar la base de datos con datos iniciales.
+2. Ejecuta el comando `php artisan db:seed` para poblar la base de datos con datos iniciales.
+
+En los siguientes deploys, se puede utilizar el comando `php artisan migrate:fresh --seed` para combinar ambas acciones.
 
 ### Construcción del proyecto
 
@@ -62,7 +64,7 @@ To install the EcoBitácora application, follow these steps:
 
 ### Server Configuration
 
-1. Create a database and a user with full permissions on the database in question.
+1. Create a database and a user with full permissions on the database.
 2. Note the database name, user, and password, as you will need them to configure the `.env` file.
 
 ### .env File Configuration
@@ -70,9 +72,9 @@ To install the EcoBitácora application, follow these steps:
 1. Create a `.env` file in the root of the project.
 2. Add the following environment variables:
 	* `DB_CONNECTION`: mariadb
-	* `DB_DATABASE`: database name
-	* `DB_USERNAME`: database user
-	* `DB_PASSWORD`: database password
+	* `DB_DATABASE`: {database name}
+	* `DB_USERNAME`: {database user}
+	* `DB_PASSWORD`: {database password}
 3. Generate the API key by running the command `php artisan key:generate`.
 
 ### Dependency Installation
@@ -83,7 +85,9 @@ To install the EcoBitácora application, follow these steps:
 ### Database Configuration
 
 1. Run the command `php artisan migrate` to create the database tables.
-2. Run the command `php artisan migrate --seed` to populate the database with initial data.
+2. Run the command `php artisan db:seed` to populate the database with initial data.
+
+Upon subsequent deploys, `php artisan migrate:fresh --seed` can be used.
 
 ### Project Build
 
