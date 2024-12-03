@@ -1,3 +1,9 @@
+import { vite } from 'laravel-vite-plugin';
+
+const fullImage = vite('resources/images/full.png');
+
+console.log(fullImage);
+
 document.addEventListener("DOMContentLoaded", function () {
     const apiToken = sessionStorage.getItem("apiToken");
 
@@ -33,13 +39,22 @@ document.addEventListener("DOMContentLoaded", function () {
             const composterData = data.data;
             const container = document.getElementById("DatosCompostera");
             container.innerHTML = "";
-
             composterData.forEach((composter) => {
                 const typeName = typeMapping[composter.type] || "Desconocido";
                 const card = document.createElement("a");
+                if (composter.ocupada == 1) {
+                    const imgComposterState = document.querySelector("#compostera-llena");
+                } else {
+                    const imgComposterState = document.querySelector("#compostera-vacia");
+                }
+                console.log('const: ' + imgComposterState);
+                console.log(document.querySelector("#compostera-vacia"));
+
+
+                let imgComposterState = document.querySelector("#compostera-vacia");
                 card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
-                    "block p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 no-underline flex justify-between";
+                    "block p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 no-underline h-48 flex justify-between items-center";
                 card.innerHTML = /*html*/ `
                 
                 <div>
@@ -58,10 +73,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 ).toLocaleString()}
                 </p>
             </div>
-            <div>
-                ${documment.querySelector("#compostera-llena").outerHTML}
-            </div>
                 `; // toLocaleString Para obtener la hora local
+                card.appendChild(imgComposterState);
+                imgComposterState.classList.remove("invisible");
                 container.appendChild(card);
             });
         })
