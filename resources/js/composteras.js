@@ -52,7 +52,7 @@ export function loadComposters() {
                     event.preventDefault();
 
                     if (composter.ocupada === 1) {
-                        alert(`La compostera ${composter.id} está ocupada.`);
+                        // alert(`La compostera ${composter.id} está ocupada.`);
                         beforeForm(composter.id);
                     } else {
                         alert(`La compostera ${composter.id} está libre.`);
