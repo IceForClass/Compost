@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
         33: "maduracion",
     };
 
+    const emptyMapping = {
+        0: "Vacia",
+        1: "Ocupada",
+    };
+
     fetch(`/api/composters`, {
         method: "GET",
         headers: {
@@ -41,6 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             composterData.forEach((composter) => {
                 const typeName = typeMapping[composter.type] || "Desconocido";
+                const empty =
+                    emptyMapping[composter.ocupada] || "Estado desconocido";
                 const card = document.createElement("a");
                 card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
@@ -51,6 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     </h4>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Tipo: ${typeName}
+                    </p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                        Estado: ${empty}
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                        Id Centro: ${composter.centre_id}
