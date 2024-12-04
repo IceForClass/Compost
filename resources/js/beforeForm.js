@@ -71,22 +71,18 @@ export function beforeForm(composterId) {
     document
         .getElementById("nextFormButton")
         .addEventListener("click", function () {
-            saveBeforeFormData();
+            const formData = saveBeforeFormData();
+            console.log("Formulario Antes:", formData);
             duringForm(composterId);
         });
 
     function saveBeforeFormData() {
-        const formData = new FormData();
+        const formData = {};
         document.querySelectorAll("input, select, textarea").forEach((el) => {
-            formData.append(
-                el.name,
-                el.type === "checkbox" ? (el.checked ? "1" : "0") : el.value
-            );
+            formData[el.name] =
+                el.type === "checkbox" ? (el.checked ? "1" : "0") : el.value;
         });
-        localStorage.setItem(
-            "beforeFormData",
-            JSON.stringify(Object.fromEntries(formData.entries()))
-        );
-        // alert("Datos guardados en localStorage.");
+        localStorage.setItem("beforeFormData", JSON.stringify(formData));
+        return formData;
     }
 }

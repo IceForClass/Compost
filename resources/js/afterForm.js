@@ -37,6 +37,18 @@ export function afterForm(composterId) {
     document
         .getElementById("saveButton")
         .addEventListener("click", function () {
+            const formData = saveAfterFormData();
+            console.log("Formulario Después:", formData);
             loadComposters();
         });
+
+    function saveAfterFormData() {
+        const formData = {};
+        document.querySelectorAll("input, select, textarea").forEach((el) => {
+            formData[el.name] =
+                el.type === "checkbox" ? (el.checked ? "1" : "0") : el.value;
+        });
+        localStorage.setItem("beforeFormData", JSON.stringify(formData));
+        return formData;
+    }
 }

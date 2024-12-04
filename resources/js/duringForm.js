@@ -54,6 +54,18 @@ export function duringForm(composterId) {
     document
         .getElementById("nextFormButton")
         .addEventListener("click", function () {
+            const formData = saveDuringFormData();
+            console.log("Formulario Durante:", formData);
             afterForm(composterId);
         });
+
+    function saveDuringFormData() {
+        const formData = {};
+        document.querySelectorAll("input, select, textarea").forEach((el) => {
+            formData[el.name] =
+                el.type === "checkbox" ? (el.checked ? "1" : "0") : el.value;
+        });
+        localStorage.setItem("beforeFormData", JSON.stringify(formData));
+        return formData;
+    }
 }
