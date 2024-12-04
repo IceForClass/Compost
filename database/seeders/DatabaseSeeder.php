@@ -37,7 +37,25 @@ class DatabaseSeeder extends Seeder
             ]
         );
         User::factory(10)->create();
-        //Bolo::factory(10)->create();
+
+        Bolo::create([
+            'name' => 'Bolo A',
+            'description' => 'Descripción del Bolo A',
+            'cicle1' => true,
+            'cicle2' => false,
+            'cicle3' => false,
+            'finish' => false,
+        ]);
+
+        Bolo::create([
+            'name' => 'Bolo B',
+            'description' => 'Descripción del Bolo B',
+            'cicle1' => true,
+            'cicle2' => true,
+            'cicle3' => false,
+            'finish' => false,
+        ]);
+
         Composter::factory()->create(
             [
                 'type' => '11',
