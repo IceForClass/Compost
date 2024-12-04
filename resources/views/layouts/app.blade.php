@@ -14,13 +14,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/mode.js', 'resources/js/consulta.js', 'resources/js/composteras.js'])
-    <div id="compostera-llena" class="invisible">
-        <img class="h-24" src="{{ Vite::asset('resources/images/full.png') }}" alt="Imagen estado de compostera llena">
-    </div>
-    <div id="compostera-vacia" class="invisible">
-        <img src="{{ Vite::asset('resources/images/empty.png') }}" alt="Imagen estado de compostera vacía">
-    </div>
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/mode.js', 'resources/js/composteras.js'])
 </head>
 
 <body class="font-sans antialiased">

@@ -8,8 +8,6 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/js/app.js",
                 "resources/images/logo.png",
-                "resources/images/empty.png",
-                "resources/images/full.png",
                 "resources/js/mode.js",
                 "resources/js/composteras.js",
             ],
