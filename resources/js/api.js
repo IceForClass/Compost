@@ -1,7 +1,10 @@
+import { logout } from "./noToken.js";
+
 export function fetchData(url) {
     const apiToken = sessionStorage.getItem("apiToken");
 
     if (!apiToken) {
+        logout();
         return Promise.reject(
             "Token no encontrado en el almacenamiento de sesión"
         );
