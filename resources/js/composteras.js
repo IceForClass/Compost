@@ -1,4 +1,5 @@
 import { fetchData } from "./api.js";
+import { beforeForm } from "./beforeForm.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const queryString = window.location.search;
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
                     "block p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 no-underline";
-                card.innerHTML = `
+                card.innerHTML = `    
                     <h4 class="text-lg font-bold text-gray-800 dark:text-gray-100">
                         Compostera ${composter.id}
                     </h4>
@@ -52,11 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     </p>
                 `;
 
-                // Controlador para comprobar si la compostera está ócuipada
+                // Controlador para comprobar si la compostera está ocupada
                 card.addEventListener("click", (event) => {
                     event.preventDefault();
+
                     if (composter.ocupada === 1) {
+                        // Solo si está ocupada vamos al formulario
                         alert(`La compostera ${composter.id} está ocupada.`);
+                        // beforeForm(composter.id);
                     } else {
                         alert(`La compostera ${composter.id} está libre.`);
                     }
