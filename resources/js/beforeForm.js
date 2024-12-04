@@ -5,7 +5,7 @@ export function beforeForm(composterId) {
     container.innerHTML = "";
 
     container.innerHTML = `
-        <h2 class="text-lg font-bold mb-4">Formulario de Antes para Compostera ${composterId}</h2>
+        <h2 class="text-lg text-white font-bold mb-4">Formulario de Antes para Compostera ${composterId}</h2>
         <form id="beforeForm">
             <div class="mb-4">
                 <label for="temp_ambient" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Temperatura Ambiente:</label>
