@@ -1,16 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const apiToken = sessionStorage.getItem("apiToken");
+import { fetchData } from "./api.js";
 
+document.addEventListener("DOMContentLoaded", function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const composter = urlParams.get("composter");
-    console.log(composter);
-
-    if (!apiToken) {
-        document.getElementById("DatosCompostera").innerHTML =
-            "Token no encontrado en el almacenamiento de sesión";
-        return;
-    }
 
     // No quiero que se muestren los dichosos codigos
     const typeMapping = {
@@ -24,21 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
         1: "Ocupada",
     };
 
-    fetch(`/api/composters`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiToken}`,
-        },
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(
-                    "Error al obtener los datos de las composteras"
-                );
-            }
-            return response.json();
-        })
+    // Llamar a la función fetchData para hacer la consulta
+    fetchData("/api/composters")
         .then((data) => {
             const composterData = data.data;
             const container = document.getElementById("DatosCompostera");
@@ -75,11 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Controlador para comprobar si la compostera está ócuipada
                 card.addEventListener("click", (event) => {
+                    event.preventDefault();
                     if (composter.ocupada === 1) {
-                        event.preventDefault();
                         alert(`La compostera ${composter.id} está ocupada.`);
                     } else {
-                        event.preventDefault();
                         alert(`La compostera ${composter.id} está libre.`);
                     }
                 });
@@ -89,7 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch((error) => {
             console.error("Error:", error);
-            document.getElementById("DatosCompostera").innerHTML =
-                "Error al obtener los datos de las composteras";
+            document.getElementById("DatosCompostera").innerHTML = `
+                <p class=" text-red-600">
+                    "Error al obtener los datos de las composteras";
+                </p>
+            `;
         });
 });
