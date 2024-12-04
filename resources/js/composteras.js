@@ -1,27 +1,23 @@
 import { fetchData } from "./api.js";
+import { beforeForm } from "./beforeForm.js";
 
-document.addEventListener("DOMContentLoaded", function () {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-
-    // No quiero que se muestren los dichosos codigos
-    const typeMapping = {
-        11: "aporte",
-        22: "degradacion",
-        33: "maduracion",
-    };
-
-    const emptyMapping = {
-        0: "Vacia",
-        1: "Ocupada",
-    };
-
-    // Llamar a la función fetchData para hacer la consulta
+export function loadComposters() {
     fetchData("/api/composters")
         .then((data) => {
             const composterData = data.data;
             const container = document.getElementById("DatosCompostera");
             container.innerHTML = "";
+
+            const typeMapping = {
+                11: "aporte",
+                22: "degradacion",
+                33: "maduracion",
+            };
+
+            const emptyMapping = {
+                0: "Vacia",
+                1: "Ocupada",
+            };
 
             composterData.forEach((composter) => {
                 const typeName = typeMapping[composter.type] || "Desconocido";
@@ -32,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
                     "block p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 no-underline";
-                card.innerHTML = `
+                card.innerHTML = `    
                     <h4 class="text-lg font-bold text-gray-800 dark:text-gray-100">
                         Compostera ${composter.id}
                     </h4>
@@ -52,11 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     </p>
                 `;
 
-                // Controlador para comprobar si la compostera está ócuipada
                 card.addEventListener("click", (event) => {
                     event.preventDefault();
+
                     if (composter.ocupada === 1) {
                         alert(`La compostera ${composter.id} está ocupada.`);
+                        beforeForm(composter.id);
                     } else {
                         alert(`La compostera ${composter.id} está libre.`);
                     }
@@ -73,4 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 </p>
             `;
         });
-});
+}
+
+document.addEventListener("DOMContentLoaded", loadComposters);

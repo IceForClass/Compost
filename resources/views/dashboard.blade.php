@@ -8,6 +8,7 @@
     @if (session('token'))
         <!-- Pasamos el token para que js lo pueda usar -->
         <script>
+            sessionStorage.setItem("idUser", {{ Auth::user()->id }});
             sessionStorage.setItem("apiToken", @json(session('token')));
         </script>
     @endif
