@@ -1,11 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const apiToken = sessionStorage.getItem("apiToken");
+import { fetchData } from "./api.js";
 
-    if (!apiToken) {
-        document.getElementById("DatosCompostera").innerHTML =
-            "Token no encontrado en el almacenamiento de sesión";
-        return;
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
 
     // No quiero que se muestren los dichosos codigos
     const typeMapping = {
@@ -14,21 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
         33: "maduracion",
     };
 
-    fetch(`/api/composters`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiToken}`,
-        },
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(
-                    "Error al obtener los datos de las composteras"
-                );
-            }
-            return response.json();
-        })
+    const emptyMapping = {
+        0: "Vacia",
+        1: "Ocupada",
+    };
+
+    // Llamar a la función fetchData para hacer la consulta
+    fetchData("/api/composters")
         .then((data) => {
             const composterData = data.data;
             const container = document.getElementById("DatosCompostera");
@@ -36,6 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             composterData.forEach((composter) => {
                 const typeName = typeMapping[composter.type] || "Desconocido";
+                const empty =
+                    emptyMapping[composter.ocupada] || "Estado desconocido";
+
                 const card = document.createElement("a");
                 card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
@@ -48,20 +40,37 @@ document.addEventListener("DOMContentLoaded", function () {
                         Tipo: ${typeName}
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
+                        Estado: ${empty}
+                    </p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
                        Id Centro: ${composter.centre_id}
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Creado el: ${new Date(
                             composter.created_at
-                        ).toLocaleString()} 
+                        ).toLocaleString()}
                     </p>
-                `; // toLocaleString Para obtener la hora local
+                `;
+
+                // Controlador para comprobar si la compostera está ócuipada
+                card.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    if (composter.ocupada === 1) {
+                        alert(`La compostera ${composter.id} está ocupada.`);
+                    } else {
+                        alert(`La compostera ${composter.id} está libre.`);
+                    }
+                });
+
                 container.appendChild(card);
             });
         })
         .catch((error) => {
             console.error("Error:", error);
-            document.getElementById("DatosCompostera").innerHTML =
-                "Error al obtener los datos de las composteras";
+            document.getElementById("DatosCompostera").innerHTML = `
+                <p class=" text-red-600">
+                    "Error al obtener los datos de las composteras";
+                </p>
+            `;
         });
 });

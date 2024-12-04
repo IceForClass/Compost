@@ -37,12 +37,32 @@ class DatabaseSeeder extends Seeder
             ]
         );
         User::factory(10)->create();
-        Bolo::factory(10)->create();
-        Composter::factory(3)->create();
-        Cicle::factory(30)->create();
-        Regist::factory(100)->create();
-        Before::factory(100)->create();
-        After::factory(100)->create();
-        During::factory(100)->create();
+        //Bolo::factory(10)->create();
+        Composter::factory()->create(
+            [
+                'type' => '11',
+                'centre_id' => '1',
+                'ocupada' => '1',
+            ]
+        );
+        Composter::factory()->create(
+            [
+                'type' => '22',
+                'centre_id' => '1',
+                'ocupada' => '0',
+            ]
+        );
+        Composter::factory()->create(
+            [
+                'type' => '33',
+                'centre_id' => '1',
+                'ocupada' => '0',
+            ]
+        );
+        //Cicle::factory(30)->create();
+        //Regist::factory(100)->create();
+        //Before::factory(100)->create();
+        //After::factory(100)->create();
+        //During::factory(100)->create();
     }
 }

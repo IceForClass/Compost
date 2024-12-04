@@ -19,8 +19,8 @@ return new class extends Migration
                 'maduracion' => '33'
             ]);
             $table->bigInteger('centre_id')->unsigned()->index();
-            $table->boolean("ocupada")->default(0);
             $table->foreign('centre_id')->references('id')->on('centres')->onDelete('cascade');
+            $table->boolean("ocupada")->default(0);
             $table->timestamps();
         });
     }

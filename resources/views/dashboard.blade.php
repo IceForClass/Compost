@@ -5,27 +5,22 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        @if (session('token'))
-            <!-- Pasamos el token para que js lo pueda usar -->
-            <script>
-                sessionStorage.setItem("apiToken", @json(session('token')));
-            </script>
-        @endif
+    @if (session('token'))
+        <!-- Pasamos el token para que js lo pueda usar -->
+        <script>
+            sessionStorage.setItem("apiToken", @json(session('token')));
+        </script>
+    @endif
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg">
-                <div class="p-6 bg-gray-100 dark:bg-gray-900 rounded-lg">
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-                        {{ __("You're logged in!") }}
-                    </h3>
-                    <div class="mt-6">
-                        <p id="NombreCentro" class="mt-4 text-sm font-medium text-gray-800 dark:text-gray-200"></p>
-                        <p id="DatosCentro"></p>
-                    </div>
-                    <div id="DatosCompostera" class="mt-4">
-                        <!-- Aquí se agregarán las composteras dinámicamente -->
-                    </div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg">
+            <div class="p-6 bg-gray-100 dark:bg-gray-900 rounded-lg">
+                <div class="mt-6">
+                    <p id="NombreCentro" class="mt-4 text-sm font-medium text-gray-800 dark:text-gray-200"></p>
+                    <p id="DatosCentro"></p>
+                </div>
+                <div id="DatosCompostera" class="mt-4">
+                    <!-- Aquí se agregarán las composteras dinámicamente -->
                 </div>
             </div>
         </div>
