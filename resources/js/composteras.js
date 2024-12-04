@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const typeName = typeMapping[composter.type] || "Desconocido";
                 const empty =
                     emptyMapping[composter.ocupada] || "Estado desconocido";
+
                 const card = document.createElement("a");
                 card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
@@ -68,9 +69,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Creado el: ${new Date(
                             composter.created_at
-                        ).toLocaleString()} 
+                        ).toLocaleString()}
                     </p>
-                `; // toLocaleString Para obtener la hora local
+                `;
+
+                // Controlador para comprobar si la compostera está ócuipada
+                card.addEventListener("click", (event) => {
+                    if (composter.ocupada === 1) {
+                        event.preventDefault();
+                        alert(`La compostera ${composter.id} está ocupada.`);
+                    } else {
+                        event.preventDefault();
+                        alert(`La compostera ${composter.id} está libre.`);
+                    }
+                });
+
                 container.appendChild(card);
             });
         })
