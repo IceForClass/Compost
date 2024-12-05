@@ -54,8 +54,14 @@ export function loadComposters() {
                     if (composter.ocupada === 1) {
                         // alert(`La compostera ${composter.id} está ocupada.`);
                         beforeForm(composter.id);
+                    } else if (composter.ocupada === 1) {
+                        alert(
+                            `La compostera ${composter.id} necesita un bolo, vamos a crearlo`
+                        );
                     } else {
-                        alert(`La compostera ${composter.id} está libre.`);
+                        alert(
+                            `La compostera ${composter.id} está libre, tiene que llegarle un bolo de otra compostera`
+                        );
                     }
                 });
 

@@ -81,12 +81,12 @@ export function beforeForm(composterId) {
         document
             .querySelectorAll("input, select, textarea")
             .forEach((element) => {
-                formData[el.name] =
-                    el.type === "checkbox"
-                        ? el.checked
+                formData[element.name] =
+                    element.type === "checkbox"
+                        ? element.checked
                             ? "1"
                             : "0"
-                        : el.value;
+                        : element.value;
             });
         localStorage.setItem("beforeFormData", JSON.stringify(formData));
         return formData;
