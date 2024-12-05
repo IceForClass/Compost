@@ -59,7 +59,7 @@ export function loadComposters() {
 
                     if (composter.ocupada === 1) {
                         beforeForm(composter.id);
-                    } else if (composter.ocupada === 1) {
+                    } else if (composter.id === 1 && composter.ocupada === 0) {
                         alert(
                             `La compostera ${composter.id} necesita un bolo, vamos a crearlo`
                         );
