@@ -1,8 +1,8 @@
 import { fetchData } from "./api.js";
 
 export function centreName() {
-    fetchData("/api/centres/1").then((data) => {
-        const centreData = data.data;
+    fetchData("/api/users/1/centres/").then((data) => {
+        const centreData = data.data[0];
         const container = document.getElementById("nombreCentro");
 
         container.innerHTML = "";

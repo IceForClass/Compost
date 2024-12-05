@@ -7,6 +7,7 @@ use Orion\Facades\Orion;
 use App\Http\Controllers\api\CentreController;
 use App\Http\Controllers\api\CentreUsersController;
 use App\Http\Controllers\api\ComposterController;
+use App\Http\Controllers\Api\UsersCentreController;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -21,3 +22,5 @@ Route::group(['as' => 'api.'], function() {
 Orion::hasManyResource('centres', 'composters', CentreCompostersController::class);
 
 Orion::hasManyResource('centres', 'users', CentreUsersController::class);
+
+Orion::hasManyResource('users', 'centres', UsersCentreController::class);
