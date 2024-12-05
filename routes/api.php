@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Api\boloController;
-use App\Http\Controllers\api\CentreCompostersController;
+use App\Http\Controllers\Api\CentreCompostersController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
-use App\Http\Controllers\api\CentreController;
-use App\Http\Controllers\api\CentreUsersController;
-use App\Http\Controllers\api\ComposterController;
+use App\Http\Controllers\Api\CentreController;
+use App\Http\Controllers\Api\CentreUsersController;
+use App\Http\Controllers\Api\ComposterController;
 use App\Http\Controllers\Api\UsersCentreController;
 
 // Route::get('/user', function (Request $request) {
