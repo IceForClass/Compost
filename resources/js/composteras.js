@@ -1,7 +1,9 @@
 import { fetchData } from "./api.js";
 import { beforeForm } from "./beforeForm.js";
+import { centreName } from "./centreName.js";
 
 export function loadComposters() {
+    centreName();
     fetchData("/api/composters")
         .then((data) => {
             const composterData = data.data;
@@ -42,11 +44,6 @@ export function loadComposters() {
                             </p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">
                                 Estado: <span class="font-semibold">${empty}</span>
-                            </p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">
-                                Id Centro: <span class="font-semibold">${
-                                    composter.centre_id
-                                }</span>
                             </p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">
                                 Creado el: <span class="font-semibold">${new Date(
