@@ -23,8 +23,8 @@ class CentreFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => $this->faker->unique()->regexify('[A-Z0-9]{3}'),
-            'name' => $this->faker->randomElement(['IES Puerto del Rosario', 'IES San Diego de Alcalá', 'CIFP Majada Marcial', 'IES Santo Tomás de Aquino', 'IES La Oliva', 'IES Puerto Cabras', 'IES Corralejo', 'IES Vigán', 'IES Gran Tarajal', 'IES Jandía']),
+            'code' => $this->faker->unique()->randomLetter . $this->faker->randomLetter . $this->faker->randomLetter,
+            'name' => $this->faker->company,
             'address' => $this->faker->address,
             'logo' => $this->faker->imageUrl,
         ];

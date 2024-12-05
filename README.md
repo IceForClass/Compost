@@ -1,3 +1,6 @@
+<img align="right" src="resources/images/logo.png" width="350" alt="EcoBitácora">
+
+
 [![Deploy to vps](https://github.com/IceForClass/Compost/actions/workflows/deploy.dev.yml/badge.svg?branch=dev)](https://github.com/IceForClass/Compost/actions/workflows/deploy.dev.yml)
 [![Deploy to vps (prod)](https://github.com/IceForClass/Compost/actions/workflows/deploy.prod.yml/badge.svg)](https://github.com/IceForClass/Compost/actions/workflows/deploy.prod.yml)
 
