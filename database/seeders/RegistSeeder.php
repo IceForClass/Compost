@@ -12,6 +12,6 @@ class RegistSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        //Regist::factory(100)->create();
     }
 }
