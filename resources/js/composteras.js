@@ -29,10 +29,10 @@ export function loadComposters() {
                 const card = document.createElement("a");
                 card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
-                    "block p-6 bg-gradient-to-br from-green-200 to-green-500 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out mb-4 no-underline";
-                card.innerHTML = /* html */`    
+                    "flex justify-between block p-6 bg-gradient-to-br from-green-200 to-green-500 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out mb-4 no-underline";
+                card.innerHTML = /* html */ `    
                     <div class="flex items-center gap-4">
-                        <div class="bg-green-600 text-white p-3 rounded-full shadow-lg">
+                        <div class="bg-green-600 text-white p-2 rounded-full shadow-lg">
                             <i class="fa fa-leaf fa-2x"></i>
                         </div>
                         <div>
@@ -54,14 +54,17 @@ export function loadComposters() {
                     </div>
                 `;
 
-                card.addEventListener("click", (event) => {
+                const newRegistButton = document.createElement("button");
+                newRegistButton.textContent = "Nuevo registro";
+
+                newRegistButton.addEventListener("click", (event) => {
                     event.preventDefault();
 
                     if (composter.ocupada === 1) {
                         beforeForm(composter.id);
                     } else if (composter.id === 1 && composter.ocupada === 0) {
-                        alert(
-                            `La compostera ${composter.id} necesita un bolo, vamos a crearlo`
+                        confirm(
+                            `La compostera ${composter.id} necesita un bolo, ¿crear uno nuevo?`
                         );
                     } else {
                         alert(
@@ -70,6 +73,7 @@ export function loadComposters() {
                     }
                 });
 
+                card.appendChild(newRegistButton);
                 container.appendChild(card);
             });
         })
