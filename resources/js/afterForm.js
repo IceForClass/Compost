@@ -4,7 +4,7 @@ export function afterForm(composterId) {
     const container = document.getElementById("datosCompostera");
 
     container.innerHTML = `
-        <h2 class="text-xl font-extrabold text-center text-blue-600 mb-6">Formulario de Después para Compostera ${composterId}</h2>
+        <h2 class="text-xl font-extrabold text-center text-green-600 mb-6">Formulario de Después para Compostera ${composterId}</h2>
         <div class="space-y-4">
             <div>
                 <label for="fill_level" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nivel de Llenado:</label>

@@ -14,16 +14,14 @@
     @endif
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg">
-            <div class="p-6 bg-gray-100 dark:bg-gray-900 rounded-lg">
-                <div class="mt-6">
-                    <p id="NombreCentro" class="mt-4 text-sm font-medium text-gray-800 dark:text-gray-200"></p>
-                    <p id="DatosCentro"></p>
-                </div>
-                <div id="nombreCentro" class="mt-4"></div>
-                <div id="datosCompostera" class="mt-4">
-                    <!-- Aquí se agregarán las composteras dinámicamente -->
-                </div>
+        <div class="p-6 bg-gray-100 dark:bg-gray-900 rounded-lg">
+            <div class="mt-6">
+                <p id="NombreCentro" class="mt-4 text-sm font-medium text-gray-800 dark:text-gray-200"></p>
+                <p id="DatosCentro"></p>
+            </div>
+            <div id="nombreCentro" class="mt-4"></div>
+            <div id="datosCompostera" class="mt-4">
+                <!-- Aquí se agregarán las composteras dinámicamente -->
             </div>
         </div>
     </div>
