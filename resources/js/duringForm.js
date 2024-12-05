@@ -6,50 +6,54 @@ export function duringForm(composterId) {
     container.innerHTML = "";
 
     container.innerHTML = `
-        <h2 class="text-lg text-white font-bold mb-4">Formulario Durante para Compostera ${composterId}</h2>
-            <div class="mb-4">
-                <label for="watering_done" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Riego Realizado:</label>
-                <input type="checkbox" id="watering_done" name="watering_done" class="mt-1">
+        <h2 class="text-xl font-extrabold text-center text-green-600 mb-6">Formulario Durante para Compostera ${composterId}</h2>
+        <div class="space-y-4">
+            <div class="flex items-center space-x-3">
+                <input type="checkbox" id="watering_done" name="watering_done" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                <label for="watering_done" class="text-sm font-medium text-gray-700 dark:text-gray-300">Riego Realizado</label>
             </div>
-            <div class="mb-4">
-                <label for="stirring_done" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Remoción Realizada:</label>
-                <input type="checkbox" id="stirring_done" name="stirring_done" class="mt-1">
+            <div class="flex items-center space-x-3">
+                <input type="checkbox" id="stirring_done" name="stirring_done" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                <label for="stirring_done" class="text-sm font-medium text-gray-700 dark:text-gray-300">Remoción Realizada</label>
             </div>
-            <div class="mb-4">
-                <label for="green_deposit" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Aporte Verde:</label>
-                <input type="checkbox" id="green_deposit" name="green_deposit" class="mt-1">
+            <div class="flex items-center space-x-3">
+                <input type="checkbox" id="green_deposit" name="green_deposit" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                <label for="green_deposit" class="text-sm font-medium text-gray-700 dark:text-gray-300">Aporte Verde</label>
             </div>
-            <div class="mb-4">
+            <div>
                 <label for="green_quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cantidad Verde (kg):</label>
-                <input type="number" id="green_quantity" name="green_quantity" class="mt-1 block w-full" min="0" step="0.1">
+                <input type="number" id="green_quantity" name="green_quantity" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" min="0" step="0.1">
             </div>
-            <div class="mb-4">
+            <div>
                 <label for="green_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tipo de Aporte Verde:</label>
-                <input type="text" id="green_type" name="green_type" class="mt-1 block w-full">
+                <input type="text" id="green_type" name="green_type" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
             </div>
-            <div class="mb-4">
-                <label for="dry_deposit" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Aporte Seco:</label>
-                <input type="checkbox" id="dry_deposit" name="dry_deposit" class="mt-1">
+            <div class="flex items-center space-x-3">
+                <input type="checkbox" id="dry_deposit" name="dry_deposit" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                <label for="dry_deposit" class="text-sm font-medium text-gray-700 dark:text-gray-300">Aporte Seco</label>
             </div>
-            <div class="mb-4">
+            <div>
                 <label for="dry_quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cantidad Seca (kg):</label>
-                <input type="number" id="dry_quantity" name="dry_quantity" class="mt-1 block w-full" min="0" step="0.1">
+                <input type="number" id="dry_quantity" name="dry_quantity" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" min="0" step="0.1">
             </div>
-            <div class="mb-4">
+            <div>
                 <label for="dry_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tipo de Aporte Seco:</label>
-                <input type="text" id="dry_type" name="dry_type" class="mt-1 block w-full">
+                <input type="text" id="dry_type" name="dry_type" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
             </div>
-            <div class="mb-4">
+            <div>
                 <label for="photo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Foto (URL):</label>
-                <input type="url" id="photo" name="photo" class="mt-1 block w-full">
+                <input type="url" id="photo" name="photo" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
             </div>
-            <div class="mb-4">
+            <div>
                 <label for="observations" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Observaciones:</label>
-                <textarea id="observations" name="observations" class="mt-1 block w-full"></textarea>
+                <textarea id="observations" name="observations" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"></textarea>
             </div>
-            <div class="flex justify-between">
-                <button type="button" id="nextFormButton" class="bg-green-500 text-white py-2 px-4 rounded">Siguiente</button>
-            </div>        
+        </div>
+        <div class="mt-6 flex justify-end">
+            <button type="button" id="nextFormButton" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                Siguiente
+            </button>
+        </div>        
     `;
     document
         .getElementById("nextFormButton")
