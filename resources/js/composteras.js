@@ -5,10 +5,10 @@ import { centreName } from "./centreName.js";
 export function loadComposters() {
     centreName();
     const idCentre = sessionStorage.getItem("idCentre");
-    // console.log(idCentre);
+    console.log(idCentre);
     fetchData(`/api/centres/${idCentre}/composters`)
         .then((data) => {
-            // console.log("Se dibujan las composteras");
+            console.log("Se dibujan las composteras");
             const composterData = data.data;
             const container = document.getElementById("datosCompostera");
             container.innerHTML = "";
