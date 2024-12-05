@@ -5,7 +5,7 @@ export function loadComposters() {
     fetchData("/api/composters")
         .then((data) => {
             const composterData = data.data;
-            const container = document.getElementById("DatosCompostera");
+            const container = document.getElementById("datosCompostera");
             container.innerHTML = "";
 
             const typeMapping = {
@@ -78,7 +78,7 @@ export function loadComposters() {
         })
         .catch((error) => {
             console.error("Error:", error);
-            document.getElementById("DatosCompostera").innerHTML = `
+            document.getElementById("datosCompostera").innerHTML = `
                 <p class="text-red-600">
                     Error al obtener los datos de las composteras.
                 </p>

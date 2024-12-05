@@ -1,7 +1,7 @@
 import { afterForm } from "./afterForm.js";
 
 export function duringForm(composterId) {
-    const container = document.getElementById("DatosCompostera");
+    const container = document.getElementById("datosCompostera");
 
     container.innerHTML = "";
 

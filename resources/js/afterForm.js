@@ -1,7 +1,7 @@
 import { loadComposters } from "./composteras.js";
 
 export function afterForm(composterId) {
-    const container = document.getElementById("DatosCompostera");
+    const container = document.getElementById("datosCompostera");
 
     container.innerHTML = `
         <h2 class="text-xl font-extrabold text-center text-blue-600 mb-6">Formulario de Después para Compostera ${composterId}</h2>
