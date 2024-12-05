@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             [
                 'type' => '11',
                 'centre_id' => '1',
-                'ocupada' => '1',
+                'ocupada' => '0',
             ]
         );
         Composter::factory()->create(

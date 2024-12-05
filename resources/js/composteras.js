@@ -1,6 +1,7 @@
 import { fetchData } from "./api.js";
 import { beforeForm } from "./beforeForm.js";
 import { centreName } from "./centreName.js";
+import { createBolo } from "./crearBolo.js";
 
 export function loadComposters() {
     centreName();
@@ -8,7 +9,7 @@ export function loadComposters() {
         .then((data) => {
             const composterData = data.data;
             const container = document.getElementById("datosCompostera");
-            container.innerHTML = "";
+            container.innerHTML = /* html */ "";
 
             const typeMapping = {
                 11: "Aporte",
@@ -60,9 +61,8 @@ export function loadComposters() {
                     if (composter.ocupada === 1) {
                         beforeForm(composter.id);
                     } else if (composter.id === 1 && composter.ocupada === 0) {
-                        alert(
-                            `La compostera ${composter.id} necesita un bolo, vamos a crearlo`
-                        );
+                        // alert(`La compostera ${composter.id} necesita un bolo, vamos a crearlo`);
+                        createBolo();
                     } else {
                         alert(
                             `La compostera ${composter.id} está libre, tiene que llegarle un bolo de otra compostera`
