@@ -24,7 +24,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Centre::factory(10)->create();
+        Centre::factory()->create(
+            [
+                'id' => '1',          
+                'code' => 'ABC',
+                'name' => 'Centro prueba',
+                'address' => 'Dirección prueba',
+                'logo' => "https://avatars.githubusercontent.com/u/146034810?v=4",
+            ]
+        );
+        Centre::factory(9)->create();
         User::factory()->create(
             [
                 'name' => 'admin',
@@ -33,7 +42,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('123456789'),
                 'remember_token' => Str::random(10),
                 'admin' => '1',
-                'centre_id' => \App\Models\Centre::pluck('id')->random(),
+                'centre_id' => '1',
             ]
         );
         User::factory(10)->create();
