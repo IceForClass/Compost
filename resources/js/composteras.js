@@ -30,7 +30,7 @@ export function loadComposters() {
                 card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
                     "block p-6 bg-gradient-to-br from-green-200 to-green-500 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out mb-4 no-underline";
-                card.innerHTML = `    
+                card.innerHTML = /* html */`    
                     <div class="flex items-center gap-4">
                         <div class="bg-green-600 text-white p-3 rounded-full shadow-lg">
                             <i class="fa fa-leaf fa-2x"></i>
@@ -47,8 +47,8 @@ export function loadComposters() {
                             </p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">
                                 Creado el: <span class="font-semibold">${new Date(
-                                    composter.created_at
-                                ).toLocaleString()}</span>
+                    composter.created_at
+                ).toLocaleString()}</span>
                             </p>
                         </div>
                     </div>
@@ -75,7 +75,7 @@ export function loadComposters() {
         })
         .catch((error) => {
             console.error("Error:", error);
-            document.getElementById("datosCompostera").innerHTML = `
+            document.getElementById("datosCompostera").innerHTML = /* html */ `
                 <p class="text-red-600">
                     Error al obtener los datos de las composteras.
                 </p>

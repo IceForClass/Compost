@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('regist_id')->unsigned()->index();
             $table->foreign('regist_id')->references('id')->on('regists')->onDelete('cascade');
-            $table->boolean('watering_done')->default(false); // riego
-            $table->boolean('stirring_done')->default(false); // remover
-            $table->boolean('green_deposit')->default(false); // aporte verde
+            $table->boolean('watering_done')->default(false)->nullable(); // riego
+            $table->boolean('stirring_done')->default(false)->nullable(); // remover
+            $table->boolean('green_deposit')->default(false)->nullable(); // aporte verde
             $table->integer('green_quantity')->nullable(); // cantidad verde
             $table->string('green_type')->nullable(); // tipo verde
-            $table->boolean('dry_deposit')->default(false); // aporte seco
+            $table->boolean('dry_deposit')->default(false)->nullable(); // aporte seco
             $table->integer('dry_quantity')->nullable(); // cantidad seco
             $table->string('dry_type')->nullable(); // tipo seco
             $table->string('photo')->nullable();
