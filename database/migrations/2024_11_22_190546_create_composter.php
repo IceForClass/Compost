@@ -20,6 +20,7 @@ return new class extends Migration
             ]);
             $table->bigInteger('centre_id')->unsigned()->index();
             $table->foreign('centre_id')->references('id')->on('centres')->onDelete('cascade');
+            $table->boolean("ocupada")->default(0);
             $table->timestamps();
         });
     }

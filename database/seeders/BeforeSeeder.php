@@ -12,6 +12,6 @@ class BeforeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        //Before::factory(100)->create();
     }
 }

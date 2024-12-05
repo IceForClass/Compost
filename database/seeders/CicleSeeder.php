@@ -12,6 +12,6 @@ class CicleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        //Cicle::factory(30)->create();
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Centre;
 
 class CentreSeeder extends Seeder
 {
@@ -12,6 +13,15 @@ class CentreSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Centre::factory()->create(
+            [
+                'id' => '1',
+                'code' => 'ABC',
+                'name' => 'Centro prueba',
+                'address' => 'Dirección prueba',
+                'logo' => "https://avatars.githubusercontent.com/u/146034810?v=4",
+            ]
+        );
+        // Centre::factory(9)->create();
     }
 }

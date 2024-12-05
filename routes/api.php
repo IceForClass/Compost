@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\boloController;
+use App\Http\Controllers\Api\CentreCompostersController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
-use App\Http\Controllers\api\CentreController;
+use App\Http\Controllers\Api\CentreController;
+use App\Http\Controllers\Api\CentreUsersController;
+use App\Http\Controllers\Api\ComposterController;
+use App\Http\Controllers\Api\UsersCentreController;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -10,4 +15,12 @@ use App\Http\Controllers\api\CentreController;
 
 Route::group(['as' => 'api.'], function() {
     Orion::resource('centres', CentreController::class);
+    Orion::resource('composters', ComposterController::class);
+    Orion::resource('bolo', boloController::class);
 });
+ 
+Orion::hasManyResource('centres', 'composters', CentreCompostersController::class);
+
+Orion::hasManyResource('centres', 'users', CentreUsersController::class);
+
+Orion::hasManyResource('users', 'centres', UsersCentreController::class);

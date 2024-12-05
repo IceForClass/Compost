@@ -1,25 +1,28 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-gray-100">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-                <x-select-composter />
-                <div>
-                    <button id="fetchCentre" data-id="1"
-                        class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Ver
-                        nombre del centro</button>
-                    <p id="NombreCentro"></p>
-                </div>
-                <div id="DatosCentro">
-                </div>
+    @if (session('token'))
+        <!-- Pasamos el token para que js lo pueda usar -->
+        <script>
+            sessionStorage.setItem("idUser", {{ Auth::user()->id }});
+            sessionStorage.setItem("apiToken", @json(session('token')));
+        </script>
+    @endif
+
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="p-6 bg-gray-100 dark:bg-gray-900 rounded-lg">
+            <div class="mt-6">
+                <p id="NombreCentro" class="mt-4 text-sm font-medium text-gray-800 dark:text-gray-200"></p>
+                <p id="DatosCentro"></p>
+            </div>
+            <div id="nombreCentro" class="mt-4"></div>
+            <div id="datosCompostera" class="mt-4">
+                <!-- Aquí se agregarán las composteras dinámicamente -->
             </div>
         </div>
+    </div>
 </x-app-layout>

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class User
@@ -27,7 +29,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable, HasApiTokens;
     
     protected $perPage = 20;
 
@@ -44,7 +46,7 @@ class User extends Authenticatable
      */
     public function centre()
     {
-        return $this->belongsTo(\App\Models\Centre::class, 'centre_id', 'id');
+        return $this->belongsTo(Centre::class, 'centre_id', 'id');
     }
     
     /**
@@ -52,7 +54,7 @@ class User extends Authenticatable
      */
     public function regists()
     {
-        return $this->hasMany(\App\Models\Regist::class, 'id', 'user_id');
+        return $this->hasMany(Regist::class, 'id', 'user_id');
     }
 
     protected static function boot()

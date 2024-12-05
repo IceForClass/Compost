@@ -20,9 +20,6 @@ class ComposterFactory extends Factory
 
     public function definition(): array
     {
-        return [
-            'type' => $this->faker->randomElement(['11', '22', '33']),
-            'centre_id' => \App\Models\Centre::pluck('id')->random(),
-        ];
+        return [];
     }
 }
