@@ -4,8 +4,11 @@ import { centreName } from "./centreName.js";
 
 export function loadComposters() {
     centreName();
-    fetchData("/api/composters")
+    const idCentre = sessionStorage.getItem("idCentre");
+    // console.log(idCentre);
+    fetchData(`/api/centres/${idCentre}/composters`)
         .then((data) => {
+            // console.log("Se dibujan las composteras");
             const composterData = data.data;
             const container = document.getElementById("datosCompostera");
             container.innerHTML = "";
