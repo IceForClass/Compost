@@ -44,10 +44,16 @@ export function afterForm(composterId) {
 
     function saveAfterFormData() {
         const formData = {};
-        document.querySelectorAll("input, select, textarea").forEach((el) => {
-            formData[el.name] =
-                el.type === "checkbox" ? (el.checked ? "1" : "0") : el.value;
-        });
+        document
+            .querySelectorAll("input, select, textarea")
+            .forEach((element) => {
+                formData[el.name] =
+                    el.type === "checkbox"
+                        ? el.checked
+                            ? "1"
+                            : "0"
+                        : el.value;
+            });
         localStorage.setItem("beforeFormData", JSON.stringify(formData));
         return formData;
     }
