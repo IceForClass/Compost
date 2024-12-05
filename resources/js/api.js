@@ -23,3 +23,28 @@ export function fetchData(url) {
         return response.json();
     });
 }
+
+export function postData(url, data) {
+    const apiToken = sessionStorage.getItem("apiToken");
+
+    if (!apiToken) {
+        logout();
+        return Promise.reject(
+            "Token no encontrado en el almacenamiento de sesión"
+        );
+    }
+
+    return fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiToken}`,
+        },
+        body: JSON.stringify(data),
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error(`Error al enviar los datos a ${url}`);
+        }
+        return response.json();
+    });
+}

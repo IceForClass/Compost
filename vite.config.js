@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/images/logo.png",
                 "resources/js/mode.js",
                 "resources/js/composteras.js",
+                "resources/js/centreName.js",
             ],
             refresh: true,
         }),

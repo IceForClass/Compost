@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/mode.js', 'resources/js/composteras.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/mode.js', 'resources/js/composteras.js', 'resources/js/centreName.js'])
 </head>
 
 <body class="font-sans antialiased">
