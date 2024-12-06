@@ -1,5 +1,5 @@
 import { loadComposters } from "./composteras.js";
-import { closeCycle } from "./endCycle.js";
+import { closeCycle, checkNextComposter } from "./endCycle.js";
 
 export function afterForm(composterId) {
     const container = document.getElementById("datosCompostera");
@@ -43,7 +43,7 @@ export function afterForm(composterId) {
 
     document
         .getElementById("saveButton")
-        .addEventListener("click", function () {
+        .addEventListener("click", async function () {
             const formData = saveAfterFormData();
             console.log("Formulario Después:", formData);
 
@@ -51,7 +51,18 @@ export function afterForm(composterId) {
 
             if (endCycleCheckbox.checked) {
                 console.log("Fin de Ciclo marcado...");
-                closeCycle(composterId);
+                const nextEmptyComposter = await checkNextComposter(
+                    composterId
+                );
+                if (nextEmptyComposter) {
+                    closeCycle(composterId);
+                } else {
+                    alert(
+                        `La compostera ${
+                            composterId + 1
+                        } tiene un bolo, primero tienes que cerrar ese`
+                    );
+                }
             } else {
                 loadComposters();
             }

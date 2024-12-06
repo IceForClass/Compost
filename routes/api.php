@@ -28,7 +28,7 @@ Route::group(['as' => 'api.'], function() {
     Orion::resource('regist',RegistController::class);
     Orion::resource('before',BeforeController::class);
     Orion::resource('during',DuringController::class);
-    Orion::resource('aftter',AfterController::class);
+    Orion::resource('after',AfterController::class);
 
 });
  
@@ -38,7 +38,7 @@ Orion::hasManyResource('centres', 'users', CentreUsersController::class);
 
 Orion::hasManyResource('users', 'centres', UsersCentreController::class);
 
-Orion::hasManyResource('composters', 'regist', ComposterRegistController::class);
-Orion::hasManyResource('regist', 'before', RegistBeforeController::class);
-Orion::hasManyResource('regist', 'during', RegistDuringController::class);
-Orion::hasManyResource('regist', 'after', RegistAfterController::class);
+// Orion::hasManyResource('composters', 'regist', ComposterRegistController::class);
+Orion::hasManyResource('Regist', 'before', RegistBeforeController::class);
+Orion::hasManyResource('Regist', 'during', RegistDuringController::class);
+Orion::hasManyResource('Regist', 'after', RegistAfterController::class);
