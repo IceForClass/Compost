@@ -28,7 +28,7 @@ export function loadComposters() {
                     emptyMapping[composter.ocupada] || "Estado desconocido";
 
                 const card = document.createElement("a");
-                card.href = `${window.location.pathname}?composter=${composter.id}`;
+                // card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
                     "flex justify-between block p-6 bg-gradient-to-br from-green-200 to-green-500 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out mb-4 no-underline";
                 card.innerHTML = /* html */ `    
