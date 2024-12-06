@@ -30,17 +30,20 @@ export function createBolo() {
             const description =
                 document.getElementById("description").value.trim() ||
                 "No se especificó descripción para el bolo";
+
+            // Crear los datos del bolo
             const boloData = {
                 name: name,
                 description: description,
                 cicle1: true,
             };
+
             try {
                 // Creamos un nuevo bolo
                 const response = await postData("/api/bolo", boloData);
                 console.log("Bolo creado:", response);
 
-                // Volvemos a la vista de las composteras
+                // Actualizamos el estado de la primera compostera
                 const updateComposter = await patchData("/api/composters/1", {
                     ocupada: 1,
                 });
@@ -48,6 +51,7 @@ export function createBolo() {
 
                 // debug
                 // alert("Bolo creado y compostera 1 actualizada exitosamente.");
+                // Volvemos a la vista de las composteras
                 loadComposters();
             } catch (error) {
                 console.error("Error:", error.message);
