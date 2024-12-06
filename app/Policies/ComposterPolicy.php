@@ -37,7 +37,7 @@ class ComposterPolicy
      */
     public function update(User $user, Composter $composter): bool
     {
-        return false;
+        return true;
     }
 
     /**

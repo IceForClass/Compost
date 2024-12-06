@@ -1,4 +1,5 @@
 import { loadComposters } from "./composteras.js";
+import { closeCycle } from "./endCycle.js";
 
 export function afterForm(composterId) {
     const container = document.getElementById("datosCompostera");
@@ -28,6 +29,10 @@ export function afterForm(composterId) {
                 <label for="observations" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Observaciones:</label>
                 <textarea id="observations" name="observations" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
             </div>
+            <div>
+                <label for="end_cycle" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fin de Ciclo:</label>
+                <input type="checkbox" id="end_cycle" name="end_cycle" class="mt-2 rounded border-gray-300 text-green-600 focus:ring-green-500">
+            </div>
         </div>
         <div class="mt-6 flex justify-end">
             <button type="button" id="saveButton" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
@@ -41,7 +46,15 @@ export function afterForm(composterId) {
         .addEventListener("click", function () {
             const formData = saveAfterFormData();
             console.log("Formulario Después:", formData);
-            loadComposters();
+
+            const endCycleCheckbox = document.getElementById("end_cycle");
+
+            if (endCycleCheckbox.checked) {
+                console.log("Fin de Ciclo marcado...");
+                closeCycle(composterId);
+            } else {
+                loadComposters();
+            }
         });
 
     function saveAfterFormData() {

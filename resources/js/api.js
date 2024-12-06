@@ -48,3 +48,28 @@ export function postData(url, data) {
         return response.json();
     });
 }
+
+export function patchData(url, data) {
+    const apiToken = sessionStorage.getItem("apiToken");
+
+    if (!apiToken) {
+        logout();
+        return Promise.reject(
+            "Token no encontrado en el almacenamiento de sesión"
+        );
+    }
+
+    return fetch(url, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiToken}`,
+        },
+        body: JSON.stringify(data),
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error(`Error al actualizar los datos en ${url}`);
+        }
+        return response.json();
+    });
+}
