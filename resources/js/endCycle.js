@@ -1,4 +1,4 @@
-import { patchData } from "./api.js";
+import { patchData, fetchData } from "./api.js";
 import { loadComposters } from "./composteras.js";
 
 export function closeCycle(id) {
@@ -21,4 +21,18 @@ export function openCycle(id) {
         .catch((error) => {
             console.error("Error al actualizar la compostera:", error);
         });
+}
+
+export async function checkNextComposter(id) {
+    const response = await fetchData(`/api/composters/${id + 1}`);
+    const composterData = response.data;
+
+    // Verificar si la siguiente compostera está ocupada
+    if (composterData.ocupada === 1) {
+        console.log(`La compostera ${id + 1} está ocupada`);
+        return false;
+    } else {
+        console.log(`La compostera ${id + 1} no está ocupada`);
+        return true;
+    }
 }
