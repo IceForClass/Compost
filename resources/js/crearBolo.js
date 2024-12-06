@@ -1,3 +1,4 @@
+import { postData } from "./api";
 import { loadComposters } from "./composteras";
 
 export function createBolo() {
@@ -22,19 +23,27 @@ export function createBolo() {
 
     document
         .getElementById("createButton")
-        .addEventListener("click", function () {
+        .addEventListener("click", async function () {
             const name = document.getElementById("name").value.trim();
             const description = document
                 .getElementById("description")
                 .value.trim();
 
             const boloData = {
-                name,
-                description,
+                name: name,
+                description: description,
             };
 
-            console.log("Datos del bolo:", boloData);
+            try {
+                // Creamos un nuevo bolo
+                const response = await postData("/api/bolo", boloData);
+                // Debug
+                console.log("Bolo creado:", response);
 
-            loadComposters();
+                // Volvemos a la vista de las composteras
+                loadComposters();
+            } catch (error) {
+                console.error("Error al crear el bolo:", error.message);
+            }
         });
 }
