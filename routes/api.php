@@ -9,8 +9,12 @@ use Orion\Facades\Orion;
 use App\Http\Controllers\Api\CentreController;
 use App\Http\Controllers\Api\CentreUsersController;
 use App\Http\Controllers\Api\ComposterController;
+use App\Http\Controllers\Api\ComposterRegistController;
 use App\Http\Controllers\Api\DuringController;
+use App\Http\Controllers\Api\RegistAfterController;
+use App\Http\Controllers\Api\RegistBeforeController;
 use App\Http\Controllers\Api\RegistController;
+use App\Http\Controllers\Api\RegistDuringController;
 use App\Http\Controllers\Api\UsersCentreController;
 
 // Route::get('/user', function (Request $request) {
@@ -33,3 +37,8 @@ Orion::hasManyResource('centres', 'composters', CentreCompostersController::clas
 Orion::hasManyResource('centres', 'users', CentreUsersController::class);
 
 Orion::hasManyResource('users', 'centres', UsersCentreController::class);
+
+Orion::hasManyResource('composters', 'regist', ComposterRegistController::class);
+Orion::hasManyResource('regist', 'before', RegistBeforeController::class);
+Orion::hasManyResource('regist', 'during', RegistDuringController::class);
+Orion::hasManyResource('regist', 'after', RegistAfterController::class);
