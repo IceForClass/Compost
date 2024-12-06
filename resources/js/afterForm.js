@@ -58,9 +58,9 @@ export function afterForm(composterId) {
                     closeCycle(composterId);
                 } else {
                     alert(
-                        `Primero tienes que cerrar la compostera ${
+                        `La compostera ${
                             composterId + 1
-                        }`
+                        } tiene un bolo, primero tienes que cerrar ese`
                     );
                 }
             } else {
