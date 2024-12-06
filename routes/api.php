@@ -28,7 +28,7 @@ Route::group(['as' => 'api.'], function() {
     Orion::resource('regist',RegistController::class);
     Orion::resource('before',BeforeController::class);
     Orion::resource('during',DuringController::class);
-    Orion::resource('aftter',AfterController::class);
+    Orion::resource('after',AfterController::class);
 
 });
  
