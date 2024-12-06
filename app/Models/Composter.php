@@ -16,8 +16,8 @@ class Composter extends Model
         return $this->belongsTo(Centre::class, 'centre_id', 'id');
     }
 
-    public function registro()
+    public function regist()
     {
-        return $this->belongsTo(Regist::class, 'regist_id');
+        return $this->hasMany(Regist::class, 'regist_id');
     }
 }
