@@ -32,6 +32,7 @@ export function createBolo() {
             const boloData = {
                 name: name,
                 description: description,
+                cicle1: true,
             };
 
             try {
