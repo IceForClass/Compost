@@ -1,6 +1,7 @@
 import { fetchData } from "./api.js";
 import { beforeForm } from "./beforeForm.js";
 import { centreName } from "./centreName.js";
+import { createBolo } from "./crearBolo.js";
 
 export function loadComposters() {
     centreName();
@@ -8,7 +9,7 @@ export function loadComposters() {
         .then((data) => {
             const composterData = data.data;
             const container = document.getElementById("datosCompostera");
-            container.innerHTML = "";
+            container.innerHTML = /* html */ "";
 
             const typeMapping = {
                 11: "Aporte",
