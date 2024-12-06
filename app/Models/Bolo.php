@@ -9,6 +9,8 @@ class Bolo extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'description'];
+    
     public function cicle(){
         return $this->hasMany(Cicle::class);
     } 
