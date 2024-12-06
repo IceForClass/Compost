@@ -1,4 +1,5 @@
 import { loadComposters } from "./composteras.js";
+import { closeCycle } from "./endCycle.js";
 
 export function afterForm(composterId) {
     const container = document.getElementById("datosCompostera");
@@ -46,14 +47,14 @@ export function afterForm(composterId) {
             const formData = saveAfterFormData();
             console.log("Formulario Después:", formData);
 
-            /* Debug
             const endCycleCheckbox = document.getElementById("end_cycle");
-            console.log(
-                `Fin de Ciclo:`,
-                endCycleCheckbox.checked ? "Marcado" : "No marcado"
-            ); */
 
-            loadComposters();
+            if (endCycleCheckbox.checked) {
+                console.log("Fin de Ciclo marcado...");
+                closeCycle(composterId);
+            } else {
+                loadComposters();
+            }
         });
 
     function saveAfterFormData() {
