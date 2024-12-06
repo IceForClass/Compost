@@ -23,6 +23,18 @@ export function createBolo() {
     document
         .getElementById("createButton")
         .addEventListener("click", function () {
+            const name = document.getElementById("name").value.trim();
+            const description = document
+                .getElementById("description")
+                .value.trim();
+
+            const boloData = {
+                name,
+                description,
+            };
+
+            console.log("Datos del bolo:", boloData);
+
             loadComposters();
         });
 }
