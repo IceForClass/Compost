@@ -5,7 +5,11 @@ export function closeCycle(id) {
     patchData(`/api/composters/${id}`, { ocupada: 0 })
         .then((response) => {
             console.log(`Compostera ${id} actualizada exitosamente a vacía.`);
-            openCycle(id + 1);
+            if (id != 3) {
+                openCycle(id + 1);
+            } else {
+                loadComposters();
+            }
         })
         .catch((error) => {
             console.error("Error al actualizar la compostera:", error);
@@ -24,6 +28,9 @@ export function openCycle(id) {
 }
 
 export async function checkNextComposter(id) {
+    if (id == 3) {
+        return true;
+    }
     const response = await fetchData(`/api/composters/${id + 1}`);
     const composterData = response.data;
 
