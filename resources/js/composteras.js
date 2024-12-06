@@ -48,8 +48,8 @@ export function loadComposters() {
                             </p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">
                                 Creado el: <span class="font-semibold">${new Date(
-                    composter.created_at
-                ).toLocaleString()}</span>
+                                    composter.created_at
+                                ).toLocaleString()}</span>
                             </p>
                         </div>
                     </div>
@@ -57,6 +57,8 @@ export function loadComposters() {
 
                 const newRegistButton = document.createElement("button");
                 newRegistButton.textContent = "Nuevo registro";
+                newRegistButton.className =
+                    "bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300";
 
                 newRegistButton.addEventListener("click", (event) => {
                     event.preventDefault();
@@ -64,9 +66,12 @@ export function loadComposters() {
                     if (composter.ocupada === 1) {
                         beforeForm(composter.id);
                     } else if (composter.id === 1 && composter.ocupada === 0) {
-                        confirm(
+                        const confirmed = confirm(
                             `La compostera ${composter.id} necesita un bolo, ¿crear uno nuevo?`
                         );
+                        if (confirmed) {
+                            createBolo();
+                        }
                     } else {
                         alert(
                             `La compostera ${composter.id} está libre, tiene que llegarle un bolo de otra compostera`
