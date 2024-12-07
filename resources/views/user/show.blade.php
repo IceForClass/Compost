@@ -45,7 +45,7 @@
                                 <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">Admin</dt>
                                 <dd
                                     class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-300 sm:col-span-2 sm:mt-0">
-                                    {{ $user->admin }}</dd>
+                                    {{ $user->admin ? 'Sí' : 'No' }}
                             </div>
                         </dl>
                     </div>
