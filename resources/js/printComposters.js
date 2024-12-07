@@ -1,3 +1,4 @@
+import { fetchData } from "./api.js";
 import { createBolo } from "./crearBolo.js";
 import { beforeForm } from "./beforeForm.js";
 import { hideLoadingScreen } from "./loadingScreen.js";
@@ -16,10 +17,14 @@ export function printComposters(composterData) {
         0: "Vacía",
         1: "Ocupada",
     };
-
+    
     composterData.forEach((composter) => {
 
-        console.log(composter);
+        fetchData("api/composters/1/regist") // NO FUNCIONA ptm
+        .then((data) => {
+            const registData = data.data;
+            console.log(registData);
+        });
 
         const typeName = typeMapping[composter.type] || "Desconocido";
         const empty =

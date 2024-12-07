@@ -19,7 +19,6 @@
                 <p id="nombre-centro" class="mt-4 text-sm font-medium text-gray-800 dark:text-gray-200"></p>
                 <p id="DatosCentro"></p>
             </div>
-            <div id="nombreCentro" class="mt-4"></div>
             <div id="datosCompostera" class="mt-4">
                 <!-- Aquí se agregarán las composteras dinámicamente -->
             </div>
