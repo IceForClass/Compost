@@ -18,6 +18,6 @@ class Composter extends Model
 
     public function regist()
     {
-        return $this->hasMany(Regist::class, 'regist_id');
+        return $this->hasMany(Regist::class, 'composter_id', 'id');
     }
 }
