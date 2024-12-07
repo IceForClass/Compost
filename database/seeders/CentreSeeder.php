@@ -16,9 +16,9 @@ class CentreSeeder extends Seeder
         Centre::factory()->create(
             [
                 'id' => '1',
-                'code' => 'ABC',
-                'name' => 'Centro prueba',
-                'address' => 'Dirección prueba',
+                'code' => 'CMM',
+                'name' => 'CIFP Majada Marcial',
+                'address' => 'Camelleros, s/n',
                 'logo' => "https://avatars.githubusercontent.com/u/146034810?v=4",
             ]
         );

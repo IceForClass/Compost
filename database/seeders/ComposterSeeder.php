@@ -17,7 +17,7 @@ class ComposterSeeder extends Seeder
             [
                 'type' => '11',
                 'centre_id' => '1',
-                'ocupada' => '0',
+                'ocupada' => '1',
             ]
         );
         Composter::factory()->create(
