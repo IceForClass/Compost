@@ -13,7 +13,7 @@ class BoloSeeder extends Seeder
      */
     public function run(): void
     {
-    /*    Bolo::create([
+        Bolo::create([
             'name' => 'Bolo A',
             'description' => 'Descripción del Bolo A',
             'cicle1' => true,
@@ -29,6 +29,6 @@ class BoloSeeder extends Seeder
             'cicle2' => true,
             'cicle3' => false,
             'finish' => false,
-        ]); */
+        ]);
     }
 }
