@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Cicle;
 
 class CicleSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class CicleSeeder extends Seeder
      */
     public function run(): void
     {
-        //Cicle::factory(30)->create();
+        Cicle::factory(30)->create();
     }
 }

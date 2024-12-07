@@ -9,13 +9,15 @@ class Composter extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['ocupada'];
+
     public function centre()
     {
         return $this->belongsTo(Centre::class, 'centre_id', 'id');
     }
 
-    public function registro()
+    public function regist()
     {
-        return $this->belongsTo(Regist::class, 'regist_id');
+        return $this->hasMany(Regist::class, 'regist_id');
     }
 }

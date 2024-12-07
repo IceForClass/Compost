@@ -2,11 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Composter;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class ComposterPolicy
+class DuringPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +18,7 @@ class ComposterPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Composter $composter): bool
+    public function view(User $user, User $model): bool
     {
         return true;
     }
@@ -29,21 +28,21 @@ class ComposterPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Composter $composter): bool
+    public function update(User $user, User $model): bool
     {
-        return true;
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Composter $composter): bool
+    public function delete(User $user, User $model): bool
     {
         return false;
     }
@@ -51,7 +50,7 @@ class ComposterPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Composter $composter): bool
+    public function restore(User $user, User $model): bool
     {
         return false;
     }
@@ -59,7 +58,7 @@ class ComposterPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Composter $composter): bool
+    public function forceDelete(User $user, User $model): bool
     {
         return false;
     }

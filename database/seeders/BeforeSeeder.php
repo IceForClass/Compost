@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Before;
 
 class BeforeSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class BeforeSeeder extends Seeder
      */
     public function run(): void
     {
-        //Before::factory(100)->create();
+        Before::factory(100)->create();
     }
 }

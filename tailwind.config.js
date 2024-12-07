@@ -8,6 +8,11 @@ export default {
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
+        './resources/views/**/*.blade.php', // Blade templates
+        './resources/js/**/*.{js, vue, ts, tsx}',          // Any JS/TS/TSX files
+        './resources/css/**/*.css',        // Any CSS files with Tailwind classes
+        './storage/framework/views/*.php', // Cached Blade views
+        './resources/lang/**/*.php',       // (Optional) Localization files, if needed
     ],
     theme: {
         extend: {
@@ -17,32 +22,32 @@ export default {
             },
             colors: {
                 light: {
-                    primary: '#FFFFFF', // Fondo principal
-                    secondary: '#F5F5F5', // Fondo secundario
-                    highlight: '#E8F5E9', // Fondo destacado
-                    'btn-primary': '#4CAF50', // Botón principal
-                    'btn-primary-hover': '#388E3C', // Hover/Focus en botón principal
-                    'btn-secondary': '#81C784', // Botón secundario
-                    'accent-primary': '#FF9800', // Llamadas a la acción principales
-                    'accent-secondary': '#FFB74D', // Detalles sutiles
-                    'text-primary': '#212121', // Texto principal
-                    'text-secondary': '#616161', // Texto secundario
-                    'text-disabled': '#BDBDBD', // Texto desactivado
-                    'border-primary': '#E0E0E0', // Líneas y bordes
+                    primary: '#FFFFFF', // White (Fondo principal)
+                    secondary: '#F5F5F5', // Light Gray (Fondo secundario)
+                    highlight: '#E8F5E9', // Pale Green (Fondo destacado)
+                    'btn-primary': '#4CAF50', // Teal (Botón principal)
+                    'btn-primary-hover': '#388E3C', // Dark Teal (Hover/Focus en botón principal)
+                    'btn-secondary': '#81C784', // Pastel Green (Botón secundario)
+                    'accent-primary': '#FF9800', // Amber (Llamadas a la acción principales)
+                    'accent-secondary': '#FFB74D', // Light Amber (Detalles sutiles)
+                    'text-primary': '#212121', // Dark Gray (Texto principal)
+                    'text-secondary': '#616161', // Medium Gray (Texto secundario)
+                    'text-disabled': '#BDBDBD', // Light Gray (Texto desactivado)
+                    'border-primary': '#E0E0E0', // Light Gray (Líneas y bordes)
                 },
                 dark: {
-                    primary: '#121212', // Fondo principal
-                    secondary: '#1E1E1E', // Fondo secundario
-                    highlight: '#2E7D32', // Fondo destacado
-                    'btn-primary': '#66BB6A', // Botón principal
-                    'btn-primary-hover': '#388E3C', // Hover/Focus en botón principal
-                    'btn-secondary': '#1B5E20', // Botón secundario
-                    'accent-primary': '#FF8C00', // Llamadas a la acción principales
-                    'accent-secondary': '#FFCC80', // Detalles sutiles
-                    'text-primary': '#E0E0E0', // Texto principal
-                    'text-secondary': '#B0BEC5', // Texto secundario
-                    'text-disabled': '#757575', // Texto desactivado
-                    'border-primary': '#424242', // Líneas y bordes
+                    primary: '#121212', // Charcoal (Fondo principal)
+                    secondary: '#1E1E1E', // Dark Gray (Fondo secundario)
+                    highlight: '#2E7D32', // Forest Green (Fondo destacado)
+                    'btn-primary': '#66BB6A', // Lime Green (Botón principal)
+                    'btn-primary-hover': '#388E3C', // Dark Teal (Hover/Focus en botón principal)
+                    'btn-secondary': '#1B5E20', // Forest Green (Botón secundario)
+                    'accent-primary': '#FF8C00', // Orange (Llamadas a la acción principales)
+                    'accent-secondary': '#FFCC80', // Light Orange (Detalles sutiles)
+                    'text-primary': '#E0E0E0', // Light Gray (Texto principal)
+                    'text-secondary': '#B0BEC5', // Medium Gray (Texto secundario)
+                    'text-disabled': '#757575', // Dark Gray (Texto desactivado)
+                    'border-primary': '#424242', // Dark Gray (Líneas y bordes)
                 },
             },
         },
