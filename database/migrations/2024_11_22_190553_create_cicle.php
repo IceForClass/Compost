@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('cicles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bolo_id')->nullable()->constrained('bolos')->cascadeOnDelete();
-            $table->foreignId('composter_id')->nullable()->constrained('composters')->cascadeOnDelete();
             $table->timestamp('start');
             $table->timestamp('end');
             $table->timestamps();
