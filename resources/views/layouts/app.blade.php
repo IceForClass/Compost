@@ -20,8 +20,8 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div id="loading-screen" class="fa-3x">
-        <i class="fa fa-solid fa-spinner fa-spin-pulse"></i>
+    <div id="loading-screen" class="fa-3x flex justify-center items-center h-full z-1000 fixed top-0 left-0 right-0 bottom-0 bg-gray-500 dark:bg-gray-900 bg-opacity-50 invisible">
+        <i class="fa fa-solid fa-spinner fa-pulse" style="color: #35a44b;"></i>
     </div>
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         @include('layouts.navigation')

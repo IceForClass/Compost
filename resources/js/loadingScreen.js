@@ -1,7 +1,6 @@
-export function ShowLoadingScreen() {
-    document.getElementById("loadingScreen").style.display = "flex";
-
+export function showLoadingScreen() {
+    document.getElementById("loading-screen").classList.remove("invisible");
 }
 export function hideLoadingScreen() {
-    document.getElementById("loadingScreen").style.display = "none";
+    document.getElementById("loading-screen").classList.add("invisible");
 }

@@ -2,8 +2,10 @@ import { fetchData } from "./api.js";
 import { beforeForm } from "./beforeForm.js";
 import { centreName } from "./centreName.js";
 import { createBolo } from "./crearBolo.js";
+import { showLoadingScreen, hideLoadingScreen } from "./loadingScreen.js";
 
 export function loadComposters() {
+    showLoadingScreen();
     centreName();
     fetchData("/api/composters")
         .then((data) => {
@@ -23,7 +25,6 @@ export function loadComposters() {
             };
 
             composterData.forEach((composter) => {
-                console.log(composter);
                 const typeName = typeMapping[composter.type] || "Desconocido";
                 const empty =
                     emptyMapping[composter.ocupada] || "Estado desconocido";
@@ -91,7 +92,9 @@ export function loadComposters() {
                 container.appendChild(card);
             });
         })
+        .then(hideLoadingScreen)
         .catch((error) => {
+            hideLoadingScreen();
             console.error("Error:", error);
             document.getElementById("datosCompostera").innerHTML = /* html */ `
                 <p class="text-red-600">
