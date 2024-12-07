@@ -42,3 +42,7 @@ Orion::hasManyResource('composters', 'regist', ComposterRegistController::class)
 Orion::hasManyResource('regist', 'before', RegistBeforeController::class);
 Orion::hasManyResource('regist', 'during', RegistDuringController::class);
 Orion::hasManyResource('regist', 'after', RegistAfterController::class);
+
+Route::get('exactbolo/composter1', [boloController::class, 'bolocomposter1']);
+Route::get('exactbolo/composter2', [boloController::class, 'bolocomposter2']);
+Route::get('exactbolo/composter3', [boloController::class, 'bolocomposter3']);
