@@ -1,8 +1,6 @@
 import { fetchData } from "./api.js";
-import { beforeForm } from "./beforeForm.js";
-import { centreName } from "./centreName.js";
-import { createBolo } from "./crearBolo.js";
 import { showLoadingScreen, hideLoadingScreen } from "./loadingScreen.js";
+import { centreName } from "./centreName.js";
 import { printComposters } from "./printComposters.js";
 
 export function loadComposters() {

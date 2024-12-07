@@ -1,4 +1,6 @@
-import { showLoadingScreen, hideLoadingScreen } from "./loadingScreen.js";
+import { createBolo } from "./crearBolo.js";
+import { beforeForm } from "./beforeForm.js";
+import { hideLoadingScreen } from "./loadingScreen.js";
 
 export function printComposters(composterData) {
     const container = document.getElementById("datosCompostera");
