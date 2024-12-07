@@ -17,18 +17,16 @@ export function printComposters(composterData) {
         0: "Vacía",
         1: "Ocupada",
     };
-    
-    composterData.forEach((composter) => {
 
-        fetchData("api/composters/1/regist") // NO FUNCIONA ptm
-        .then((data) => {
-            const registData = data.data;
-            console.log(registData);
-        });
+    composterData.forEach((composter) => {
+        // fetchData("api/composters/1/regist") // NO FUNCIONA ptm
+        // .then((data) => {
+        //     const registData = data.data;
+        //     console.log(registData);
+        // });
 
         const typeName = typeMapping[composter.type] || "Desconocido";
-        const empty =
-            emptyMapping[composter.ocupada] || "Estado desconocido";
+        const empty = emptyMapping[composter.ocupada] || "Estado desconocido";
 
         const card = document.createElement("a");
         // card.href = `${window.location.pathname}?composter=${composter.id}`;
@@ -51,18 +49,26 @@ export function printComposters(composterData) {
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Creada el: <span class="font-semibold">${new Date(
-            composter.created_at
-        ).toLocaleString()}</span>
+                            composter.created_at
+                        ).toLocaleString()}</span>
                     </p>
                 </div>
             </div>
         `;
         if (composter.ocupada === 1) {
-            card.querySelector('#status-icon').classList.add("bg-green-500");
-            card.querySelector('#status-icon').classList.add("dark:bg-green-500");
-            card.querySelector('#status-icon').classList.add("dark:text-gray-200");
-            card.querySelector('#status-icon').classList.remove("dark:text-gray-400");
-            card.querySelector('#status-icon').classList.remove("dark:opacity-50");
+            card.querySelector("#status-icon").classList.add("bg-green-500");
+            card.querySelector("#status-icon").classList.add(
+                "dark:bg-green-500"
+            );
+            card.querySelector("#status-icon").classList.add(
+                "dark:text-gray-200"
+            );
+            card.querySelector("#status-icon").classList.remove(
+                "dark:text-gray-400"
+            );
+            card.querySelector("#status-icon").classList.remove(
+                "dark:opacity-50"
+            );
         }
         const newRegistButton = document.createElement("button");
         const seeRegistButton = document.createElement("button");
