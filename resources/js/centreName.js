@@ -10,5 +10,6 @@ export function centreName() {
             "text-center text-xl font-semibold text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 p-4 rounded shadow";
         container.innerHTML =
             /* html */ "Centro: " + centreData.name || "Centro Desconocido";
+        sessionStorage.setItem("idCentro", centreData.id);
     });
 }
