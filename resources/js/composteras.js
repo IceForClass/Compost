@@ -23,6 +23,7 @@ export function loadComposters() {
             };
 
             composterData.forEach((composter) => {
+                console.log(composter);
                 const typeName = typeMapping[composter.type] || "Desconocido";
                 const empty =
                     emptyMapping[composter.ocupada] || "Estado desconocido";
@@ -30,10 +31,10 @@ export function loadComposters() {
                 const card = document.createElement("a");
                 // card.href = `${window.location.pathname}?composter=${composter.id}`;
                 card.className =
-                    "flex justify-between block p-6 bg-gradient-to-br from-green-200 to-green-500 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out mb-4 no-underline";
+                    "flex flex-col sm:flex-row gap-4 justify-between items-center block p-6 bg-gradient-to-br from-light-highlight to-green-400 dark:from-dark-highlight dark:to-green-900 rounded-lg shadow-lg hover:shadow-xl mb-4 no-underline";
                 card.innerHTML = /* html */ `    
                     <div class="flex items-center gap-4">
-                        <div class="bg-green-600 text-white p-2 rounded-full shadow-lg">
+                        <div class="text-white p-2 rounded-full shadow-lg">
                             <i class="fa fa-leaf fa-2x"></i>
                         </div>
                         <div>
@@ -48,18 +49,23 @@ export function loadComposters() {
                             </p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">
                                 Creado el: <span class="font-semibold">${new Date(
-                                    composter.created_at
-                                ).toLocaleString()}</span>
+                    composter.created_at
+                ).toLocaleString()}</span>
                             </p>
                         </div>
                     </div>
                 `;
 
                 const newRegistButton = document.createElement("button");
-                newRegistButton.textContent = "Nuevo registro";
+                const seeRegistButton = document.createElement("button");
+                const buttonsDiv = document.createElement("div");
+                buttonsDiv.className = "flex gap-2";
+                newRegistButton.innerHTML = /* html */ `Nuevo registro <i class="fa fa-solid fa-plus"></i>`;
+                seeRegistButton.innerHTML = /* html */ `Ver registros <i class="fa fa-solid fa-eye"></i>`;
                 newRegistButton.className =
-                    "bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300";
-
+                    "flex items-center justify-center gap-2 bg-light-btn-primary dark:bg-dark-btn-primary text-white px-4 py-2 rounded-lg shadow-md hover:bg-btn-primary-hover focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 transform hover:scale-105 transition duration-300 ease-in-out";
+                seeRegistButton.className =
+                    "flex items-center justify-center gap-2 bg-light-btn-primary dark:bg-dark-btn-primary text-white px-4 py-2 rounded-lg shadow-md hover:bg-btn-primary-hover focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 transform hover:scale-105 transition duration-300 ease-in-out";
                 newRegistButton.addEventListener("click", (event) => {
                     event.preventDefault();
 
@@ -79,7 +85,9 @@ export function loadComposters() {
                     }
                 });
 
-                card.appendChild(newRegistButton);
+                buttonsDiv.appendChild(newRegistButton);
+                buttonsDiv.appendChild(seeRegistButton);
+                card.appendChild(buttonsDiv);
                 container.appendChild(card);
             });
         })
