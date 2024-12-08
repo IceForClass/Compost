@@ -30,6 +30,7 @@ export function openCycle(id) {
 export async function checkNextComposter(id) {
     if (id == 3) {
         updateCicle(id);
+        dateEndCicle();
         return true;
     }
     const response = await fetchData(`/api/composters/${id + 1}`);
@@ -78,5 +79,23 @@ export async function checkNextComposter(id) {
                     console.error("Error al actualizar el bolo:", error);
                 });
         }
+    }
+
+    function dateEndCicle() {
+        const cicle_id = localStorage.getItem("cicle_id");
+
+        const now = new Date();
+        const end = now.toISOString().replace("T", " ").split(".")[0];
+
+        patchData(`/api/cicle/${cicle_id}`, { end: end })
+            .then((response) => {
+                console.log(`Fecha de fin de ciclo añadida correctamente`);
+            })
+            .catch((error) => {
+                console.error(
+                    "Error al actualizar la fecha de fin del ciclo:",
+                    error
+                );
+            });
     }
 }
