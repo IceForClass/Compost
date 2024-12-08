@@ -43,6 +43,7 @@ export async function checkNextComposter(id) {
     } else {
         console.log(`La compostera ${id + 1} no está ocupada`);
         updateCicle(id);
+        dateEndCicle();
         return true;
     }
 

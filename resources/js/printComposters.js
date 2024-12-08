@@ -94,6 +94,7 @@ export function printComposters(composterData) {
                     `La compostera ${composter.id} necesita un bolo, ¿crear uno nuevo?`
                 );
                 if (confirmed) {
+                    localStorage.setItem("composter_id", composter.id);
                     createBolo();
                 }
             } else {
