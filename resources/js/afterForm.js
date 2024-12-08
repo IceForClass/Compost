@@ -1,5 +1,6 @@
 import { loadComposters } from "./composteras.js";
 import { closeCycle, checkNextComposter } from "./endCycle.js";
+import { postData } from "./api.js";
 
 export function afterForm(composterId) {
     const container = document.getElementById("datosCompostera");
@@ -64,6 +65,7 @@ export function afterForm(composterId) {
                     );
                 }
             } else {
+                createRegist();
                 loadComposters();
             }
         });
@@ -82,5 +84,26 @@ export function afterForm(composterId) {
             });
         localStorage.setItem("afterFormData", JSON.stringify(formData));
         return formData;
+    }
+
+    async function createRegist() {
+        const user_id = sessionStorage.getItem("idUser");
+        const cicle_id = localStorage.getItem("cicle_id");
+        const composter_id = localStorage.getItem("composter_id");
+        const now = new Date();
+        const date = now.toISOString().replace("T", " ").split(".")[0];
+        const cicle_start = 1;
+
+        const registData = {
+            user_id,
+            cicle_id,
+            composter_id,
+            date,
+            cicle_start,
+        };
+
+        console.log("Datos enviados a /api/regist:", registData);
+
+        const response = await postData("/api/regist", registData);
     }
 }
