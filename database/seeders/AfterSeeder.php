@@ -13,6 +13,6 @@ class AfterSeeder extends Seeder
      */
     public function run(): void
     {
-        After::factory(100)->create();
+        // After::factory(100)->create();
     }
 }

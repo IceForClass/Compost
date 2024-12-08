@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('bolo_id')->nullable()->constrained('bolos')->cascadeOnDelete();
             $table->timestamp('start');
-            $table->timestamp('end');
+            $table->timestamp('end')->nullable();
             $table->timestamps();
         });
     }

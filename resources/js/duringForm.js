@@ -1,4 +1,5 @@
 import { afterForm } from "./afterForm.js";
+import { fetchData } from "./api.js";
 
 export function duringForm(composterId) {
     const container = document.getElementById("datosCompostera");
@@ -73,7 +74,25 @@ export function duringForm(composterId) {
                             : "0"
                         : element.value;
             });
+        getCicle();
         localStorage.setItem("duringFormData", JSON.stringify(formData));
         return formData;
+    }
+
+    function getCicle() {
+        const boloId = localStorage.getItem("bolo_id");
+        fetchData(`/api/bolo/${boloId}/cicle`)
+            .then((cicleData) => {
+                const cicleId = cicleData.data[0].id;
+                if (cicleId) {
+                    console.log("Ciclo del bolo", cicleId);
+                    localStorage.setItem("cicle_id", cicleId);
+                } else {
+                    console.warn("No se encontró ningún ciclo para el bolo.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error al obtener el ciclo del bolo:", error);
+            });
     }
 }
