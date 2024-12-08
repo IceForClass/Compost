@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
 use App\Http\Controllers\Api\CentreController;
 use App\Http\Controllers\Api\CentreUsersController;
+use App\Http\Controllers\Api\CicleBoloController;
 use App\Http\Controllers\Api\CicleController;
 use App\Http\Controllers\Api\ComposterController;
 use App\Http\Controllers\Api\ComposterRegistController;
@@ -38,8 +39,8 @@ Route::group(['as' => 'api.'], function() {
     Orion::hasManyResource('regist', 'before', RegistBeforeController::class);
     Orion::hasManyResource('regist', 'during', RegistDuringController::class);
     Orion::hasManyResource('regist', 'after', RegistAfterController::class);
+    Orion::hasManyResource('cicle', 'bolo', CicleBoloController::class);
 });
- 
 
 
 Route::get('exactbolo/composter1', [boloController::class, 'bolocomposter1']);
