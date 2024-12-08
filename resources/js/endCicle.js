@@ -1,12 +1,12 @@
 import { patchData, fetchData } from "./api.js";
 import { loadComposters } from "./composteras.js";
 
-export function closeCycle(id) {
+export function closeCicle(id) {
     patchData(`/api/composters/${id}`, { ocupada: 0 })
         .then((response) => {
             console.log(`Compostera ${id} actualizada exitosamente a vacía.`);
             if (id != 3) {
-                openCycle(id + 1);
+                openCicle(id + 1);
             } else {
                 loadComposters();
             }
@@ -16,7 +16,7 @@ export function closeCycle(id) {
         });
 }
 
-export function openCycle(id) {
+export function openCicle(id) {
     patchData(`/api/composters/${id}`, { ocupada: 1 })
         .then((response) => {
             console.log(`Compostera ${id} actualizada exitosamente a ocupada.`);

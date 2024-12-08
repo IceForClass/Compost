@@ -54,15 +54,25 @@ export function printComposters(composterData) {
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Creada el: <span class="font-semibold">${new Date(
-            composter.created_at
-        ).toLocaleString()}</span>
+                            composter.created_at
+                        ).toLocaleString()}</span>
                     </p>
                 </div>
             </div>
         `;
         if (composter.ocupada === 1) {
-            card.querySelector("#status-icon").classList.add("bg-green-500", "dark:bg-green-500", "dark:text-gray-200", "shadow-md", "shadow-gray-700/50", "dark:shadow-gray-400/50");
-            card.querySelector("#status-icon").classList.remove("dark:text-gray-400", "dark:opacity-25");
+            card.querySelector("#status-icon").classList.add(
+                "bg-green-500",
+                "dark:bg-green-500",
+                "dark:text-gray-200",
+                "shadow-md",
+                "shadow-gray-700/50",
+                "dark:shadow-gray-400/50"
+            );
+            card.querySelector("#status-icon").classList.remove(
+                "dark:text-gray-400",
+                "dark:opacity-25"
+            );
         }
         const newRegistButton = document.createElement("button");
         const seeRegistButton = document.createElement("button");
@@ -95,7 +105,8 @@ export function printComposters(composterData) {
         const containerDropdown = document.createElement("div");
         containerDropdown.classList.add("container-dropdown");
         const dropdown = document.createElement("div");
-        dropdown.className = "dropdown invisible absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none";
+        dropdown.className =
+            "dropdown invisible absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none";
         dropdown.setAttribute("role", "menu");
         dropdown.setAttribute("aria-orientation", "vertical");
         dropdown.setAttribute("aria-labelledby", "menu-button");
@@ -105,8 +116,12 @@ export function printComposters(composterData) {
         <a href="#" class="dropdown-verHistorico block px-4 py-2 text-sm text-gray-700">Ver histórico</a>
         </div>`;
         if (composter.ocupada === 0) {
-            dropdown.querySelector(".dropdown-verActual").classList.add("text-gray-400");
-            dropdown.querySelector(".dropdown-verActual").classList.remove("text-gray-700");
+            dropdown
+                .querySelector(".dropdown-verActual")
+                .classList.add("text-gray-400");
+            dropdown
+                .querySelector(".dropdown-verActual")
+                .classList.remove("text-gray-700");
         }
         seeRegistButton.addEventListener("click", (event) => {
             event.preventDefault();
@@ -118,21 +133,31 @@ export function printComposters(composterData) {
             if (!dropdown.classList.contains("invisible")) {
                 const handleOutsideClick = (event) => {
                     // If the click is outside of the dropdown and the button
-                    if (!dropdown.contains(event.target) && !seeRegistButton.contains(event.target)) {
+                    if (
+                        !dropdown.contains(event.target) &&
+                        !seeRegistButton.contains(event.target)
+                    ) {
                         dropdown.classList.add("invisible");
-                        document.removeEventListener("click", handleOutsideClick);
+                        document.removeEventListener(
+                            "click",
+                            handleOutsideClick
+                        );
                     }
                 };
                 document.addEventListener("click", handleOutsideClick);
             }
 
             // Add the event listeners for the menu items
-            dropdown.querySelector(".dropdown-verActual").addEventListener("click", () => {
-                // seeCurrentCycle(composter.id);
-            });
-            dropdown.querySelector(".dropdown-verHistorico").addEventListener("click", () => {
-                // seeCycleHistory(composter.id);
-            });
+            dropdown
+                .querySelector(".dropdown-verActual")
+                .addEventListener("click", () => {
+                    // seeCurrentCicle(composter.id);
+                });
+            dropdown
+                .querySelector(".dropdown-verHistorico")
+                .addEventListener("click", () => {
+                    // seeCicleHistory(composter.id);
+                });
         });
         containerDropdown.appendChild(seeRegistButton);
         containerDropdown.appendChild(dropdown);
