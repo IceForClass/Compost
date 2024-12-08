@@ -49,6 +49,7 @@ export function afterForm(composterId) {
             console.log("Formulario Después:", formData);
 
             const endCicleCheckbox = document.getElementById("end_Cicle");
+            createRegist();
 
             if (endCicleCheckbox.checked) {
                 console.log("Fin de Ciclo marcado...");
@@ -65,7 +66,6 @@ export function afterForm(composterId) {
                     );
                 }
             } else {
-                createRegist();
                 loadComposters();
             }
         });
