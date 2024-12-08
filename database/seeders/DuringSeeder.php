@@ -13,6 +13,6 @@ class DuringSeeder extends Seeder
      */
     public function run(): void
     {
-        During::factory(100)->create();
+        // During::factory(100)->create();
     }
 }
