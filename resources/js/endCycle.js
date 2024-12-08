@@ -29,6 +29,7 @@ export function openCycle(id) {
 
 export async function checkNextComposter(id) {
     if (id == 3) {
+        updateCicle(id);
         return true;
     }
     const response = await fetchData(`/api/composters/${id + 1}`);
@@ -40,6 +41,42 @@ export async function checkNextComposter(id) {
         return false;
     } else {
         console.log(`La compostera ${id + 1} no está ocupada`);
+        updateCicle(id);
         return true;
+    }
+
+    function updateCicle(id) {
+        const bolo_id = localStorage.getItem("bolo_id");
+        if (id == 3) {
+            patchData(`/api/bolo/${bolo_id}`, { finish: 1 })
+                .then((response) => {
+                    console.log(
+                        `Bolo ${bolo_id} actualizado exitosamente a terminado.`
+                    );
+                })
+                .catch((error) => {
+                    console.error("Error al actualizar el bolo:", error);
+                });
+        } else if (id == 1) {
+            patchData(`/api/bolo/${bolo_id}`, { cicle2: 1 })
+                .then((response) => {
+                    console.log(
+                        `Bolo ${bolo_id} actualizado exitosamente al ciclo 2.`
+                    );
+                })
+                .catch((error) => {
+                    console.error("Error al actualizar el bolo:", error);
+                });
+        } else if (id == 2) {
+            patchData(`/api/bolo/${bolo_id}`, { cicle3: 1 })
+                .then((response) => {
+                    console.log(
+                        `Bolo ${bolo_id} actualizado exitosamente al ciclo 3.`
+                    );
+                })
+                .catch((error) => {
+                    console.error("Error al actualizar el bolo:", error);
+                });
+        }
     }
 }
