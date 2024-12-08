@@ -22,6 +22,10 @@ class BoloFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
+            'cicle1' => true,
+            'cicle2' => true,
+            'cicle3' => true,
+            'finish' => true
         ];
     }
 }

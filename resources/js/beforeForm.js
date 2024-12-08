@@ -1,8 +1,9 @@
 import { duringForm } from "./duringForm.js";
+import { fetchData } from "./api.js";
 
 export function beforeForm(composterId) {
     const container = document.getElementById("datosCompostera");
-
+    mostrarBolo();
     container.innerHTML = /* html */ `
         <h2 class="text-xl font-extrabold text-center text-green-600 mb-6">Formulario de Antes para Compostera ${composterId}</h2>
         <div class="space-y-4">
@@ -94,5 +95,15 @@ export function beforeForm(composterId) {
             });
         localStorage.setItem("beforeFormData", JSON.stringify(formData));
         return formData;
+    }
+
+    function mostrarBolo() {
+        fetchData(`/api/exactbolo/composter${composterId}`)
+            .then((data) => {
+                console.log(`Bolo para Compostera ${composterId}:`, data);
+            })
+            .catch((error) => {
+                console.error("Error al obtener el bolo:", error);
+            });
     }
 }

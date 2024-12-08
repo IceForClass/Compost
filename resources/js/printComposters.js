@@ -17,26 +17,29 @@ export function printComposters(composterData) {
         0: "Vacía",
         1: "Ocupada",
     };
-    
-    composterData.forEach((composter) => {
 
-        fetchData("api/composters/1/regist") // NO FUNCIONA ptm
-        .then((data) => {
-            const registData = data.data;
-            console.log(registData);
-        });
+    // Ando necesitando un endpoint para ciclo, o al menos uno de bolo filtrado por ciclo.
+
+    composterData.forEach((composter) => {
+        fetchData(`/api/composters/${composter.id}/regist`)
+            .then((data) => {
+                const registData = data.data;
+                // fetchData(`(endpoint de ciclo / bolo)`)
+            })
+            .catch((error) => {
+                console.error("Error al obtener los registros:", error);
+            });
 
         const typeName = typeMapping[composter.type] || "Desconocido";
-        const empty =
-            emptyMapping[composter.ocupada] || "Estado desconocido";
+        const empty = emptyMapping[composter.ocupada] || "Estado desconocido";
 
         const card = document.createElement("a");
         // card.href = `${window.location.pathname}?composter=${composter.id}`;
         card.className =
-            "flex flex-col sm:flex-row gap-4 justify-between items-center block p-6 bg-gradient-to-br from-light-highlight to-green-400 dark:from-dark-highlight dark:to-gray-900 rounded-lg shadow-lg hover:shadow-xl mb-4 no-underline";
+            "flex flex-col sm:flex-row gap-4 justify-between items-center block p-6 bg-gradient-to-br from-green-400 to-green-100 dark:from-gray-900 dark:to-dark-highlight rounded-lg shadow-lg hover:shadow-xl mb-4 no-underline";
         card.innerHTML = /* html */ `    
             <div class="flex items-center gap-4">
-                <div id="status-icon" class="text-white dark:text-gray-400 dark:bg-green-700 dark:opacity-50 p-2 rounded-full shadow-lg">
+                <div id="status-icon" class="text-white dark:text-gray-400 dark:bg-green-700 dark:opacity-25 p-2.5 rounded-full border-2 border-gray-200">
                     <i class="fa fa-leaf fa-2x"></i>
                 </div>
                 <div>
@@ -58,11 +61,8 @@ export function printComposters(composterData) {
             </div>
         `;
         if (composter.ocupada === 1) {
-            card.querySelector('#status-icon').classList.add("bg-green-500");
-            card.querySelector('#status-icon').classList.add("dark:bg-green-500");
-            card.querySelector('#status-icon').classList.add("dark:text-gray-200");
-            card.querySelector('#status-icon').classList.remove("dark:text-gray-400");
-            card.querySelector('#status-icon').classList.remove("dark:opacity-50");
+            card.querySelector("#status-icon").classList.add("bg-green-500", "dark:bg-green-500", "dark:text-gray-200", "shadow-md", "shadow-gray-700/50", "dark:shadow-gray-400/50");
+            card.querySelector("#status-icon").classList.remove("dark:text-gray-400", "dark:opacity-25");
         }
         const newRegistButton = document.createElement("button");
         const seeRegistButton = document.createElement("button");
@@ -92,8 +92,52 @@ export function printComposters(composterData) {
                 );
             }
         });
+        const containerDropdown = document.createElement("div");
+        containerDropdown.classList.add("container-dropdown");
+        const dropdown = document.createElement("div");
+        dropdown.className = "dropdown invisible absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none";
+        dropdown.setAttribute("role", "menu");
+        dropdown.setAttribute("aria-orientation", "vertical");
+        dropdown.setAttribute("aria-labelledby", "menu-button");
+        dropdown.innerHTML = /* html */ `
+        <div class="py-1">
+        <a href="#" class="dropdown-verActual block px-4 py-2 text-sm text-gray-700" >Ver ciclo actual</a>
+        <a href="#" class="dropdown-verHistorico block px-4 py-2 text-sm text-gray-700">Ver histórico</a>
+        </div>`;
+        if (composter.ocupada === 0) {
+            dropdown.querySelector(".dropdown-verActual").classList.add("text-gray-400");
+            dropdown.querySelector(".dropdown-verActual").classList.remove("text-gray-700");
+        }
+        seeRegistButton.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            // Toggle the dropdown visibility
+            dropdown.classList.toggle("invisible");
+
+            // If dropdown is now visible, add event listener to handle clicks outside
+            if (!dropdown.classList.contains("invisible")) {
+                const handleOutsideClick = (event) => {
+                    // If the click is outside of the dropdown and the button
+                    if (!dropdown.contains(event.target) && !seeRegistButton.contains(event.target)) {
+                        dropdown.classList.add("invisible");
+                        document.removeEventListener("click", handleOutsideClick);
+                    }
+                };
+                document.addEventListener("click", handleOutsideClick);
+            }
+
+            // Add the event listeners for the menu items
+            dropdown.querySelector(".dropdown-verActual").addEventListener("click", () => {
+                // seeCurrentCycle(composter.id);
+            });
+            dropdown.querySelector(".dropdown-verHistorico").addEventListener("click", () => {
+                // seeCycleHistory(composter.id);
+            });
+        });
+        containerDropdown.appendChild(seeRegistButton);
+        containerDropdown.appendChild(dropdown);
         buttonsDiv.appendChild(newRegistButton);
-        buttonsDiv.appendChild(seeRegistButton);
+        buttonsDiv.appendChild(containerDropdown);
         card.appendChild(buttonsDiv);
         container.appendChild(card);
         hideLoadingScreen();

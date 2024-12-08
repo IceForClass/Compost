@@ -17,14 +17,23 @@ class BoloSeeder extends Seeder
             'name' => 'Bolo A',
             'description' => 'Descripción del Bolo A',
             'cicle1' => true,
-            'cicle2' => false,
-            'cicle3' => false,
-            'finish' => false,
+            'cicle2' => true,
+            'cicle3' => true,
+            'finish' => true,
         ]);
 
         Bolo::create([
             'name' => 'Bolo B',
             'description' => 'Descripción del Bolo B',
+            'cicle1' => true,
+            'cicle2' => true,
+            'cicle3' => true,
+            'finish' => true,
+        ]);
+
+        Bolo::create([
+            'name' => 'Bolo C',
+            'description' => 'Descripción del Bolo C',
             'cicle1' => true,
             'cicle2' => true,
             'cicle3' => false,

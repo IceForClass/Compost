@@ -3,8 +3,6 @@ import { afterForm } from "./afterForm.js";
 export function duringForm(composterId) {
     const container = document.getElementById("datosCompostera");
 
-    container.innerHTML = /* html */ "";
-
     container.innerHTML = /* html */ `
         <h2 class="text-xl font-extrabold text-center text-green-600 mb-6">Formulario Durante para Compostera ${composterId}</h2>
         <div class="space-y-4">
@@ -75,7 +73,7 @@ export function duringForm(composterId) {
                             : "0"
                         : element.value;
             });
-        localStorage.setItem("beforeFormData", JSON.stringify(formData));
+        localStorage.setItem("duringFormData", JSON.stringify(formData));
         return formData;
     }
 }
