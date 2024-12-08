@@ -67,9 +67,12 @@ export function createBolo() {
 async function createCicle() {
     const now = new Date();
     const start = now.toISOString().replace("T", " ").split(".")[0];
+    const composter_id = localStorage.getItem("composter_id");
 
     try {
-        const boloResponse = await fetchData(`/api/exactbolo/composter1`);
+        const boloResponse = await fetchData(
+            `/api/exactbolo/composter${composter_id}`
+        );
         if (!boloResponse || !boloResponse.id) {
             throw new Error(
                 "No se encontró un bolo válido para iniciar el ciclo."
