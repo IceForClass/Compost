@@ -20,11 +20,11 @@ class RegistFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => '1',
-            'cicle_id' => '1',
+            'user_id' => \App\Models\User::pluck('id')->random(),
+            'cicle_id' => \App\Models\Cicle::pluck('id')->random(),
             'composter_id' => \App\Models\Composter::pluck('id')->random(),
-            'date' => $this->faker->date(),
-            'cicle_start' => $this->faker->boolean(),
+            'date' => $this->faker->date('Y-m-d', '2020-01-01', '2022-12-31'),
+            'cicle_start' => false,
         ];
     }
 }
