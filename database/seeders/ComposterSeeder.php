@@ -17,14 +17,14 @@ class ComposterSeeder extends Seeder
             [
                 'type' => '11',
                 'centre_id' => '1',
-                'ocupada' => '1',
+                'ocupada' => '0',
             ]
         );
         Composter::factory()->create(
             [
                 'type' => '22',
                 'centre_id' => '1',
-                'ocupada' => '0',
+                'ocupada' => '1',
             ]
         );
         Composter::factory()->create(
