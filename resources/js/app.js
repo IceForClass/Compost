@@ -11,8 +11,11 @@ loadComposters();
 document.querySelector("#clearTableButton").addEventListener("click", clearTableEvent);
 
 export function clearTableEvent(e) {
-    e.target.closest(".hidetable").classList.add("invisible");
-    e.target.closest("tbody").innerHTML = "";
+    const table = e.target.closest(".hidetable");
+    if (table) {
+        e.target.closest(".hidetable").classList.add("invisible");
+        e.target.closest("tbody").innerHTML = "";
+    }
 }
 
 export function clearTable() {

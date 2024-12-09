@@ -88,7 +88,7 @@ export function printComposter(composter, boloData, registData) {
     dropdown.innerHTML = /* html */ `
     <div class="py-1">
     <button class="dropdown-verActual block w-full text-left px-4 py-2 text-sm text-gray-400 cursor-not-allowed" >Ver ciclo actual</button>
-    <button class="dropdown-verHistorico block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Ver histórico</button>
+    <button class="dropdown-verHistorico block w-full text-left px-4 py-2 text-sm hover:bg-gray-200 cursor-not-allowed text-gray-400">Ver histórico &#40;no disponible&#41;</button>
     </div>`;
     if (composter.ocupada === 1) {
         dropdown.querySelector(".dropdown-verActual").classList.add("text-gray-700", "hover:bg-gray-200");
