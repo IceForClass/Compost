@@ -1,6 +1,7 @@
 import { createBolo } from "./crearBolo.js";
 import { beforeForm } from "./beforeForm.js";
 import { showLoadingScreen, hideLoadingScreen } from "./loadingScreen.js";
+import { clearTableEvent } from "./app.js";
 
 const typeMapping = {
     11: "Aporte",
@@ -61,7 +62,7 @@ export function printComposter(composter, boloData, registData) {
         "flex items-center justify-center gap-2 bg-green-500 dark:bg-green-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-btn-primary-hover focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 transform hover:scale-105 transition duration-300 ease-in-out";
     newRegistButton.addEventListener("click", (event) => {
         event.preventDefault();
-
+        clearTableEvent(event);
         if (composter.ocupada === 1) {
             beforeForm(composter.id);
         } else if (composter.id === 1 && composter.ocupada === 0) {
@@ -93,12 +94,12 @@ export function printComposter(composter, boloData, registData) {
         dropdown.querySelector(".dropdown-verActual").classList.add("text-gray-700", "hover:bg-gray-200");
         dropdown.querySelector(".dropdown-verActual").classList.remove("text-gray-400", "cursor-not-allowed");
         dropdown.querySelector(".dropdown-verActual").addEventListener("click", (event) => {
-            printRegists(registData);
+            printRegists(registData, boloData, composter);
         })
     }
     seeRegistButton.addEventListener("click", (event) => {
         event.preventDefault();
-
+        clearTableEvent(event);
         // Toggle the dropdown visibility
         dropdown.classList.toggle("invisible");
 
@@ -126,7 +127,6 @@ export function printComposter(composter, boloData, registData) {
     buttonsDiv.appendChild(newRegistButton);
     buttonsDiv.appendChild(containerDropdown);
     card.appendChild(buttonsDiv);
-    printRegists(registData, boloData, composter);
     container.appendChild(card);
 }
 function printRegists(registData, boloData, composter) {

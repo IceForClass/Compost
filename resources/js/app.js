@@ -8,10 +8,17 @@ window.Alpine = Alpine;
 Alpine.start();
 
 loadComposters();
-document.querySelector("#clearTableButton").addEventListener("click", clearTable);
+document.querySelector("#clearTableButton").addEventListener("click", clearTableEvent);
 
-export function clearTable(e) {
+export function clearTableEvent(e) {
     e.target.closest(".hidetable").classList.add("invisible");
     e.target.closest("tbody").innerHTML = "";
 }
 
+export function clearTable() {
+    const table = document.querySelector(".hidetable");
+    if (table) {
+        table.classList.add("invisible");
+        table.querySelector("tbody").innerHTML = "";
+    }
+}
