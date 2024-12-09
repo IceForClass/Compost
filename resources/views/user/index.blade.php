@@ -43,7 +43,7 @@
                                     Centro</th>
                                 <th scope="col"
                                     class="py-3 px-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                                    Admin</th>
+                                    Administrador</th>
                                 <th scope="col"
                                     class="py-3 px-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                                 </th>
@@ -77,14 +77,14 @@
                                             {{ __('Ver más') }}
                                         </a>
                                         <a href="{{ route('users.edit', $user->id) }}"
-                                            class="inline-flex items-center gap-1 px-2 py-1 text-sm font-medium text-indigo-700 bg-indigo-100 rounded hover:bg-indigo-200 dark:text-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-600">
+                                            class="inline-flex items-center gap-1 px-2 py-1 text-sm font-medium text-sky-700 bg-sky-100 rounded hover:bg-sky-200 dark:text-sky-300 dark:bg-sky-700 dark:hover:bg-sky-600">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             {{ __('Editar') }}
                                         </a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="button"
-                                            onclick="if(confirm('Are you sure to delete?')) { this.closest('form').submit(); }"
+                                            onclick="if(confirm('¿Desea eliminar?')) { this.closest('form').submit(); }"
                                             class="inline-flex items-center gap-1 px-2 py-1 text-sm font-medium text-red-700 bg-red-100 rounded hover:bg-red-200 dark:text-red-300 dark:bg-red-700 dark:hover:bg-red-600">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -129,7 +129,7 @@
                                     {{ __('Show') }}
                                 </a>
                                 <a href="{{ route('users.edit', $user->id) }}"
-                                    class="text-sm font-medium text-indigo-700 bg-indigo-100 px-3 py-1 rounded hover:bg-indigo-200 dark:text-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-600 flex items-center gap-1">
+                                    class="text-sm font-medium text-green-700 bg-green-100 px-3 py-1 rounded hover:bg-green-200 dark:text-green-300 dark:bg-green-700 dark:hover:bg-green-600 flex items-center gap-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round"

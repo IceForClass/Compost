@@ -27,6 +27,6 @@ class CicleSeeder extends Seeder
         foreach ($cicles3 as $cicle) {
             $cicle->bolo_id = '3';
             $cicle->save();
-        }*/
+        } */
     }
 }

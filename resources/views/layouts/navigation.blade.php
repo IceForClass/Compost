@@ -17,11 +17,11 @@
                     </x-nav-link>
 
                     @can('administrate', Auth::user())
-                        <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                                {{ __('Gestión de usuarios') }}
-                            </x-nav-link>
-                        </div>
+                    <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            {{ __('Gestión de usuarios') }}
+                        </x-nav-link>
+                    </div>
                     @endcan
                 </div>
             </div>
@@ -87,9 +87,9 @@
             </x-responsive-nav-link>
 
             @can('administrate', Auth::user())
-                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                    {{ __('Gestión de usuarios') }}
-                </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                {{ __('Gestión de usuarios') }}
+            </x-responsive-nav-link>
             @endcan
         </div>
 
