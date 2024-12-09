@@ -48,3 +48,4 @@ Route::group(['as' => 'api.'], function() {
 Route::get('exactbolo/composter1', [boloController::class, 'bolocomposter1']);
 Route::get('exactbolo/composter2', [boloController::class, 'bolocomposter2']);
 Route::get('exactbolo/composter3', [boloController::class, 'bolocomposter3']);
+Route::get('exactregist/lastRegist', [RegistController::class, 'lastRegist']);

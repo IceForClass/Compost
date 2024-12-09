@@ -4,6 +4,7 @@ import { fetchData } from "./api.js";
 
 export function createBolo() {
     const container = document.getElementById("datosCompostera");
+    localStorage.setItem("composter_id", 1);
     container.innerHTML = /* html */ `
         <h2 class="text-xl font-extrabold text-center text-green-600 mb-6">Formulario para crear el bolo</h2>
         <div class="space-y-4">
