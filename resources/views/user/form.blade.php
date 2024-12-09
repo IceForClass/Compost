@@ -24,7 +24,7 @@
         <input type="hidden" name="admin" value="0">
         <div class="flex items-center mt-1">
             <input id="admin" name="admin" type="checkbox"
-                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                class="rounded border-gray-300 text-green-600 shadow-sm focus:ring focus:ring-green-200 focus:ring-opacity-50"
                 value="1" @checked(old('admin', $user?->admin)) />
         </div>
         <x-input-error class="mt-2" :messages="$errors->get('admin')" />

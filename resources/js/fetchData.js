@@ -1,5 +1,6 @@
 import { fetchData } from "./api.js";
 import { printComposters } from "./printData.js";
+import { hideLoadingScreen } from "./loadingScreen.js";
 
 export function fetchComposters() {
     fetchData("/api/composters")
