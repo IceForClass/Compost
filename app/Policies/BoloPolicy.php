@@ -37,7 +37,7 @@ class BoloPolicy
      */
     public function update(User $user, Bolo $bolo): bool
     {
-        return false;
+        return true;
     }
 
     /**

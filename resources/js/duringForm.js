@@ -83,12 +83,17 @@ export function duringForm(composterId) {
         const boloId = localStorage.getItem("bolo_id");
         fetchData(`/api/bolo/${boloId}/cicle`)
             .then((cicleData) => {
-                const cicleId = cicleData.data[0].id;
-                if (cicleId) {
-                    console.log("Ciclo del bolo", cicleId);
-                    localStorage.setItem("cicle_id", cicleId);
+                // Filtrar el ciclo que tiene 'terminado' en false
+                const activeCicle = cicleData.data.find(
+                    (cicle) => !cicle.terminado
+                );
+                if (activeCicle) {
+                    console.log("Ciclo activo del bolo:", activeCicle.id);
+                    localStorage.setItem("cicle_id", activeCicle.id);
                 } else {
-                    console.warn("No se encontró ningún ciclo para el bolo.");
+                    console.warn(
+                        "No se encontró ningún ciclo activo para el bolo."
+                    );
                 }
             })
             .catch((error) => {

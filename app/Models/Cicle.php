@@ -9,7 +9,7 @@ class Cicle extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['bolo_id', 'start', 'end'];
+    protected $fillable = ['bolo_id', 'start', 'terminado','end'];
 
     public function regist(){
         return $this->hasMany(Regist::class);
