@@ -53,15 +53,15 @@ async function createBeforeForm() {
 
     const beforeData = {
         regist_id,
-        tempAmbient,
-        tempCompost,
-        fillLevel,
+        temp_ambient: tempAmbient,
+        temp_compost: tempCompost,
+        fill_level: fillLevel,
         olor,
-        insectStatus,
-        insectDescription,
+        insect_status: insectStatus,
+        insect_description: insectDescription,
         humidity,
-        initialPhotos,
-        initialObservations,
+        initial_photos: initialPhotos,
+        initial_observations: initialObservations,
     };
 
     console.log("Datos enviados a /api/before:", beforeData);
@@ -92,16 +92,16 @@ async function createDuringForm() {
     // Puedes usar estas variables para procesar o enviar datos
     const duringData = {
         regist_id,
-        wateringDone,
-        stirringDone,
-        greenDeposit,
-        dryDeposit,
-        greenQuantity,
-        greenType,
-        dryQuantity,
-        dryType,
-        photo,
-        observations,
+        watering_done: wateringDone,
+        stirring_done: stirringDone,
+        green_deposit: greenDeposit,
+        green_quantity: greenQuantity ? parseInt(greenQuantity) : null,
+        green_type: greenType || null,
+        dry_deposit: dryDeposit,
+        dry_quantity: dryQuantity ? parseInt(dryQuantity) : null,
+        dry_type: dryType || null,
+        photo: photo || null,
+        observations: observations || null,
     };
 
     console.log("Datos enviados a /api/during:", duringData);
@@ -125,10 +125,9 @@ async function createAfterForm() {
     // Puedes usar estas variables para procesar o enviar datos
     const afterData = {
         regist_id,
-        fillLevel,
-        photo,
-        observations,
-        endCicle,
+        fill_level: fillLevel || null,
+        photo: photo || null,
+        observations: observations || null,
     };
 
     console.log("Datos enviados a /api/after:", afterData);
