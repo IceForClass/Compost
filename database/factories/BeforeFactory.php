@@ -34,7 +34,7 @@ class BeforeFactory extends Factory
                 '87.5%',
                 '100%',
             ]),
-            'odor' => $this->faker->randomElement([
+            'olor' => $this->faker->randomElement([
                 '0' => 'Sin mal olor',
                 '1' => 'Neutral',
                 '2' => 'Podrido',

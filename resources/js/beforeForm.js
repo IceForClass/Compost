@@ -31,8 +31,8 @@ export function beforeForm(composterId) {
                 </select>
             </div>
             <div>
-                <label for="odor" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Olor:</label>
-                <select id="odor" name="odor" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                <label for="olor" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Olor:</label>
+                <select id="olor" name="olor" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
                     <option value="">Seleccione</option>
                     <option value="0">Sin mal olor</option>
                     <option value="1">Neutral</option>

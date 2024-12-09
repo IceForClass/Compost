@@ -28,7 +28,7 @@ return new class extends Migration
                 '87.5%',
                 '100%'
             ])->nullable();
-            $table->enum('odor', [
+            $table->enum('olor', [
                 '0' => 'Sin mal olor',
                 '1' => 'Neutral',
                 '2' => 'Podrido',
