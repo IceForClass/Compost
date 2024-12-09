@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\After;
+use App\Models\Regist;
 
 class AfterSeeder extends Seeder
 {
@@ -13,6 +14,10 @@ class AfterSeeder extends Seeder
      */
     public function run(): void
     {
-        // After::factory(100)->create();
+        // Genera un after para cada registro existente
+        $regists = Regist::all();
+        foreach ($regists as $regist) {
+            After::factory()->create(['regist_id' => $regist->id]);
+        }
     }
 }
