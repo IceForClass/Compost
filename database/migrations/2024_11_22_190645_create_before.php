@@ -29,17 +29,17 @@ return new class extends Migration
                 '100%'
             ])->nullable();
             $table->enum('odor', [
-                '0' => 'No bad smell',
+                '0' => 'Sin mal olor',
                 '1' => 'Neutral',
-                '2' => 'Rotten',
-                '3' => 'Other'
+                '2' => 'Podrido',
+                '3' => 'Otro'
             ])->nullable();
             $table->boolean('insect_status')->nullable();
             $table->string('insect_description')->nullable();
             $table->enum('humidity', [
-                '0' => 'Deficient',
-                '1' => 'Good',
-                '2' => 'Excessive'
+                '0' => 'Deficiente',
+                '1' => 'Bueno',
+                '2' => 'Excesivo'
             ])->nullable();
             $table->string('initial_photos')->nullable(); // initial photos (URL of the image)
             $table->text('initial_observations')->nullable(); // initial observations
