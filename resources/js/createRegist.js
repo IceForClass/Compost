@@ -17,18 +17,22 @@ export async function createRegist() {
     console.log("Datos enviados a /api/regist:", registData);
     const response = await postData("/api/regist", registData);
 
+    getIdRegister();
+}
+
+function getIdRegister() {
     fetchData(`/api/exactregist/lastRegist`)
         .then((registData) => {
             console.log("ID del registro:", registData.id);
             localStorage.setItem("regist_id", JSON.stringify(registData.id));
+            createBeforeForm();
         })
         .catch((error) => {
             console.error("Error al obtener el registro:", error);
         });
-    createBeforeForm();
 }
 
-function createBeforeForm() {
+async function createBeforeForm() {
     // Obtener el objeto completo del local storage
     const beforeFormData =
         JSON.parse(localStorage.getItem("beforeFormData")) || {};
@@ -46,22 +50,27 @@ function createBeforeForm() {
     const initialObservations = beforeFormData.initial_observations || "";
 
     // Puedes usar estas variables para procesar o enviar datos
-    console.log({
+
+    const beforeData = {
         regist_id,
-        tempAmbient,
-        tempCompost,
-        fillLevel,
+        temp_ambient: tempAmbient,
+        temp_compost: tempCompost,
+        fill_level: fillLevel,
         olor,
-        insectStatus,
-        insectDescription,
+        insect_status: insectStatus,
+        insect_description: insectDescription,
         humidity,
-        initialPhotos,
-        initialObservations,
-    });
+        initial_photos: initialPhotos,
+        initial_observations: initialObservations,
+    };
+
+    console.log("Datos enviados a /api/before:", beforeData);
+    const response = await postData("/api/before", beforeData);
+
     createDuringForm();
 }
 
-function createDuringForm() {
+async function createDuringForm() {
     // Obtener el objeto completo del local storage
     const duringFormData =
         JSON.parse(localStorage.getItem("duringFormData")) || {};
@@ -81,23 +90,26 @@ function createDuringForm() {
     const observations = duringFormData.observations || "";
 
     // Puedes usar estas variables para procesar o enviar datos
-    console.log({
+    const duringData = {
         regist_id,
-        wateringDone,
-        stirringDone,
-        greenDeposit,
-        dryDeposit,
-        greenQuantity,
-        greenType,
-        dryQuantity,
-        dryType,
-        photo,
-        observations,
-    });
+        watering_done: wateringDone,
+        stirring_done: stirringDone,
+        green_deposit: greenDeposit,
+        green_quantity: greenQuantity ? parseInt(greenQuantity) : null,
+        green_type: greenType || null,
+        dry_deposit: dryDeposit,
+        dry_quantity: dryQuantity ? parseInt(dryQuantity) : null,
+        dry_type: dryType || null,
+        photo: photo || null,
+        observations: observations || null,
+    };
+
+    console.log("Datos enviados a /api/during:", duringData);
+    const response = await postData("/api/during", duringData);
     createAfterForm();
 }
 
-function createAfterForm() {
+async function createAfterForm() {
     // Obtener el objeto completo del local storage
     const afterFormData =
         JSON.parse(localStorage.getItem("afterFormData")) || {};
@@ -111,11 +123,13 @@ function createAfterForm() {
     const endCicle = afterFormData.end_Cicle || "0";
 
     // Puedes usar estas variables para procesar o enviar datos
-    console.log({
+    const afterData = {
         regist_id,
-        fillLevel,
-        photo,
-        observations,
-        endCicle,
-    });
+        fill_level: fillLevel || null,
+        photo: photo || null,
+        observations: observations || null,
+    };
+
+    console.log("Datos enviados a /api/after:", afterData);
+    const response = await postData("/api/after", afterData);
 }
