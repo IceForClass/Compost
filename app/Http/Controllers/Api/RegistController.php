@@ -15,4 +15,10 @@ class RegistController extends ControllersController
     protected $model = Regist::class; // or "App\Models\Post"
 
     protected $policy = RegistPolicy::class;
+
+    public function lastRegist(){
+        $regist = Regist::latest('id')->first();
+        return response()->json($regist,200);
+    }
+
 }

@@ -19,6 +19,10 @@ export function duringForm(composterId) {
                 <input type="checkbox" id="green_deposit" name="green_deposit" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
                 <label for="green_deposit" class="text-sm font-medium text-gray-700 dark:text-gray-300">Aporte Verde</label>
             </div>
+            <div class="flex items-center space-x-3">
+                <input type="checkbox" id="dry_deposit" name="dry_deposit" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                <label for="dry_deposit" class="text-sm font-medium text-gray-700 dark:text-gray-300">Aporte Seco</label>
+            </div>
             <div>
                 <label for="green_quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cantidad Verde (kg):</label>
                 <input type="number" id="green_quantity" name="green_quantity" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" min="0" step="0.1">
@@ -26,10 +30,6 @@ export function duringForm(composterId) {
             <div>
                 <label for="green_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tipo de Aporte Verde:</label>
                 <input type="text" id="green_type" name="green_type" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-            <div class="flex items-center space-x-3">
-                <input type="checkbox" id="dry_deposit" name="dry_deposit" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
-                <label for="dry_deposit" class="text-sm font-medium text-gray-700 dark:text-gray-300">Aporte Seco</label>
             </div>
             <div>
                 <label for="dry_quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cantidad Seca (kg):</label>
