@@ -1,5 +1,5 @@
 import { loadComposters } from "./composteras.js";
-import { closeCicle, checkNextComposter } from "./endCicle.js";
+import { closeCicle, checkNextComposter, newCicle } from "./endCicle.js";
 import { postData } from "./api.js";
 
 export function afterForm(composterId) {
@@ -58,6 +58,9 @@ export function afterForm(composterId) {
                 );
                 if (nextEmptyComposter) {
                     closeCicle(composterId);
+                    if (composterId != 3) {
+                        newCicle();
+                    }
                 } else {
                     alert(
                         `La compostera ${
