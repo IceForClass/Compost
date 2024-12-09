@@ -24,15 +24,22 @@ function loopComposters(composterData) {
     container.innerHTML = /* html */ "";
 
     composterData.forEach((composter) => {
-        fetchData(`/api/composters/${composter.id}/regist/`)
-            .then((data) => {
-                const registData = data.data;
+        let boloData = {};
+        let registData = {};
+        Promise.all([
+            fetchData(`/api/composters/${composter.id}/regist/`),
+            fetchData(`/api/exactbolo/composter${composter.id}/`)
+        ])
+            .then(([rData, bData]) => {
+                boloData = bData;
+                registData = rData.data;
+                console.log("registData", registData);
+                console.log("boloData", boloData);
             })
             .catch((error) => {
-                console.error("Error al obtener los registros:", error);
+                console.error("Error al obtener los datos:", error);
             });
-
-        printComposters(composter, container);
+        printComposters(composter, container, boloData, registData);
     });
 }
 

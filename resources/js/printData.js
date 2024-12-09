@@ -2,7 +2,7 @@ import { createBolo } from "./crearBolo.js";
 import { beforeForm } from "./beforeForm.js";
 import { hideLoadingScreen } from "./loadingScreen.js";
 
-export function printComposters(composter, container) {
+export function printComposters(composter, container, boloData, registData) {
     const typeMapping = {
         11: "Aporte",
         22: "Degradación",
@@ -26,11 +26,11 @@ export function printComposters(composter, container) {
                 <i class="fa fa-leaf fa-2x"></i>
             </div>
             <div class="text-sm text-gray-700 dark:text-gray-300">
-                <h4 class="text-xl font-bold text-gray-800 dark:text-gray-100">
-                    Compostera ${composter.id}
+                <h4 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-100">
+                    Compostera ${composter.id}: <span class="font-medium">${typeName}</span>
                 </h4>
                 <p>
-                    Tipo: <span class="font-semibold">${typeName}</span>
+                    Bolo actual: <span class="font-semibold">${boloData.name}</span>
                 </p>
                 <p>
                     Estado: <span class="font-semibold">${empty}</span>
