@@ -17,7 +17,7 @@
     <script src="https://kit.fontawesome.com/64bc1044f3.js" crossorigin="anonymous"></script>
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/mode.js', 'resources/js/composteras.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/mode.js'])
 </head>
 
 <body class="font-sans antialiased">

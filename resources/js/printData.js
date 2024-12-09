@@ -2,7 +2,8 @@ import { createBolo } from "./crearBolo.js";
 import { beforeForm } from "./beforeForm.js";
 import { hideLoadingScreen } from "./loadingScreen.js";
 
-export function printComposters(composter, container, boloData, registData) {
+export function printComposter(composter, boloData, registData) {
+    const container = document.getElementById("datosCompostera");
     const typeMapping = {
         11: "Aporte",
         22: "Degradación",

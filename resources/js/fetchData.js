@@ -1,5 +1,5 @@
 import { fetchData } from "./api.js";
-import { printComposters } from "./printData.js";
+import { printComposter as printComposter } from "./printData.js";
 import { hideLoadingScreen } from "./loadingScreen.js";
 
 export function fetchComposters() {
@@ -33,14 +33,14 @@ function loopComposters(composterData) {
             .then(([rData, bData]) => {
                 boloData = bData;
                 registData = rData.data;
-                console.log("registData", registData);
-                console.log("boloData", boloData);
+                console.log("registData compostera", composter.id, registData);
+                console.log("boloData compostera", composter.id, boloData);
+                printComposter(composter, boloData, registData);
             })
             .catch((error) => {
                 console.error("Error al obtener los datos:", error);
             });
-        printComposters(composter, container, boloData, registData);
-    });
+        });
 }
 
 
