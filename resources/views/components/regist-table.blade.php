@@ -1,6 +1,11 @@
-<div id="datosRegistros" class="m-16 border border-gray-300 rounded-lg text-gray-100 bg-gray-500">
-    <h2 class="m-4 text-lg font-semibold">Registros compostera</h2>
-    <div class="overflow-x-auto">
+<div id="datosRegistros" class="hidetable m-16 border border-gray-300 rounded-lg text-gray-100 bg-gray-500">
+    <div class="flex justify-between">
+        <h2 class="m-4 text-lg font-semibold">Registros de la compostera</h2>
+        <a id="clearTableButton" class="m-2 px-1" href="#">
+            <i class="text-green-200 fa-solid fa-x"></i>
+        </a>
+    </div>
+        <div class="overflow-x-auto">
         <table class="table">
             <!-- head -->
             <thead>
@@ -9,31 +14,13 @@
                     <th>Usuario</th>
                     <th>Ciclo</th>
                     <th>Bolo</th>
+                    <th>Descripción de bolo</th>
                     <th>Fecha</th>
                     <th>Comienzo de ciclo</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- row 1 -->
-                <tr>
-                    <!-- Data inserted dinamically by JS (printData.js) -->
-                </tr>
-                <!-- row 2 -->
-                <tr>
-                    <!-- Data inserted dinamically by JS (printData.js) -->
-                    <th>2</th>
-                    <td>Hart Hagerty</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Purple</td>
-                </tr>
-                <!-- row 3 -->
-                <tr>
-                    <!-- Data inserted dinamically by JS (printData.js) -->
-                    <th>3</th>
-                    <td>Brice Swyre</td>
-                    <td>Tax Accountant</td>
-                    <td>Red</td>
-                </tr>
+                
             </tbody>
         </table>
     </div>

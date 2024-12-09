@@ -1,6 +1,6 @@
 import { fetchData } from "./api.js";
 import { printComposter as printComposter } from "./printData.js";
-import { hideLoadingScreen } from "./loadingScreen.js";
+import { hideLoadingScreen, showLoadingScreen } from "./loadingScreen.js";
 
 export function fetchComposters() {
     fetchData("/api/composters")
@@ -22,6 +22,7 @@ export function fetchComposters() {
 function loopComposters(composterData) {
     const container = document.getElementById("datosCompostera");
     container.innerHTML = /* html */ "";
+    showLoadingScreen();
 
     composterData.forEach((composter) => {
         let boloData = {};
@@ -31,18 +32,15 @@ function loopComposters(composterData) {
             fetchData(`/api/exactbolo/composter${composter.id}/`)
         ])
             .then(([rData, bData]) => {
-                boloData = bData;
+                boloData = Object.keys(bData).length === 0 ? { id: 0, name: "Sin bolo", description: "-" } : bData;
                 registData = rData.data;
-                console.log("registData compostera", composter.id, registData);
-                console.log("boloData compostera", composter.id, boloData);
                 printComposter(composter, boloData, registData);
+                hideLoadingScreen();
             })
             .catch((error) => {
                 console.error("Error al obtener los datos:", error);
             });
-        });
+    });
 }
-
-
 
 

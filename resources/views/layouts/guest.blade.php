@@ -19,8 +19,8 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    <div class="flex flex-col-reverse md:flex-row">
-        <div class="w-full sm:w-2/5 z-10 px-30 min-h-screen flex flex-col justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+    <div class="flex flex-col-reverse lg:flex-row">
+        <div class="lg:w-2/5 z-10 px-4 lg:p-8 min-h-screen flex flex-col justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div class="text-4xl text-gray-800 dark:text-gray-200 text-center flex flex-col gap-10 my-10 items-center">
                 <!-- Title and logo -->
                 <div class="flex items-center gap-6">
@@ -37,7 +37,7 @@
                 {{ $slot }}
             </div>
         </div>
-        <img class="absolute right-0 h-full filter" src="{{ Vite::asset('resources/images/login.webp') }}" alt="">
+        <img class="invisible lg:visible absolute right-0 h-full filter" src="{{ Vite::asset('resources/images/login.webp') }}" alt="">
     </div>
 </body>
 
