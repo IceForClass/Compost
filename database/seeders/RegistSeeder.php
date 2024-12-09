@@ -14,16 +14,16 @@ class RegistSeeder extends Seeder
 
     public function run(): void
     {
-        $regists1 = Regist::factory(100)->create();
-        $regists2 = Regist::factory(8)->create();
-        $cicleId = 1;
-        foreach ($regists2 as $regist) {
-            // Creates a cicle_start regist for each cicle
-            $regist->cicle_id = $cicleId++;
-            $regist->cicle_start = true;
-        }
-        $this->assignComposter($regists1);
-        $this->assignComposter($regists2);
+        // $regists1 = Regist::factory(100)->create();
+        // $regists2 = Regist::factory(8)->create();
+        // $cicleId = 1;
+        // foreach ($regists2 as $regist) {
+        //     // Creates a cicle_start regist for each cicle
+        //     $regist->cicle_id = $cicleId++;
+        //     $regist->cicle_start = true;
+        // }
+        // $this->assignComposter($regists1);
+        // $this->assignComposter($regists2);
     }
     function assignComposter($regists): void
     {

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Bolo;
+use App\Models\Cicle;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class BoloPolicy
+class CiclePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class BoloPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Bolo $bolo): bool
+    public function view(User $user, Cicle $cicle): bool
     {
         return true;
     }
@@ -35,7 +35,7 @@ class BoloPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Bolo $bolo): bool
+    public function update(User $user, Cicle $cicle): bool
     {
         return true;
     }
@@ -43,7 +43,7 @@ class BoloPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Bolo $bolo): bool
+    public function delete(User $user, Cicle $cicle): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class BoloPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Bolo $bolo): bool
+    public function restore(User $user, Cicle $cicle): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class BoloPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Bolo $bolo): bool
+    public function forceDelete(User $user, Cicle $cicle): bool
     {
         return false;
     }

@@ -1,5 +1,6 @@
 import { loadComposters } from "./composteras.js";
-import { closeCycle, checkNextComposter } from "./endCycle.js";
+import { closeCicle, checkNextComposter } from "./endCicle.js";
+import { postData } from "./api.js";
 
 export function afterForm(composterId) {
     const container = document.getElementById("datosCompostera");
@@ -30,8 +31,8 @@ export function afterForm(composterId) {
                 <textarea id="observations" name="observations" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
             </div>
             <div>
-                <label for="end_cycle" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fin de Ciclo:</label>
-                <input type="checkbox" id="end_cycle" name="end_cycle" class="mt-2 rounded border-gray-300 text-green-600 focus:ring-green-500">
+                <label for="end_Cicle" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fin de Ciclo:</label>
+                <input type="checkbox" id="end_Cicle" name="end_Cicle" class="mt-2 rounded border-gray-300 text-green-600 focus:ring-green-500">
             </div>
         </div>
         <div class="mt-6 flex justify-end">
@@ -47,15 +48,16 @@ export function afterForm(composterId) {
             const formData = saveAfterFormData();
             console.log("Formulario Después:", formData);
 
-            const endCycleCheckbox = document.getElementById("end_cycle");
+            const endCicleCheckbox = document.getElementById("end_Cicle");
+            createRegist();
 
-            if (endCycleCheckbox.checked) {
+            if (endCicleCheckbox.checked) {
                 console.log("Fin de Ciclo marcado...");
                 const nextEmptyComposter = await checkNextComposter(
                     composterId
                 );
                 if (nextEmptyComposter) {
-                    closeCycle(composterId);
+                    closeCicle(composterId);
                 } else {
                     alert(
                         `La compostera ${
@@ -82,5 +84,26 @@ export function afterForm(composterId) {
             });
         localStorage.setItem("afterFormData", JSON.stringify(formData));
         return formData;
+    }
+
+    async function createRegist() {
+        const user_id = sessionStorage.getItem("idUser");
+        const cicle_id = localStorage.getItem("cicle_id");
+        const composter_id = localStorage.getItem("composter_id");
+        const now = new Date();
+        const date = now.toISOString().replace("T", " ").split(".")[0];
+        const cicle_start = 1;
+
+        const registData = {
+            user_id,
+            cicle_id,
+            composter_id,
+            date,
+            cicle_start,
+        };
+
+        console.log("Datos enviados a /api/regist:", registData);
+
+        const response = await postData("/api/regist", registData);
     }
 }

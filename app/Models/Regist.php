@@ -9,6 +9,8 @@ class Regist extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'cicle_id', 'composter_id', 'date'];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

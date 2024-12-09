@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\Api\AfterController;
 use App\Http\Controllers\Api\BeforeController;
+use App\Http\Controllers\Api\BoloCicleController;
 use App\Http\Controllers\Api\boloController;
 use App\Http\Controllers\Api\CentreCompostersController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
 use App\Http\Controllers\Api\CentreController;
 use App\Http\Controllers\Api\CentreUsersController;
+use App\Http\Controllers\Api\CicleBoloController;
+use App\Http\Controllers\Api\CicleController;
 use App\Http\Controllers\Api\ComposterController;
 use App\Http\Controllers\Api\ComposterRegistController;
 use App\Http\Controllers\Api\DuringController;
@@ -29,19 +32,18 @@ Route::group(['as' => 'api.'], function() {
     Orion::resource('before',BeforeController::class);
     Orion::resource('during',DuringController::class);
     Orion::resource('after',AfterController::class);
-
+    Orion::resource('cicle',CicleController::class);
+    Orion::hasManyResource('centres', 'composters', CentreCompostersController::class);
+    Orion::hasManyResource('centres', 'users', CentreUsersController::class);
+    Orion::hasManyResource('users', 'centres', UsersCentreController::class);
+    Orion::hasManyResource('composters', 'regist', ComposterRegistController::class);
+    Orion::hasManyResource('regist', 'before', RegistBeforeController::class);
+    Orion::hasManyResource('regist', 'during', RegistDuringController::class);
+    Orion::hasManyResource('regist', 'after', RegistAfterController::class);
+    Orion::hasManyResource('cicle', 'bolo', CicleBoloController::class);
+    Orion::hasManyResource('bolo', 'cicle', BoloCicleController::class);
 });
- 
-Orion::hasManyResource('centres', 'composters', CentreCompostersController::class);
 
-Orion::hasManyResource('centres', 'users', CentreUsersController::class);
-
-Orion::hasManyResource('users', 'centres', UsersCentreController::class);
-
-Orion::hasManyResource('composters', 'regist', ComposterRegistController::class);
-Orion::hasManyResource('regist', 'before', RegistBeforeController::class);
-Orion::hasManyResource('regist', 'during', RegistDuringController::class);
-Orion::hasManyResource('regist', 'after', RegistAfterController::class);
 
 Route::get('exactbolo/composter1', [boloController::class, 'bolocomposter1']);
 Route::get('exactbolo/composter2', [boloController::class, 'bolocomposter2']);

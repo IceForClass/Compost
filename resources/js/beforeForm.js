@@ -99,8 +99,10 @@ export function beforeForm(composterId) {
 
     function mostrarBolo() {
         fetchData(`/api/exactbolo/composter${composterId}`)
-            .then((data) => {
-                console.log(`Bolo para Compostera ${composterId}:`, data);
+            .then((boloData) => {
+                console.log(`Bolo para Compostera ${composterId}:`, boloData);
+                localStorage.setItem("bolo_id", boloData.id);
+                localStorage.setItem("composter_id", composterId);
             })
             .catch((error) => {
                 console.error("Error al obtener el bolo:", error);

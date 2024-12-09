@@ -1,11 +1,11 @@
 <?PHP
-    
+
 namespace App\Http\Controllers;
-    
+
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\DemoMail;
-    
+
 class MailController extends Controller
 {
     /**
@@ -19,9 +19,9 @@ class MailController extends Controller
             'title' => 'Mail from ItSolutionStuff.com',
             'body' => 'This is for testing email using smtp.'
         ];
-           
+
         Mail::to('your_email@gmail.com')->send(new DemoMail($mailData));
-             
+
         dd("Email is sent successfully.");
     }
 }

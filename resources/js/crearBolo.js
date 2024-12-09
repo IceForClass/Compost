@@ -1,5 +1,6 @@
 import { postData, patchData } from "./api";
 import { loadComposters } from "./composteras";
+import { fetchData } from "./api.js";
 
 export function createBolo() {
     const container = document.getElementById("datosCompostera");
@@ -52,6 +53,7 @@ export function createBolo() {
                 // debug
                 // alert("Bolo creado y compostera 1 actualizada exitosamente.");
                 // Volvemos a la vista de las composteras
+                createCicle();
                 loadComposters();
             } catch (error) {
                 console.error("Error:", error.message);
@@ -60,4 +62,32 @@ export function createBolo() {
                 );
             }
         });
+}
+
+async function createCicle() {
+    const now = new Date();
+    const start = now.toISOString().replace("T", " ").split(".")[0];
+    const composter_id = localStorage.getItem("composter_id");
+
+    try {
+        const boloResponse = await fetchData(
+            `/api/exactbolo/composter${composter_id}`
+        );
+        if (!boloResponse || !boloResponse.id) {
+            throw new Error(
+                "No se encontró un bolo válido para iniciar el ciclo."
+            );
+        }
+
+        const bolo_id = boloResponse.id;
+        const cicleData = { bolo_id, start };
+
+        console.log("Datos enviados a /api/cicle:", cicleData);
+
+        const response = await postData("/api/cicle", cicleData);
+        console.log("Ciclo creado:", response);
+    } catch (error) {
+        console.error("Error al crear el ciclo:", error.message);
+        alert("Ocurrió un error al iniciar el ciclo.");
+    }
 }

@@ -1,4 +1,5 @@
 import { afterForm } from "./afterForm.js";
+import { fetchData } from "./api.js";
 
 export function duringForm(composterId) {
     const container = document.getElementById("datosCompostera");
@@ -73,7 +74,30 @@ export function duringForm(composterId) {
                             : "0"
                         : element.value;
             });
+        getCicle();
         localStorage.setItem("duringFormData", JSON.stringify(formData));
         return formData;
+    }
+
+    function getCicle() {
+        const boloId = localStorage.getItem("bolo_id");
+        fetchData(`/api/bolo/${boloId}/cicle`)
+            .then((cicleData) => {
+                // Filtrar el ciclo que tiene 'terminado' en false
+                const activeCicle = cicleData.data.find(
+                    (cicle) => !cicle.terminado
+                );
+                if (activeCicle) {
+                    console.log("Ciclo activo del bolo:", activeCicle.id);
+                    localStorage.setItem("cicle_id", activeCicle.id);
+                } else {
+                    console.warn(
+                        "No se encontró ningún ciclo activo para el bolo."
+                    );
+                }
+            })
+            .catch((error) => {
+                console.error("Error al obtener el ciclo del bolo:", error);
+            });
     }
 }
