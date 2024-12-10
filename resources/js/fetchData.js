@@ -34,7 +34,9 @@ function loopComposters(composterData) {
             .then(([rData, bData]) => {
                 boloData = Object.keys(bData).length === 0 ? { id: 0, name: "Sin bolo", description: "-" } : bData;
                 registData = rData.data;
-                printComposter(composter, boloData, registData);
+                if (document.querySelector("#datosCompostera")) {
+                    printComposter(composter, boloData, registData);
+                }
                 hideLoadingScreen();
             })
             .catch((error) => {
@@ -43,4 +45,12 @@ function loopComposters(composterData) {
     });
 }
 
-
+export function fetchRegistsData(registId) {
+    return Promise.all([
+        fetchData(`/api/regist/${registId}/before`),
+        fetchData(`/api/regist/${registId}/during`),
+        fetchData(`/api/regist/${registId}/after`)
+    ]).then(([beforeData, duringData, afterData]) => {
+        return { beforeData, duringData, afterData };
+    })
+}

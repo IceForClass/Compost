@@ -11,7 +11,9 @@ export function loadComposters() {
 }
 
 document.addEventListener("DOMContentLoaded", loadComposters);
-document.querySelector("#clearTableButton").addEventListener("click", clearTableEvent);
+if (document.querySelector("#clearTableButton")) {
+    document.querySelector("#clearTableButton").addEventListener("click", clearTableEvent);
+}
 
 export function clearTableEvent(e) {
     const table = e.target.closest(".hidetable");
@@ -32,10 +34,7 @@ export function clearTable() {
 
 function clearComposters() {
     const div = document.querySelector("#datosCompostera");
-    console.log(div.innerHTML);
     if (div) {
         div.innerHTML = "";
-        console.log('clearComposters');
     }
-    console.log(div.innerHTML);
 }

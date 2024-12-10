@@ -2,6 +2,7 @@ import { createBolo } from "./crearBolo.js";
 import { beforeForm } from "./beforeForm.js";
 import { showLoadingScreen, hideLoadingScreen } from "./loadingScreen.js";
 import { clearTable, clearTableEvent } from "./composteras.js";
+import { fetchRegistsData } from "./fetchData.js";
 
 const typeMapping = {
     11: "Aporte",
@@ -148,7 +149,6 @@ function printRegists(registData, boloData, composter) {
                 seeDetailsButton.classList.remove("hidden");
             }
         });
-
         const thCheckbox = document.createElement("th");
         const thID = document.createElement("th");
         const tdUser = document.createElement("td");
@@ -174,6 +174,9 @@ function printRegists(registData, boloData, composter) {
         tr.appendChild(tdDate);
         tr.appendChild(tdStart);
         tbody.appendChild(tr);
+        fetchRegistsData(regist.id).then(({ beforeData, duringData, afterData }) => {
+            
+        })
     });
     table.appendChild(seeDetailsButton);
     table.classList.remove("invisible");
