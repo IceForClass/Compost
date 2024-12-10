@@ -1,4 +1,5 @@
 import { fetchData } from "./api.js";
+import { loadComposters } from "./composteras.js";
 
 export async function fetchAndDisplayHistory(composterId) {
     const container = document.getElementById("datosCompostera");
@@ -73,6 +74,28 @@ export async function fetchAndDisplayHistory(composterId) {
                     }
                 );
             });
+
+            // Crear botón de Volver
+            const backButton = document.createElement("button");
+            backButton.className =
+                "mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600";
+            backButton.innerText = "Volver";
+
+            // Evento al hacer clic en Volver
+            backButton.addEventListener("click", () => {
+                const composterId = JSON.parse(
+                    localStorage.getItem("composterId")
+                );
+                if (composterId) {
+                    loadComposters(); // Llamar a fetchAndDisplayHistory con el composterId
+                } else {
+                    console.error(
+                        "No se encontró el composterId en el localStorage"
+                    );
+                }
+            });
+
+            container.appendChild(backButton);
 
             container.appendChild(table);
         }
