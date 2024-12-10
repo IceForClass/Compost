@@ -147,6 +147,7 @@ function printRegists(registData, boloData, composter) {
             if (radio) {
                 radio.click();
                 seeDetailsButton.classList.remove("hidden");
+                seeDetailsButton.setAttribute("data-id", regist.id);
             }
         });
         const thCheckbox = document.createElement("th");
@@ -175,7 +176,7 @@ function printRegists(registData, boloData, composter) {
         tr.appendChild(tdStart);
         tbody.appendChild(tr);
         fetchRegistsData(regist.id).then(({ beforeData, duringData, afterData }) => {
-            
+
         })
     });
     table.appendChild(seeDetailsButton);
