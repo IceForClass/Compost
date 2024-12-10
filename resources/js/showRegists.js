@@ -20,20 +20,24 @@ export async function fetchHistory(composterId) {
 
         // Si no hay registros, muestra un mensaje adecuado
         if (filteredData.length === 0) {
-            container.innerHTML = `<p class="text-gray-500">No hay registros disponibles para esta compostera.</p>`;
+            container.innerHTML = `<p class="text-gray-500 dark:text-gray-400 text-center">No hay registros disponibles para esta compostera.</p>`;
         } else {
             // Crear tabla y encabezado
+            const tableWrapper = document.createElement("div");
+            tableWrapper.className = "overflow-x-auto"; // Hacer que la tabla sea desplazable horizontalmente en pantallas pequeñas
+
             const table = document.createElement("table");
             table.className =
-                "w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
+                "w-full text-left border-collapse border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden";
+
             table.innerHTML = `
-                <thead class="bg-gray-100">
+                <thead class="bg-gray-100 dark:bg-gray-700">
                     <tr>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Usuario</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Ciclo</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Fecha</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Inicio del ciclo</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">ID</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Usuario</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Ciclo</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Fecha</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Inicio del ciclo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,21 +49,22 @@ export async function fetchHistory(composterId) {
             // Agregar filas con datos
             filteredData.forEach((regist) => {
                 const row = document.createElement("tr");
-                row.className = "hover:bg-gray-50 even:bg-gray-50";
+                row.className =
+                    "hover:bg-gray-50 dark:hover:bg-gray-700 even:bg-gray-50 dark:even:bg-gray-800";
                 row.innerHTML = `
-                    <td class="border border-gray-300 px-4 py-2 text-blue-600 font-medium">
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-blue-600 dark:text-blue-400 font-medium">
                         <a href="#" data-id="${regist.id}">${regist.id}</a>
                     </td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         regist.user_id
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         regist.cicle_id
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${new Date(
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${new Date(
                         regist.date
                     ).toLocaleDateString()}</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         regist.cicle_start ? "Sí" : "No"
                     }</td>
                 `;
@@ -78,7 +83,7 @@ export async function fetchHistory(composterId) {
             // Crear botón de Volver
             const backButton = document.createElement("button");
             backButton.className =
-                "mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600";
+                "mt-4 px-6 py-2 bg-gray-500 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-600 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 transition";
             backButton.innerText = "Volver";
 
             // Evento al hacer clic en Volver
@@ -95,13 +100,13 @@ export async function fetchHistory(composterId) {
                 }
             });
 
+            tableWrapper.appendChild(table);
+            container.appendChild(tableWrapper);
             container.appendChild(backButton);
-
-            container.appendChild(table);
         }
     } catch (error) {
         console.error("Error al obtener el historial:", error);
-        container.innerHTML = `<p class="text-red-500">Ocurrió un error al cargar el historial.</p>`;
+        container.innerHTML = `<p class="text-red-500 dark:text-red-400 text-center">Ocurrió un error al cargar el historial.</p>`;
     }
 }
 
@@ -117,26 +122,31 @@ export async function fetchAfter(registId) {
 
         // Si no hay datos, muestra un mensaje adecuado
         if (data.data.length === 0) {
-            container.innerHTML = `<p class="text-gray-500">No hay registros disponibles después de este ciclo.</p>`;
+            container.innerHTML = `<p class="text-gray-500 dark:text-gray-400 text-center">No hay registros disponibles después de este ciclo.</p>`;
         } else {
             // Crear título para la sección "Después"
             const sectionTitle = document.createElement("h2");
-            sectionTitle.className = "text-2xl font-bold mb-4 text-gray-700";
-            sectionTitle.textContent = "Después";
+            sectionTitle.className =
+                "text-2xl font-bold mb-6 text-gray-700 dark:text-gray-200 text-center";
+            sectionTitle.textContent = "Registros Después del Ciclo";
             container.appendChild(sectionTitle);
+
+            // Crear contenedor para la tabla (scroll horizontal)
+            const tableWrapper = document.createElement("div");
+            tableWrapper.className = "overflow-x-auto";
 
             // Crear tabla y encabezado
             const table = document.createElement("table");
             table.className =
-                "w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
+                "w-full text-left border-collapse border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden";
             table.innerHTML = `
-                <thead class="bg-gray-100">
+                <thead class="bg-gray-100 dark:bg-gray-700">
                     <tr>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Nivel de llenado</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Foto</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Observaciones</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Fecha</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">ID</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Nivel de llenado</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Foto</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Observaciones</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -148,23 +158,26 @@ export async function fetchAfter(registId) {
             // Agregar filas con datos
             data.data.forEach((afters) => {
                 const row = document.createElement("tr");
-                row.className = "hover:bg-gray-50 even:bg-gray-50";
+                row.className =
+                    "hover:bg-gray-50 dark:hover:bg-gray-700 even:bg-gray-50 dark:even:bg-gray-800";
                 row.innerHTML = `
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         afters.id
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         afters.fill_level || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
-                        afters.photo
-                            ? `<a href="${afters.photo}" target="_blank" class="text-blue-500 underline">Ver foto</a>`
-                            : "Sin foto"
-                    }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">
+                        ${
+                            afters.photo
+                                ? `<a href="${afters.photo}" target="_blank" class="text-blue-500 dark:text-blue-400 underline">Ver foto</a>`
+                                : "Sin foto"
+                        }
+                    </td>
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         afters.observations || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${new Date(
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${new Date(
                         afters.created_at
                     ).toLocaleString()}</td>
                 `;
@@ -172,9 +185,13 @@ export async function fetchAfter(registId) {
             });
 
             // Crear botones de navegación
+            const buttonContainer = document.createElement("div");
+            buttonContainer.className =
+                "flex flex-wrap justify-center gap-4 mt-6";
+
             const backButton = document.createElement("button");
             backButton.className =
-                "mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600";
+                "px-6 py-2 bg-gray-500 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-600 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 transition";
             backButton.innerText = "Volver";
             backButton.addEventListener("click", () => {
                 const composterId = JSON.parse(
@@ -191,7 +208,7 @@ export async function fetchAfter(registId) {
 
             const beforeButton = document.createElement("button");
             beforeButton.className =
-                "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 mr-2";
+                "px-6 py-2 bg-blue-500 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-600 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition";
             beforeButton.innerText = "Antes";
             beforeButton.addEventListener("click", () => {
                 fetchBefore(registId); // Llamar a la función fetchBefore
@@ -199,23 +216,26 @@ export async function fetchAfter(registId) {
 
             const duringButton = document.createElement("button");
             duringButton.className =
-                "mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600";
+                "px-6 py-2 bg-yellow-500 dark:bg-yellow-700 text-white rounded-lg hover:bg-yellow-600 dark:hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 dark:focus:ring-yellow-500 transition";
             duringButton.innerText = "Durante";
             duringButton.addEventListener("click", () => {
                 fetchDuring(registId); // Llamar a la función fetchDuring
             });
 
-            container.appendChild(backButton);
-            container.appendChild(beforeButton);
-            container.appendChild(duringButton);
-            container.appendChild(table);
+            buttonContainer.appendChild(backButton);
+            buttonContainer.appendChild(beforeButton);
+            buttonContainer.appendChild(duringButton);
+
+            tableWrapper.appendChild(table);
+            container.appendChild(tableWrapper);
+            container.appendChild(buttonContainer);
         }
     } catch (error) {
         console.error(
             "Error al obtener los datos posteriores al registro:",
             error
         );
-        container.innerHTML = `<p class="text-red-500">Ocurrió un error al cargar los datos.</p>`;
+        container.innerHTML = `<p class="text-red-500 dark:text-red-400 text-center">Ocurrió un error al cargar los datos.</p>`;
     }
 }
 
@@ -234,12 +254,13 @@ export async function fetchBefore(registId) {
 
         // Si no hay datos, muestra un mensaje
         if (beforeData.length === 0) {
-            container.innerHTML = `<p class="text-gray-500">No hay registros anteriores para este ID.</p>`;
+            container.innerHTML = `<p class="text-gray-500 dark:text-gray-400 text-center">No hay registros anteriores para este ID.</p>`;
         } else {
             // Crear título para la sección "Antes"
             const sectionTitle = document.createElement("h2");
-            sectionTitle.className = "text-2xl font-bold mb-4 text-gray-700";
-            sectionTitle.textContent = "Antes";
+            sectionTitle.className =
+                "text-2xl font-bold mb-6 text-gray-700 dark:text-gray-200 text-center";
+            sectionTitle.textContent = "Registros Antes del Ciclo";
             container.appendChild(sectionTitle);
 
             // Crear contenedor de tabla responsive
@@ -249,23 +270,23 @@ export async function fetchBefore(registId) {
             // Crear tabla y encabezado
             const table = document.createElement("table");
             table.className =
-                "min-w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
+                "w-full text-left border-collapse border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden";
             table.innerHTML = `
-                <thead class="bg-gray-100">
+                <thead class="bg-gray-100 dark:bg-gray-700">
                     <tr>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Registro ID</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Temperatura Ambiente</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Temperatura Compost</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Nivel de Llenado</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Olor</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Estado de Insectos</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Descripción de Insectos</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Humedad</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Fotos Iniciales</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Observaciones Iniciales</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Creado</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Actualizado</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">ID</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Registro ID</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Temp. Ambiente</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Temp. Compost</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Nivel de Llenado</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Olor</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Insectos</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Descripción</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Humedad</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Fotos</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Observaciones</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Creado</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Actualizado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -277,66 +298,69 @@ export async function fetchBefore(registId) {
             // Agregar filas con datos
             beforeData.forEach((before) => {
                 const row = document.createElement("tr");
-                row.className = "hover:bg-gray-50 even:bg-gray-50";
+                row.className =
+                    "hover:bg-gray-50 dark:hover:bg-gray-700 even:bg-gray-50 dark:even:bg-gray-800";
                 row.innerHTML = `
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.id
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.regist_id
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.temp_ambient || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.temp_compost || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.fill_level || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.olor || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.insect_status === 1 ? "Presente" : "Ausente"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.insect_description || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.humidity || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">${
                         before.initial_photos
-                            ? `<a href="${before.initial_photos}" target="_blank" class="text-blue-500 underline">Ver fotos</a>`
+                            ? `<a href="${before.initial_photos}" target="_blank" class="text-blue-500 dark:text-blue-400 underline">Ver fotos</a>`
                             : "Sin fotos"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         before.initial_observations || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${new Date(
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${new Date(
                         before.created_at
                     ).toLocaleString()}</td>
-                    <td class="border border-gray-300 px-4 py-2">${new Date(
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${new Date(
                         before.updated_at
                     ).toLocaleString()}</td>
                 `;
                 tbody.appendChild(row);
             });
 
-            // Crear botón de Volver
+            // Crear botones de navegación
+            const buttonContainer = document.createElement("div");
+            buttonContainer.className =
+                "flex flex-wrap justify-center gap-4 mt-6";
+
             const backButton = document.createElement("button");
             backButton.className =
-                "mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600";
+                "px-6 py-2 bg-gray-500 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-600 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 transition";
             backButton.innerText = "Volver";
-
-            // Evento al hacer clic en Volver
             backButton.addEventListener("click", () => {
                 const composterId = JSON.parse(
                     localStorage.getItem("composterId")
                 );
                 if (composterId) {
-                    fetchHistory(composterId); // Llamar a fetchHistory con el composterId
+                    fetchHistory(composterId);
                 } else {
                     console.error(
                         "No se encontró el composterId en el localStorage"
@@ -344,34 +368,34 @@ export async function fetchBefore(registId) {
                 }
             });
 
-            const duringButton = document.createElement("button");
-            duringButton.className =
-                "mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600";
-            duringButton.innerText = "Durante";
-            duringButton.addEventListener("click", () => {
-                fetchDuring(registId); // Llamar a la función fetchDuring
-            });
-
             const afterButton = document.createElement("button");
             afterButton.className =
-                "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 mr-2";
+                "px-6 py-2 bg-blue-500 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-600 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition";
             afterButton.innerText = "Después";
             afterButton.addEventListener("click", () => {
-                fetchAfter(registId); // Llamar a la función fetchBefore
+                fetchAfter(registId);
             });
 
-            container.appendChild(backButton);
-            container.appendChild(afterButton);
-            container.appendChild(duringButton);
-            container.appendChild(table);
+            const duringButton = document.createElement("button");
+            duringButton.className =
+                "px-6 py-2 bg-yellow-500 dark:bg-yellow-700 text-white rounded-lg hover:bg-yellow-600 dark:hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 dark:focus:ring-yellow-500 transition";
+            duringButton.innerText = "Durante";
+            duringButton.addEventListener("click", () => {
+                fetchDuring(registId);
+            });
 
-            // Añadir la tabla al contenedor
+            buttonContainer.appendChild(backButton);
+            buttonContainer.appendChild(afterButton);
+            buttonContainer.appendChild(duringButton);
+
+            // Añadir tabla y botones al contenedor
             tableWrapper.appendChild(table);
             container.appendChild(tableWrapper);
+            container.appendChild(buttonContainer);
         }
     } catch (error) {
         console.error("Error al obtener los datos anteriores:", error);
-        container.innerHTML = `<p class="text-red-500">Ocurrió un error al cargar los datos anteriores.</p>`;
+        container.innerHTML = `<p class="text-red-500 dark:text-red-400 text-center">Ocurrió un error al cargar los datos anteriores.</p>`;
     }
 }
 
@@ -382,121 +406,146 @@ export async function fetchDuring(registId) {
         // Limpia el contenedor antes de mostrar los nuevos datos
         container.innerHTML = "";
 
-        // Usa fetchData para realizar la solicitud
+        // Realiza la solicitud para obtener los datos
         const result = await fetchData(`/api/regist/${registId}/during`);
 
-        // Obtén los datos
+        // Datos obtenidos
         const duringData = result.data;
 
-        // Si no hay datos, muestra un mensaje
+        // Verifica si hay datos
         if (duringData.length === 0) {
-            container.innerHTML = `<p class="text-gray-500">No hay registros disponibles durante este ciclo.</p>`;
+            container.innerHTML = `
+                <p class="text-center text-gray-500 mt-6">
+                    No hay registros disponibles durante este ciclo.
+                </p>`;
         } else {
-            // Crear título para la sección "Antes"
+            // Crear título de la sección
             const sectionTitle = document.createElement("h2");
-            sectionTitle.className = "text-2xl font-bold mb-4 text-gray-700";
-            sectionTitle.textContent = "Durante";
+            sectionTitle.className =
+                "text-2xl font-bold mb-6 text-gray-700 dark:text-gray-200 text-center";
+            sectionTitle.textContent = "Registros Durante el Ciclo";
             container.appendChild(sectionTitle);
 
-            // Crear contenedor de tabla responsive
+            // Crear tabla responsive
             const tableWrapper = document.createElement("div");
             tableWrapper.className = "overflow-x-auto";
-
-            // Crear tabla y encabezado
             const table = document.createElement("table");
             table.className =
-                "min-w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
+                "w-full text-left border-collapse border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden";
+
+            // Encabezado de la tabla
             table.innerHTML = `
-                <thead class="bg-gray-100">
+                <thead class="bg-gray-100 dark:bg-gray-700">
                     <tr>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Registro ID</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Riego Realizado</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Revolvimiento Realizado</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Depósito de Verde</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Cantidad de Verde</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Tipo de Verde</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Depósito de Seco</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Cantidad de Seco</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Tipo de Seco</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Fotos</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Observaciones</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Creado</th>
-                        <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">Actualizado</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">ID</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Registro ID</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Riego</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Revolvimiento</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Depósito Verde</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Cantidad Verde</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Tipo Verde</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Depósito Seco</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Cantidad Seco</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Tipo Seco</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Fotos</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Observaciones</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Creado</th>
+                        <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-700 dark:text-gray-200 font-semibold">Actualizado</th>
                     </tr>
                 </thead>
                 <tbody>
                 </tbody>
             `;
-
             const tbody = table.querySelector("tbody");
 
-            // Agregar filas con datos
+            // Agregar filas de datos
             duringData.forEach((during) => {
                 const row = document.createElement("tr");
-                row.className = "hover:bg-gray-50 even:bg-gray-50";
+                row.className =
+                    "hover:bg-gray-50 dark:hover:bg-gray-700 even:bg-gray-50 dark:even:bg-gray-800";
                 row.innerHTML = `
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         during.id
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         during.regist_id
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
-                        during.watering_done === 1 ? "Sí" : "No"
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
+                        during.watering_done ? "Sí" : "No"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
-                        during.stirring_done === 1 ? "Sí" : "No"
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
+                        during.stirring_done ? "Sí" : "No"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
-                        during.green_deposit === 1 ? "Sí" : "No"
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
+                        during.green_deposit ? "Sí" : "No"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         during.green_quantity || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         during.green_type || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
-                        during.dry_deposit === 1 ? "Sí" : "No"
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
+                        during.dry_deposit ? "Sí" : "No"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         during.dry_quantity || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         during.dry_type || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">${
                         during.photo
-                            ? `<a href="${during.photo}" target="_blank" class="text-blue-500 underline">Ver fotos</a>`
+                            ? `<a href="${during.photo}" target="_blank" class="text-blue-500 dark:text-blue-400 underline">Ver fotos</a>`
                             : "Sin fotos"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${
                         during.observations || "N/A"
                     }</td>
-                    <td class="border border-gray-300 px-4 py-2">${new Date(
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${new Date(
                         during.created_at
                     ).toLocaleString()}</td>
-                    <td class="border border-gray-300 px-4 py-2">${new Date(
+                    <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-300">${new Date(
                         during.updated_at
                     ).toLocaleString()}</td>
                 `;
                 tbody.appendChild(row);
             });
 
-            // Crear botón de Volver
+            tableWrapper.appendChild(table);
+            container.appendChild(tableWrapper);
+
+            // Crear botones de navegación
+            const buttonContainer = document.createElement("div");
+            buttonContainer.className =
+                "flex flex-wrap justify-center gap-4 mt-6";
+
+            const beforeButton = document.createElement("button");
+            beforeButton.className =
+                "px-6 py-2 bg-blue-500 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-600 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition";
+            beforeButton.innerText = "Antes";
+            beforeButton.addEventListener("click", () => {
+                fetchBefore(registId);
+            });
+
+            const afterButton = document.createElement("button");
+            afterButton.className =
+                "px-6 py-2 bg-blue-500 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-600 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition";
+            afterButton.innerText = "Después";
+            afterButton.addEventListener("click", () => {
+                fetchAfter(registId);
+            });
+
             const backButton = document.createElement("button");
             backButton.className =
-                "mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600";
+                "px-6 py-2 bg-gray-500 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-600 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 transition";
             backButton.innerText = "Volver";
-
-            // Evento al hacer clic en Volver
             backButton.addEventListener("click", () => {
                 const composterId = JSON.parse(
                     localStorage.getItem("composterId")
                 );
                 if (composterId) {
-                    fetchHistory(composterId); // Llamar a fetchHistory con el composterId
+                    fetchHistory(composterId);
                 } else {
                     console.error(
                         "No se encontró el composterId en el localStorage"
@@ -504,33 +553,16 @@ export async function fetchDuring(registId) {
                 }
             });
 
-            const afterButton = document.createElement("button");
-            afterButton.className =
-                "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 mr-2";
-            afterButton.innerText = "Después";
-            afterButton.addEventListener("click", () => {
-                fetchAfter(registId); // Llamar a la función fetchBefore
-            });
-
-            const beforeButton = document.createElement("button");
-            beforeButton.className =
-                "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 mr-2";
-            beforeButton.innerText = "Antes";
-            beforeButton.addEventListener("click", () => {
-                fetchBefore(registId); // Llamar a la función fetchBefore
-            });
-
-            container.appendChild(backButton);
-            container.appendChild(beforeButton);
-            container.appendChild(afterButton);
-            container.appendChild(table);
-
-            // Añadir la tabla al contenedor
-            tableWrapper.appendChild(table);
-            container.appendChild(tableWrapper);
+            buttonContainer.appendChild(beforeButton);
+            buttonContainer.appendChild(afterButton);
+            buttonContainer.appendChild(backButton);
+            container.appendChild(buttonContainer);
         }
     } catch (error) {
         console.error("Error al obtener los datos durante el ciclo:", error);
-        container.innerHTML = `<p class="text-red-500">Ocurrió un error al cargar los datos durante el ciclo.</p>`;
+        container.innerHTML = `
+            <p class="text-center text-red-500 dark:text-red-400 mt-6">
+                Ocurrió un error al cargar los datos durante el ciclo.
+            </p>`;
     }
 }
