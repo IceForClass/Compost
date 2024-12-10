@@ -1,6 +1,7 @@
 import { createBolo } from "./crearBolo.js";
 import { beforeForm } from "./beforeForm.js";
 import { hideLoadingScreen } from "./loadingScreen.js";
+import { fetchAndDisplayHistory } from "./showRegists.js";
 
 export function printComposters(composter, container) {
     const typeMapping = {
@@ -37,15 +38,25 @@ export function printComposters(composter, container) {
                 </p>
                 <p>
                     Creada el: <span class="font-semibold">${new Date(
-        composter.created_at
-    ).toLocaleString()}</span>
+                        composter.created_at
+                    ).toLocaleString()}</span>
                 </p>
             </div>
         </div>
     `;
     if (composter.ocupada === 1) {
-        card.querySelector("#status-icon").classList.add("bg-green-500", "dark:bg-green-500", "dark:text-gray-200", "shadow-md", "shadow-gray-700/50", "dark:shadow-gray-400/50");
-        card.querySelector("#status-icon").classList.remove("dark:text-gray-400", "dark:opacity-25");
+        card.querySelector("#status-icon").classList.add(
+            "bg-green-500",
+            "dark:bg-green-500",
+            "dark:text-gray-200",
+            "shadow-md",
+            "shadow-gray-700/50",
+            "dark:shadow-gray-400/50"
+        );
+        card.querySelector("#status-icon").classList.remove(
+            "dark:text-gray-400",
+            "dark:opacity-25"
+        );
     }
     const newRegistButton = document.createElement("button");
     const seeRegistButton = document.createElement("button");
@@ -78,7 +89,8 @@ export function printComposters(composter, container) {
     const containerDropdown = document.createElement("div");
     containerDropdown.classList.add("container-dropdown");
     const dropdown = document.createElement("div");
-    dropdown.className = "dropdown invisible absolute z-10 my-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none";
+    dropdown.className =
+        "dropdown invisible absolute z-10 my-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none";
     dropdown.setAttribute("role", "menu");
     dropdown.setAttribute("aria-orientation", "vertical");
     dropdown.setAttribute("aria-labelledby", "menu-button");
@@ -88,8 +100,12 @@ export function printComposters(composter, container) {
         <button class="dropdown-verHistorico block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Ver histórico</button>
     </div>`;
     if (composter.ocupada === 0) {
-        dropdown.querySelector(".dropdown-verActual").classList.add("text-gray-400", "cursor-not-allowed");
-        dropdown.querySelector(".dropdown-verActual").classList.remove("text-gray-700", "hover:bg-gray-200");
+        dropdown
+            .querySelector(".dropdown-verActual")
+            .classList.add("text-gray-400", "cursor-not-allowed");
+        dropdown
+            .querySelector(".dropdown-verActual")
+            .classList.remove("text-gray-700", "hover:bg-gray-200");
     }
     seeRegistButton.addEventListener("click", (event) => {
         event.preventDefault();
@@ -101,7 +117,10 @@ export function printComposters(composter, container) {
         if (!dropdown.classList.contains("invisible")) {
             const handleOutsideClick = (event) => {
                 // If the click is outside of the dropdown and the button
-                if (!dropdown.contains(event.target) && !seeRegistButton.contains(event.target)) {
+                if (
+                    !dropdown.contains(event.target) &&
+                    !seeRegistButton.contains(event.target)
+                ) {
                     dropdown.classList.add("invisible");
                     document.removeEventListener("click", handleOutsideClick);
                 }
@@ -109,12 +128,27 @@ export function printComposters(composter, container) {
             document.addEventListener("click", handleOutsideClick);
         }
         // Add the event listeners for the menu items
-        dropdown.querySelector(".dropdown-verActual").addEventListener("click", () => {
-            // seeCurrentCycle(composter.id);
-        });
-        dropdown.querySelector(".dropdown-verHistorico").addEventListener("click", () => {
-            // seeCycleHistory(composter.id);
-        });
+        dropdown
+            .querySelector(".dropdown-verActual")
+            .addEventListener("click", () => {
+                // seeCurrentCycle(composter.id);
+            });
+        dropdown
+            .querySelector(".dropdown-verHistorico")
+            .addEventListener("click", () => {
+                // seeCycleHistory(composter.id);
+            });
+        dropdown
+            .querySelector(".dropdown-verHistorico")
+            .addEventListener("click", () => {
+                // Obtén el contenedor donde se mostrarán los registros
+                const historyContainer = document.createElement("div");
+                historyContainer.className = "mt-4";
+                dropdown.parentElement.appendChild(historyContainer);
+
+                // Llama a la función para obtener y mostrar los registros
+                fetchAndDisplayHistory(composter.id, historyContainer);
+            });
     });
     containerDropdown.appendChild(seeRegistButton);
     containerDropdown.appendChild(dropdown);
@@ -123,7 +157,4 @@ export function printComposters(composter, container) {
     card.appendChild(buttonsDiv);
     container.appendChild(card);
     hideLoadingScreen();
-}
-function printRegists(regist, container) {
-
 }
