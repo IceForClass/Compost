@@ -25,5 +25,7 @@
             <x-regist-table />
         </div>
     </div>
-    
+
+    <x-modal name="exampleModal" show="false" maxWidth="lg" />
+
 </x-app-layout>

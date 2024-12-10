@@ -139,6 +139,10 @@ function printRegists(registData, boloData, composter) {
     table.querySelector("h2").textContent = `Registros de la compostera ${composter.id}: ${typeMapping[composter.type]}`;
     const tbody = table.querySelector("tbody");
     const seeDetailsButton = table.querySelector("#verDetallesRegistro");
+    seeDetailsButton.addEventListener("click", (e) => {
+        const registerId = e.target.getAttribute("data-id");
+        printRegistDetails(registerId);
+    })
     registData.forEach(regist => {
         const tr = document.createElement("tr");
         tr.classList.add("hover:bg-gray-600");
@@ -175,11 +179,27 @@ function printRegists(registData, boloData, composter) {
         tr.appendChild(tdDate);
         tr.appendChild(tdStart);
         tbody.appendChild(tr);
-        fetchRegistsData(regist.id).then(({ beforeData, duringData, afterData }) => {
-
-        })
     });
     table.appendChild(seeDetailsButton);
     table.classList.remove("invisible");
     hideLoadingScreen();
+}
+
+function printRegistDetails(registId) {
+    let regists = [];
+    // not working, me voy a dormir
+    fetchRegistsData(registId).then((registsData) => {
+        regists = registsData;
+    });
+
+    console.log("regists: ", regists);
+
+    const data = {
+        title: 'Dynamic Modal Title',
+        body: 'This content comes from a JavaScript object.',
+    };
+
+    window.dispatchEvent(new CustomEvent('open-modal', {
+        detail: { name: 'exampleModal', data }
+    }));
 }

@@ -23,7 +23,7 @@
             <tbody>
                 <!-- Aquí se agregarán los registros dinámicamente (printData.js) -->
             </tbody>
-            <x-secondary-button id="verDetallesRegistro" class="m-5 cursor-not-allowed hidden" href="#">Ver detalles (no disponible)</x-secondary-button>
+            <x-secondary-button id="verDetallesRegistro" class="m-5 hidden" href="#">Ver detalles (no disponible)</x-secondary-button>
         </table>
     </div>
 </div>
