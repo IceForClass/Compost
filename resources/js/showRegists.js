@@ -119,12 +119,17 @@ export async function fetchAfter(registId) {
         if (data.data.length === 0) {
             container.innerHTML = `<p class="text-gray-500">No hay registros disponibles después de este ciclo.</p>`;
         } else {
+            // Crear título para la sección "Después"
+            const sectionTitle = document.createElement("h2");
+            sectionTitle.className = "text-2xl font-bold mb-4 text-gray-700";
+            sectionTitle.textContent = "Después";
+            container.appendChild(sectionTitle);
+
             // Crear tabla y encabezado
             const table = document.createElement("table");
             table.className =
                 "w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
             table.innerHTML = `
-                <h2> Después </h2>
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
@@ -231,6 +236,12 @@ export async function fetchBefore(registId) {
         if (beforeData.length === 0) {
             container.innerHTML = `<p class="text-gray-500">No hay registros anteriores para este ID.</p>`;
         } else {
+            // Crear título para la sección "Antes"
+            const sectionTitle = document.createElement("h2");
+            sectionTitle.className = "text-2xl font-bold mb-4 text-gray-700";
+            sectionTitle.textContent = "Antes";
+            container.appendChild(sectionTitle);
+
             // Crear contenedor de tabla responsive
             const tableWrapper = document.createElement("div");
             tableWrapper.className = "overflow-x-auto";
@@ -240,7 +251,6 @@ export async function fetchBefore(registId) {
             table.className =
                 "min-w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
             table.innerHTML = `
-                <h2> Antes </h2>
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
@@ -382,6 +392,12 @@ export async function fetchDuring(registId) {
         if (duringData.length === 0) {
             container.innerHTML = `<p class="text-gray-500">No hay registros disponibles durante este ciclo.</p>`;
         } else {
+            // Crear título para la sección "Antes"
+            const sectionTitle = document.createElement("h2");
+            sectionTitle.className = "text-2xl font-bold mb-4 text-gray-700";
+            sectionTitle.textContent = "Durante";
+            container.appendChild(sectionTitle);
+
             // Crear contenedor de tabla responsive
             const tableWrapper = document.createElement("div");
             tableWrapper.className = "overflow-x-auto";
@@ -391,7 +407,6 @@ export async function fetchDuring(registId) {
             table.className =
                 "min-w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
             table.innerHTML = `
-                <h2> Durante </h2>
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
