@@ -69,7 +69,7 @@ export async function fetchAndDisplayHistory(composterId) {
                     "click",
                     (event) => {
                         event.preventDefault();
-                        fetchAfter(regist.id);
+                        fetchDuring(regist.id);
                     }
                 );
             });
@@ -273,6 +273,29 @@ export async function fetchBefore(registId) {
                 tbody.appendChild(row);
             });
 
+            // Crear botón de Volver
+            const backButton = document.createElement("button");
+            backButton.className =
+                "mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600";
+            backButton.innerText = "Volver";
+
+            // Evento al hacer clic en Volver
+            backButton.addEventListener("click", () => {
+                const composterId = JSON.parse(
+                    localStorage.getItem("composterId")
+                );
+                if (composterId) {
+                    fetchAndDisplayHistory(composterId); // Llamar a fetchAndDisplayHistory con el composterId
+                } else {
+                    console.error(
+                        "No se encontró el composterId en el localStorage"
+                    );
+                }
+            });
+
+            container.appendChild(backButton);
+            container.appendChild(table);
+
             // Añadir la tabla al contenedor
             tableWrapper.appendChild(table);
             container.appendChild(tableWrapper);
@@ -385,6 +408,29 @@ export async function fetchDuring(registId) {
                 `;
                 tbody.appendChild(row);
             });
+
+            // Crear botón de Volver
+            const backButton = document.createElement("button");
+            backButton.className =
+                "mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600";
+            backButton.innerText = "Volver";
+
+            // Evento al hacer clic en Volver
+            backButton.addEventListener("click", () => {
+                const composterId = JSON.parse(
+                    localStorage.getItem("composterId")
+                );
+                if (composterId) {
+                    fetchAndDisplayHistory(composterId); // Llamar a fetchAndDisplayHistory con el composterId
+                } else {
+                    console.error(
+                        "No se encontró el composterId en el localStorage"
+                    );
+                }
+            });
+
+            container.appendChild(backButton);
+            container.appendChild(table);
 
             // Añadir la tabla al contenedor
             tableWrapper.appendChild(table);
