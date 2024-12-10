@@ -67,7 +67,7 @@ export function beforeForm(composterId) {
             </div>
         </div>
         <div class="mt-6 flex justify-end">
-            <button type="button" id="nextFormButton" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+            <button type="button" id="nextFormButton" class="bg-green-600 text-green-700 hover:text-green-100 dark:text-green-100 px-6 py-2 rounded-lg hover:bg-green-700 bg-opacity-10 border-2 border-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                 Siguiente
             </button>
         </div>

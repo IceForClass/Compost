@@ -23,5 +23,16 @@ export function clearTable() {
     if (table) {
         table.classList.add("invisible");
         table.querySelector("tbody").innerHTML = "";
+        table.querySelector("#verDetallesRegistro").classList.add("hidden");
     }
+}
+
+export function clearComposters() {
+    const div = document.querySelector("#datosCompostera");
+    console.log(div.innerHTML);
+    if (div) {
+        div.innerHTML = "";
+        console.log('clearComposters');
+    }
+    console.log(div.innerHTML);
 }

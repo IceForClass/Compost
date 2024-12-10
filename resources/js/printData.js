@@ -1,7 +1,7 @@
 import { createBolo } from "./crearBolo.js";
 import { beforeForm } from "./beforeForm.js";
 import { showLoadingScreen, hideLoadingScreen } from "./loadingScreen.js";
-import { clearTableEvent } from "./app.js";
+import { clearTable, clearTableEvent } from "./app.js";
 
 const typeMapping = {
     11: "Aporte",
@@ -87,16 +87,17 @@ export function printComposter(composter, boloData, registData) {
     dropdown.setAttribute("aria-labelledby", "menu-button");
     dropdown.innerHTML = /* html */ `
     <div class="py-1">
-    <button class="dropdown-verActual block w-full text-left px-4 py-2 text-sm text-gray-400 cursor-not-allowed" >Ver ciclo actual</button>
-    <button class="dropdown-verHistorico block w-full text-left px-4 py-2 text-sm hover:bg-gray-200 cursor-not-allowed text-gray-400">Ver histórico &#40;no disponible&#41;</button>
+        <a href="#datosRegistros" class="dropdown-verHistorico block w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-200">Ver histórico</a>
+        <button class="dropdown-verActual block w-full text-left px-4 py-2 text-sm cursor-not-allowed text-gray-400">Ver ciclo actual &#40;no disponible&#41;</button>
     </div>`;
-    if (composter.ocupada === 1) {
-        dropdown.querySelector(".dropdown-verActual").classList.add("text-gray-700", "hover:bg-gray-200");
-        dropdown.querySelector(".dropdown-verActual").classList.remove("text-gray-400", "cursor-not-allowed");
-        dropdown.querySelector(".dropdown-verActual").addEventListener("click", (event) => {
-            printRegists(registData, boloData, composter);
-        })
-    }
+    // Pendiente inplementar ver bolo actual
+    /*     if (composter.ocupada === 1) {
+            dropdown.querySelector(".dropdown-verActual").classList.add("text-gray-700", "hover:bg-gray-200");
+            dropdown.querySelector(".dropdown-verActual").classList.remove("text-gray-400", "cursor-not-allowed");
+            dropdown.querySelector(".dropdown-verActual").addEventListener("click", (event) => {
+                printRegists(registData, boloData, composter);
+            })
+        } */
     seeRegistButton.addEventListener("click", (event) => {
         event.preventDefault();
         clearTableEvent(event);
@@ -119,7 +120,8 @@ export function printComposter(composter, boloData, registData) {
             // seeCurrentCycle(composter.id);
         });
         dropdown.querySelector(".dropdown-verHistorico").addEventListener("click", () => {
-            // seeCycleHistory(composter.id);
+            dropdown.classList.add("invisible");
+            printRegists(registData, boloData, composter);
         });
     });
     containerDropdown.appendChild(seeRegistButton);
@@ -130,12 +132,24 @@ export function printComposter(composter, boloData, registData) {
     container.appendChild(card);
 }
 function printRegists(registData, boloData, composter) {
+    clearTable();
     showLoadingScreen();
     const table = document.getElementById("datosRegistros");
     table.querySelector("h2").textContent = `Registros de la compostera ${composter.id}: ${typeMapping[composter.type]}`;
     const tbody = table.querySelector("tbody");
+    const seeDetailsButton = table.querySelector("#verDetallesRegistro");
     registData.forEach(regist => {
         const tr = document.createElement("tr");
+        tr.classList.add("hover:bg-gray-600");
+        tr.addEventListener("click", (e) => {
+            const radio = e.currentTarget.querySelector('input[type=radio]');
+            if (radio) {
+                radio.click();
+                seeDetailsButton.classList.remove("hidden");
+            }
+        });
+
+        const thCheckbox = document.createElement("th");
         const thID = document.createElement("th");
         const tdUser = document.createElement("td");
         const tdCicle = document.createElement("td");
@@ -143,13 +157,15 @@ function printRegists(registData, boloData, composter) {
         const tdBoloDescription = document.createElement("td");
         const tdDate = document.createElement("td");
         const tdStart = document.createElement("td");
+        thCheckbox.innerHTML = /*html*/ `<input type="radio" class="radio radio-success radio-sm" name="registros[]" value="${regist.id}">`;
         thID.textContent = regist.id;
         tdUser.textContent = regist.user_id;
         tdCicle.textContent = regist.cicle_id;
         tdBolo.textContent = boloData.name;
         tdBoloDescription.textContent = boloData.description;
         tdDate.textContent = regist.date;
-        tdStart.textContent = regist.cicle_start;
+        tdStart.textContent = regist.cicle_start ? "Sí" : "No";
+        tr.appendChild(thCheckbox);
         tr.appendChild(thID);
         tr.appendChild(tdUser);
         tr.appendChild(tdCicle);
@@ -159,6 +175,7 @@ function printRegists(registData, boloData, composter) {
         tr.appendChild(tdStart);
         tbody.appendChild(tr);
     });
+    table.appendChild(seeDetailsButton);
     table.classList.remove("invisible");
     hideLoadingScreen();
 }
