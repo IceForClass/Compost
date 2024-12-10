@@ -6,11 +6,11 @@
     </x-slot>
 
     @if (session('token'))
-        <!-- Pasamos el token para que js lo pueda usar -->
-        <script>
-            sessionStorage.setItem("idUser", {{ Auth::user()->id }});
-            sessionStorage.setItem("apiToken", @json(session('token')));
-        </script>
+    <!-- Pasamos el token para que js lo pueda usar -->
+    <script>
+        sessionStorage.setItem("idUser", {{Auth::user()->id}});
+        sessionStorage.setItem("apiToken", @json(session('token')));
+    </script>
     @endif
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -22,6 +22,10 @@
             <div id="datosCompostera" class="mt-4">
                 <!-- Aquí se agregarán las composteras dinámicamente -->
             </div>
+            <x-regist-table />
         </div>
     </div>
+
+    <x-modal name="exampleModal" show="false" maxWidth="lg" />
+
 </x-app-layout>

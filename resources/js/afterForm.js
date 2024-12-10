@@ -31,12 +31,13 @@ export function afterForm(composterId) {
                 <textarea id="observations" name="observations" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
             </div>
             <div>
-                <label for="end_Cicle" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fin de Ciclo:</label>
-                <input type="checkbox" id="end_Cicle" name="end_Cicle" class="mt-2 rounded border-gray-300 text-green-600 focus:ring-green-500">
+                <label for="end_Cicle" class="flex items-center justify-start gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">Fin de Ciclo:
+                    <input type="checkbox" id="end_Cicle" name="end_Cicle" class="block rounded border-gray-300 text-green-600 focus:ring-green-500">
+                </label>
             </div>
         </div>
         <div class="mt-6 flex justify-end">
-            <button type="button" id="saveButton" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            <button type="button" id="saveButton" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                 Guardar
             </button>
         </div>
@@ -63,8 +64,7 @@ export function afterForm(composterId) {
                     }
                 } else {
                     alert(
-                        `La compostera ${
-                            composterId + 1
+                        `La compostera ${composterId + 1
                         } tiene un bolo, primero tienes que cerrar ese`
                     );
                 }
