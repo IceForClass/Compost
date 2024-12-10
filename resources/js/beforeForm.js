@@ -31,13 +31,13 @@ export function beforeForm(composterId) {
                 </select>
             </div>
             <div>
-                <label for="odor" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Olor:</label>
-                <select id="odor" name="odor" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                <label for="olor" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Olor:</label>
+                <select id="olor" name="olor" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
                     <option value="">Seleccione</option>
-                    <option value="0">No bad smell</option>
+                    <option value="0">Sin mal olor</option>
                     <option value="1">Neutral</option>
-                    <option value="2">Rotten</option>
-                    <option value="3">Other</option>
+                    <option value="2">Podrido</option>
+                    <option value="3">Otro</option>
                 </select>
             </div>
             <div class="flex items-center space-x-3">
@@ -52,9 +52,9 @@ export function beforeForm(composterId) {
                 <label for="humidity" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Humedad:</label>
                 <select id="humidity" name="humidity" class="mt-2 block w-full p-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
                     <option value="">Seleccione</option>
-                    <option value="0">Deficient</option>
-                    <option value="1">Good</option>
-                    <option value="2">Excessive</option>
+                    <option value="0">Deficiente</option>
+                    <option value="1">Bueno</option>
+                    <option value="2">Excesivo</option>
                 </select>
             </div>
             <div>

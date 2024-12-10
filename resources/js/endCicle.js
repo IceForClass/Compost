@@ -1,4 +1,4 @@
-import { patchData, fetchData } from "./api.js";
+import { patchData, fetchData, postData } from "./api.js";
 import { loadComposters } from "./composteras.js";
 
 export function closeCicle(id) {
@@ -14,6 +14,15 @@ export function closeCicle(id) {
         .catch((error) => {
             console.error("Error al actualizar la compostera:", error);
         });
+}
+
+export async function newCicle() {
+    const now = new Date();
+    const start = now.toISOString().replace("T", " ").split(".")[0];
+    const bolo_id = localStorage.getItem("bolo_id");
+    const cicleData = { bolo_id, start };
+    const response = await postData("/api/cicle", cicleData);
+    console.log("Ciclo creado:", response);
 }
 
 export function openCicle(id) {
@@ -88,7 +97,7 @@ export async function checkNextComposter(id) {
         const now = new Date();
         const end = now.toISOString().replace("T", " ").split(".")[0];
 
-        patchData(`/api/cicle/${cicle_id}`, { end: end })
+        patchData(`/api/cicle/${cicle_id}`, { terminado: 1, end: end })
             .then((response) => {
                 console.log(`Fecha de fin de ciclo añadida correctamente`);
             })
