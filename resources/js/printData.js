@@ -18,7 +18,6 @@ export function printComposters(composter, container) {
     const empty = emptyMapping[composter.ocupada] || "Estado desconocido";
 
     const card = document.createElement("a");
-    // card.href = `${window.location.pathname}?composter=${composter.id}`;
     card.className =
         "flex flex-col sm:flex-row gap-4 justify-between items-center block p-6 bg-gradient-to-br from-green-400 to-green-100 dark:from-gray-900 dark:to-dark-highlight rounded-lg shadow-lg hover:shadow-xl mb-4 no-underline";
     card.innerHTML = /* html */ `    
@@ -68,6 +67,7 @@ export function printComposters(composter, container) {
         "flex items-center justify-center gap-2 bg-amber-500 dark:bg-amber-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-btn-primary-hover focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 transform hover:scale-105 transition duration-300 ease-in-out";
     seeRegistButton.className =
         "flex items-center justify-center gap-2 bg-green-500 dark:bg-green-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-btn-primary-hover focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 transform hover:scale-105 transition duration-300 ease-in-out";
+
     newRegistButton.addEventListener("click", (event) => {
         event.preventDefault();
 
@@ -86,74 +86,21 @@ export function printComposters(composter, container) {
             );
         }
     });
-    const containerDropdown = document.createElement("div");
-    containerDropdown.classList.add("container-dropdown");
-    const dropdown = document.createElement("div");
-    dropdown.className =
-        "dropdown invisible absolute z-10 my-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none";
-    dropdown.setAttribute("role", "menu");
-    dropdown.setAttribute("aria-orientation", "vertical");
-    dropdown.setAttribute("aria-labelledby", "menu-button");
-    dropdown.innerHTML = /* html */ `
-    <div class="py-1">
-        <button class="dropdown-verActual block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" >Ver ciclo actual</button>
-        <button class="dropdown-verHistorico block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Ver histórico</button>
-    </div>`;
-    if (composter.ocupada === 0) {
-        dropdown
-            .querySelector(".dropdown-verActual")
-            .classList.add("text-gray-400", "cursor-not-allowed");
-        dropdown
-            .querySelector(".dropdown-verActual")
-            .classList.remove("text-gray-700", "hover:bg-gray-200");
-    }
+
     seeRegistButton.addEventListener("click", (event) => {
         event.preventDefault();
 
-        // Toggle the dropdown visibility
-        dropdown.classList.toggle("invisible");
+        // Crear y mostrar el contenedor del histórico
+        const historyContainer = document.createElement("div");
+        historyContainer.className = "mt-4";
+        card.appendChild(historyContainer);
 
-        // If dropdown is now visible, add event listener to handle clicks outside
-        if (!dropdown.classList.contains("invisible")) {
-            const handleOutsideClick = (event) => {
-                // If the click is outside of the dropdown and the button
-                if (
-                    !dropdown.contains(event.target) &&
-                    !seeRegistButton.contains(event.target)
-                ) {
-                    dropdown.classList.add("invisible");
-                    document.removeEventListener("click", handleOutsideClick);
-                }
-            };
-            document.addEventListener("click", handleOutsideClick);
-        }
-        // Add the event listeners for the menu items
-        dropdown
-            .querySelector(".dropdown-verActual")
-            .addEventListener("click", () => {
-                // seeCurrentCycle(composter.id);
-            });
-        dropdown
-            .querySelector(".dropdown-verHistorico")
-            .addEventListener("click", () => {
-                // seeCycleHistory(composter.id);
-            });
-        dropdown
-            .querySelector(".dropdown-verHistorico")
-            .addEventListener("click", () => {
-                // Obtén el contenedor donde se mostrarán los registros
-                const historyContainer = document.createElement("div");
-                historyContainer.className = "mt-4";
-                dropdown.parentElement.appendChild(historyContainer);
-
-                // Llama a la función para obtener y mostrar los registros
-                fetchHistory(composter.id, historyContainer);
-            });
+        // Llamar a la función para obtener y mostrar los registros
+        fetchHistory(composter.id, historyContainer);
     });
-    containerDropdown.appendChild(seeRegistButton);
-    containerDropdown.appendChild(dropdown);
+
     buttonsDiv.appendChild(newRegistButton);
-    buttonsDiv.appendChild(containerDropdown);
+    buttonsDiv.appendChild(seeRegistButton);
     card.appendChild(buttonsDiv);
     container.appendChild(card);
     hideLoadingScreen();
