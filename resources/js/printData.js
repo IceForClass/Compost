@@ -1,7 +1,7 @@
 import { createBolo } from "./crearBolo.js";
 import { beforeForm } from "./beforeForm.js";
 import { showLoadingScreen, hideLoadingScreen } from "./loadingScreen.js";
-import { clearTable, clearTableEvent } from "./app.js";
+import { clearTable, clearTableEvent } from "./composteras.js";
 
 const typeMapping = {
     11: "Aporte",
