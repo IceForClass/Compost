@@ -1,7 +1,7 @@
 import { fetchData } from "./api.js";
 import { loadComposters } from "./composteras.js";
 
-export async function fetchAndDisplayHistory(composterId) {
+export async function fetchHistory(composterId) {
     const container = document.getElementById("datosCompostera");
 
     localStorage.setItem("composterId", JSON.stringify(composterId));
@@ -87,7 +87,7 @@ export async function fetchAndDisplayHistory(composterId) {
                     localStorage.getItem("composterId")
                 );
                 if (composterId) {
-                    loadComposters(); // Llamar a fetchAndDisplayHistory con el composterId
+                    loadComposters(); // Llamar a fetchHistory con el composterId
                 } else {
                     console.error(
                         "No se encontró el composterId en el localStorage"
@@ -176,7 +176,7 @@ export async function fetchAfter(registId) {
                     localStorage.getItem("composterId")
                 );
                 if (composterId) {
-                    fetchAndDisplayHistory(composterId); // Llamar a fetchAndDisplayHistory con el composterId
+                    fetchHistory(composterId); // Llamar a fetchHistory con el composterId
                 } else {
                     console.error(
                         "No se encontró el composterId en el localStorage"
@@ -326,7 +326,7 @@ export async function fetchBefore(registId) {
                     localStorage.getItem("composterId")
                 );
                 if (composterId) {
-                    fetchAndDisplayHistory(composterId); // Llamar a fetchAndDisplayHistory con el composterId
+                    fetchHistory(composterId); // Llamar a fetchHistory con el composterId
                 } else {
                     console.error(
                         "No se encontró el composterId en el localStorage"
@@ -481,7 +481,7 @@ export async function fetchDuring(registId) {
                     localStorage.getItem("composterId")
                 );
                 if (composterId) {
-                    fetchAndDisplayHistory(composterId); // Llamar a fetchAndDisplayHistory con el composterId
+                    fetchHistory(composterId); // Llamar a fetchHistory con el composterId
                 } else {
                     console.error(
                         "No se encontró el composterId en el localStorage"

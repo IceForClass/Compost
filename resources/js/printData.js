@@ -1,7 +1,7 @@
 import { createBolo } from "./crearBolo.js";
 import { beforeForm } from "./beforeForm.js";
 import { hideLoadingScreen } from "./loadingScreen.js";
-import { fetchAndDisplayHistory } from "./showRegists.js";
+import { fetchHistory } from "./showRegists.js";
 
 export function printComposters(composter, container) {
     const typeMapping = {
@@ -147,7 +147,7 @@ export function printComposters(composter, container) {
                 dropdown.parentElement.appendChild(historyContainer);
 
                 // Llama a la función para obtener y mostrar los registros
-                fetchAndDisplayHistory(composter.id, historyContainer);
+                fetchHistory(composter.id, historyContainer);
             });
     });
     containerDropdown.appendChild(seeRegistButton);
