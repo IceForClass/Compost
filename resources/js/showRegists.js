@@ -69,7 +69,7 @@ export async function fetchAndDisplayHistory(composterId) {
                     "click",
                     (event) => {
                         event.preventDefault();
-                        fetchDuring(regist.id);
+                        fetchBefore(regist.id);
                     }
                 );
             });
@@ -101,6 +101,7 @@ export async function fetchAfter(registId) {
             table.className =
                 "w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
             table.innerHTML = `
+                <h2> Después </h2>
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
@@ -142,13 +143,11 @@ export async function fetchAfter(registId) {
                 tbody.appendChild(row);
             });
 
-            // Crear botón de Volver
+            // Crear botones de navegación
             const backButton = document.createElement("button");
             backButton.className =
                 "mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600";
             backButton.innerText = "Volver";
-
-            // Evento al hacer clic en Volver
             backButton.addEventListener("click", () => {
                 const composterId = JSON.parse(
                     localStorage.getItem("composterId")
@@ -162,7 +161,25 @@ export async function fetchAfter(registId) {
                 }
             });
 
+            const beforeButton = document.createElement("button");
+            beforeButton.className =
+                "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 mr-2";
+            beforeButton.innerText = "Antes";
+            beforeButton.addEventListener("click", () => {
+                fetchBefore(registId); // Llamar a la función fetchBefore
+            });
+
+            const duringButton = document.createElement("button");
+            duringButton.className =
+                "mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600";
+            duringButton.innerText = "Durante";
+            duringButton.addEventListener("click", () => {
+                fetchDuring(registId); // Llamar a la función fetchDuring
+            });
+
             container.appendChild(backButton);
+            container.appendChild(beforeButton);
+            container.appendChild(duringButton);
             container.appendChild(table);
         }
     } catch (error) {
@@ -200,6 +217,7 @@ export async function fetchBefore(registId) {
             table.className =
                 "min-w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
             table.innerHTML = `
+                <h2> Antes </h2>
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
@@ -293,7 +311,25 @@ export async function fetchBefore(registId) {
                 }
             });
 
+            const duringButton = document.createElement("button");
+            duringButton.className =
+                "mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600";
+            duringButton.innerText = "Durante";
+            duringButton.addEventListener("click", () => {
+                fetchDuring(registId); // Llamar a la función fetchDuring
+            });
+
+            const afterButton = document.createElement("button");
+            afterButton.className =
+                "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 mr-2";
+            afterButton.innerText = "Después";
+            afterButton.addEventListener("click", () => {
+                fetchAfter(registId); // Llamar a la función fetchBefore
+            });
+
             container.appendChild(backButton);
+            container.appendChild(afterButton);
+            container.appendChild(duringButton);
             container.appendChild(table);
 
             // Añadir la tabla al contenedor
@@ -332,6 +368,7 @@ export async function fetchDuring(registId) {
             table.className =
                 "min-w-full text-left border-collapse border border-gray-200 bg-white shadow-sm rounded-lg overflow-hidden";
             table.innerHTML = `
+                <h2> Durante </h2>
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="border border-gray-300 px-4 py-2 text-gray-700 font-semibold">ID</th>
@@ -429,7 +466,25 @@ export async function fetchDuring(registId) {
                 }
             });
 
+            const afterButton = document.createElement("button");
+            afterButton.className =
+                "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 mr-2";
+            afterButton.innerText = "Después";
+            afterButton.addEventListener("click", () => {
+                fetchAfter(registId); // Llamar a la función fetchBefore
+            });
+
+            const beforeButton = document.createElement("button");
+            beforeButton.className =
+                "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 mr-2";
+            beforeButton.innerText = "Antes";
+            beforeButton.addEventListener("click", () => {
+                fetchBefore(registId); // Llamar a la función fetchBefore
+            });
+
             container.appendChild(backButton);
+            container.appendChild(beforeButton);
+            container.appendChild(afterButton);
             container.appendChild(table);
 
             // Añadir la tabla al contenedor
