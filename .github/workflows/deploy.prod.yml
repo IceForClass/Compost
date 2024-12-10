@@ -3,7 +3,7 @@ name: Deploy to vps (prod)
 on:
   push:
     branches:
-      - production
+      - prod
 
 jobs:
   deploy:

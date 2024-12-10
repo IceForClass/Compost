@@ -4,9 +4,11 @@
 
     cd /var/www/html/Compost
 
-    git pull origin production
+    git pull origin prod
 
     php artisan optimize:clear
+
+    sudo service php8.3-fpm reload
 
     npm run build
 

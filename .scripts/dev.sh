@@ -4,9 +4,9 @@
 
     cd /var/www/html/compost
 
-    git pull origin dev
+    git pull origin developer
 
-    php artisan route:clear
+    php artisan optimize:clear
 
     sudo service php8.3-fpm reload
 
