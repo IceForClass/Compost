@@ -553,9 +553,9 @@ export async function fetchDuring(registId) {
                 }
             });
 
+            buttonContainer.appendChild(backButton);
             buttonContainer.appendChild(beforeButton);
             buttonContainer.appendChild(afterButton);
-            buttonContainer.appendChild(backButton);
             container.appendChild(buttonContainer);
         }
     } catch (error) {
