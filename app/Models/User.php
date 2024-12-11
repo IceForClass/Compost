@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\MailController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Mail\DemoMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 /**
  * Class User
@@ -60,10 +64,24 @@ class User extends Authenticatable
     protected static function boot()
     {
         parent::boot();
-
-        static::creating(function ($users) {
-            $users->password = $users->password ?? bcrypt('123456789');
+    
+        static::creating(function ($user) {
+            // Generamos una contraseña aleatoria
+            $password = Str::random(10);
+            $user->password = bcrypt($password);
+    
+            // Datos para el correo
+            $mailData = [
+                'name' => $user->name,
+                'email' => $user->email,
+                'password' => $password,
+            ];
+    
+            // Enviar correo
+            Mail::to($user->email)->send(new DemoMail($mailData));
         });
     }
+    
+    
     
 }
